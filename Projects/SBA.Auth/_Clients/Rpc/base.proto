@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+option csharp_namespace = "SBA.Auth.Grpc.Model";
+
+package SBA.Auth.Grpc.Base;
+
+message ById {
+    string id = 1;
+}
+message UpdateStatus {
+    int32 status = 1;
+}
+
+message CreateBase {
+    int32 id = 1;
+    string name = 2;
+    int32 status = 3;
+    string desc = 4;
+}

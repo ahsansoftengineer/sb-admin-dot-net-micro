@@ -64,7 +64,7 @@ spec:
             - name: Clients__Grpc__Protocols
               value: Http2
             - name: Clients__Grpc__Auth
-              value: http://sba-srvc-auth-grpc:1104
+              value: http://sba-srvc-auth-grpc:5104
 
             - name: Clients__RabbitMQz__HostName
               value: sba-srvc-cip-rbmq.default.svc.cluster.local

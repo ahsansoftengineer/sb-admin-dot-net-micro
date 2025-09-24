@@ -1,19 +1,24 @@
 syntax = "proto3";
 
-option csharp_namespace = "GLOB.Infra.Model";
+option csharp_namespace = "SBA.Auth.Grpc.Model";
 
-service GrpcLookup {
+import "SBA.Auth.Grpc.Base";
+
+package SBA.Auth.Grpc.Model;
+
+service GrpcLookupSrvc {
     rpc GetAllLookups (GetAllRequest) returns (LookupRes);
 }
 
 message GetAllRequest {}
 
-message GrpcLookupModel {
-    int32 lookupId = 1;
+message GrpcLookup {
+    int32 id = 1;
     string name = 2;
-    string publisher = 3;
+    int32 status = 3;
+    string desc = 4;
 }
 
-message LookupRes {
-    repeated GrpcLookupModel platform = 1;
+message GrpcLookups {
+    repeated GrpcLookup lookup = 1;
 }
