@@ -12,13 +12,6 @@ service GrpcLookupSrvc {
 
 message GetAllRequest {}
 
-message GrpcLookup {
-    int32 id = 1;
-    string name = 2;
-    int32 status = 3;
-    string desc = 4;
-}
-
 message GrpcLookups {
     repeated GrpcLookup lookup = 1;
 }
