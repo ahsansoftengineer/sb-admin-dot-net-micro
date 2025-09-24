@@ -3,6 +3,7 @@ namespace GLOB.API.Config.Optionz;
 public class Option_Host
 {
   public static string SectionName = "Http_Host";
+  public string Protocols = "Http";
   public string Gateway { get; set; } = string.Empty;
   public string Job { get; set; } = string.Empty;
   public string Auth { get; set; } = string.Empty;
@@ -24,7 +25,8 @@ public class Option_Clients
 {
   public static string SectionName = "Clients";
   public Option_RabbitMQ RabbitMQz { get; set; }
-  public Option_Host Http_Host { get; set; } = new Option_Host();
+  public Option_Host Http_Host { get; set; } = new Option_Host() { Protocols = "Http1" };
+  public Option_Host Grpc { get; set; } = new Option_Host() { Protocols = "Http2" };
 }
     //   // Uri = "",
     //   // Port = 5672,
