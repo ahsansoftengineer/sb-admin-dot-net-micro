@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+option csharp_namespace = "SBA.Auth.Grpc";
+
+service GrpcProjectzLookup {
+    rpc GetAllProjectzLookups (GetAllRequest) returns (ProjectzLookupRes);
+}
+
+message GetAllRequest {}
+
+message GrpcProjectzLookupModel {
+    int32 id = 1;
+    string name = 2;
+    string desc = 3;
+    int32 status = 4;
+    int32 projectzLookupBaseId = 5;
+}
+
+message ProjectzLookupRes {
+    repeated GrpcProjectzLookupModel ProjectzLookups = 1;
+}
