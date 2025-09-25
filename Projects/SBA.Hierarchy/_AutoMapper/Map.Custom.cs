@@ -8,7 +8,7 @@ public partial class ProjectzMapper : API_Base_Mapper
   public ProjectzMapper() : base()
   {
   }
-  public override void MapCustom() 
+  public override void MapCustom()
   {
     base.MapCustom();
     MapCRUD<GlobalLookup, GlobalLookupDtoCreate, GlobalLookupDtoRead, GlobalLookupDtoSearch>();
@@ -18,5 +18,7 @@ public partial class ProjectzMapper : API_Base_Mapper
     MapCRUD<OU, OUDtoCreate, OUDtoRead, OUDtoSearch>();
     MapCRUD<SU, SUDtoCreate, SUDtoRead, SUDtoSearch>();
     MapCRUD<City, CityDtoCreate, CityDtoRead, CityDtoSearch>();
+    
+    MapGrpc();
   }
 }

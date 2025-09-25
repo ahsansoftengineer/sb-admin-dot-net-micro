@@ -1,5 +1,5 @@
 using Microsoft.Extensions.Options;
-using SBA._Clients.Service;
+using SBA.Projectz.Grpc.Service;
 
 namespace SBA.Auth;
 public class Startup

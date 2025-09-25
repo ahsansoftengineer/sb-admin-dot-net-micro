@@ -1,6 +1,5 @@
 using GLOB.API.Mapper;
 using GLOB.Domain.Model.Auth;
-using SBA.Auth.Grpc;
 
 namespace SBA.Projectz.Mapper;
 

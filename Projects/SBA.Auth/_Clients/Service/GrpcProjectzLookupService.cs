@@ -1,8 +1,7 @@
 using AutoMapper;
 using Grpc.Core;
-using SBA.Auth.Grpc;
 
-namespace SBA._Clients.Service;
+namespace SBA.Projectz.Grpc.Service;
 
 public class GrpcProjectzLookupService : GrpcProjectzLookup.GrpcProjectzLookupBase
 {
@@ -15,7 +14,7 @@ public class GrpcProjectzLookupService : GrpcProjectzLookup.GrpcProjectzLookupBa
     _map = sp.GetSrvc<IMapper>();
   }
 
-  public override async Task<ProjectzLookupRes> GetAllProjectzLookups(GetAllRequest req, ServerCallContext context)
+  public override async Task<ProjectzLookupRes> Gets(GetAllRequest req, ServerCallContext context)
   {
     var res = new ProjectzLookupRes();
     var entities = await _uowProjectz.ProjectzLookups.Gets();
