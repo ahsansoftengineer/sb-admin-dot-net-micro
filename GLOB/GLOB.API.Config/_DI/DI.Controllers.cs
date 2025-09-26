@@ -63,7 +63,7 @@ public static void Add_API_Config_Controller(
 
   }
 
-  public static void Use_API_Config_Controller(this IApplicationBuilder app)
+  public static void Use_API_Config_Controller(this IApplicationBuilder app, Action<IEndpointRouteBuilder>? route = null)
   {
     Option_App appConfig = app.GetSrvc<IOptions<Option_App>>().Value;
     appConfig.Print("ENV");
@@ -71,6 +71,7 @@ public static void Add_API_Config_Controller(
     app.UseEndpoints(ep =>
     {
       ep.MapControllers();
+      route?.Invoke(ep);
     });
     app.Use(async (context, next) =>
     {

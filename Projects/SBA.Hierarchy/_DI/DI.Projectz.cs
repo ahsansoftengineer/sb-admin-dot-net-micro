@@ -1,5 +1,4 @@
-using GLOB.API.Clientz;
-using SBA.Projectz.Clientz;
+using SBA.Projectz.Grpc.Service;
 using SBA.Projectz.Mapper;
 namespace SBA.Projectz.DI;
 

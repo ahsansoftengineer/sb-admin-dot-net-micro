@@ -1,0 +1,17 @@
+// syntax = "proto3";
+
+// option csharp_namespace = "SBA.Auth.Grpc.Model";
+
+// import "SBA.Auth.Grpc.Base";
+
+// package SBA.Auth.Grpc.Model;
+
+// service GrpcLookupSrvc {
+//     rpc GetAllLookups (GetAllRequest) returns (LookupRes);
+// }
+
+// message GetAllRequest {}
+
+// message GrpcLookups {
+//     repeated GrpcLookup lookups = 1;
+// }

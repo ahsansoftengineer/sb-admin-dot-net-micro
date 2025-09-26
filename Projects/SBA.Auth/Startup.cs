@@ -1,3 +1,6 @@
+using Microsoft.Extensions.Options;
+using SBA.Projectz.Grpc.Service;
+
 namespace SBA.Auth;
 public class Startup
 {
@@ -14,7 +17,15 @@ public class Startup
   }
   public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
   {
-    app.Use_API_Default_Middlewares();
+    Option_App appConfig = app.GetSrvc<IOptions<Option_App>>().Value;
+    appConfig.Print("ENV");
+
+    app.Use_API_Default_Middlewares((route) =>
+    {
+        route.Use_Projectz_Clientz_Grpc(appConfig);
+    });
     app.SeedProjectz().GetAwaiter().GetResult();
   }
+
+
 }

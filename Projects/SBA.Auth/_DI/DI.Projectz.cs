@@ -1,7 +1,6 @@
 using SBA.Projectz.Mapper;
 using SBA.Auth.Services;
 using GLOB.API.Clientz;
-using SBA.Projectz.Clientz;
 using GLOB.Infra.Data.Auth;
 
 namespace SBA.Projectz.DI;
@@ -36,7 +35,7 @@ public static partial class DI_Projectz
     srvc.AddScoped<TokenService>();
 
     srvc.AddSingleton<UOW_API_Httpz>();
-    srvc.Add_API_RabbitMQ(config);
-    srvc.Add_Projectz_Clientz();
+    srvc.Add_Projectz_Clientz(config);
+
   }
 }

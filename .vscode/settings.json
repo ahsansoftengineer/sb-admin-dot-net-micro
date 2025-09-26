@@ -7,5 +7,15 @@
       "fileMatch": ["Option_App*.json"],
       "url": "./Option_App.schema.json"
     }
-  ]
+  ],
+  "protoc": {
+    "path": "/absolute/path/to/protoc",   // optional if you use Grpc.Tools
+    "compile_on_save": false,
+    "options": [
+      "--proto_path=Protos",
+      "--csharp_out=Generated",           // C# code will go into ./Generated
+      "--grpc_out=Generated",             // for gRPC service stubs
+      "--plugin=protoc-gen-grpc=/path/to/grpc_csharp_plugin"
+    ]
+  }
 }

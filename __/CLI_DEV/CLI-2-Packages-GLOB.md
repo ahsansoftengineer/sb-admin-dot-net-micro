@@ -17,7 +17,7 @@ dotnet add ./GLOB/GLOB.Infra/ package Microsoft.EntityFrameworkCore -v 9.0.0
 dotnet add ./GLOB/GLOB.Infra/ package Microsoft.EntityFrameworkCore.Design -v 9.0.0
 dotnet add ./GLOB/GLOB.Infra/ package Microsoft.EntityFrameworkCore.DynamicLinq -v 8.4.4
 dotnet add ./GLOB/GLOB.Infra/ package Microsoft.EntityFrameworkCore.SqlServer -v 9.0.0
-dotnet add ./GLOB/GLOB.Infra/ package Microsoft.EntityFrameworkCore.Tools -v 9.0.0
+# dotnet add ./GLOB/GLOB.Infra/ package Microsoft.EntityFrameworkCore.Tools -v 9.0.0
 dotnet add ./GLOB/GLOB.Infra/ package Microsoft.Extensions.Caching.StackExchangeRedis -v 9.0.5
 
 dotnet add ./GLOB/GLOB.Infra/ package Microsoft.Extensions.Configuration -v 9.0.0
@@ -45,7 +45,8 @@ dotnet add ./GLOB/GLOB.API.Config/ package Microsoft.Extensions.Caching.StackExc
 ### API
 ```bash
 dotnet add ./GLOB/GLOB.API/ package RabbitMQ.Client -v 7.1.2
-dotnet add ./GLOB/GLOB.API/ package Grpc.Tools -v 2.72.0
+# dotnet add ./GLOB/GLOB.API/ package Grpc.Tools -v 2.72.0
+dotnet add ./GLOB/GLOB.API/ package Grpc.AspNetCore -v 2.71.0
 dotnet add ./GLOB/GLOB.API/ package Grpc.Net.Client -v 2.71.0
 dotnet add ./GLOB/GLOB.API/ package Google.protobuf -v 2.71.0
 dotnet add ./GLOB/GLOB.API/ package NCalcAsync  # '2 + 2'

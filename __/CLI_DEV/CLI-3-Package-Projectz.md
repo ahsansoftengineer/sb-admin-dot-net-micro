@@ -12,5 +12,13 @@ dotnet add ./Projects/SBA.Job/ package Hangfire.Dashboard.Basic.Authentication -
 
 ### Auth
 ```bash
+dotnet add ./Projects/SBA.Auth/ package Microsoft.EntityFrameworkCore.Tools -v 9.0.0
 dotnet add ./Projects/SBA.Auth/ package Microsoft.AspNetCore.Authentication.Google
+dotnet add ./Projects/SBA.Auth/ package Grpc.Tools -v 2.72.0
+```
+
+### Hierarchy
+```bash
+dotnet add ./Projects/SBA.Auth/ package Microsoft.EntityFrameworkCore.Tools -v 9.0.0
+dotnet add ./Projects/SBA.Auth/ package Grpc.Tools -v 2.72.0
 ```

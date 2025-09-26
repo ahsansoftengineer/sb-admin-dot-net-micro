@@ -17,7 +17,7 @@ public static partial class DI_API
       app.UseMiddleware<GlobalExceptionMiddleware>();
     }
   }
-  public static void Use_API_Default_Middlewares(this IApplicationBuilder app)
+  public static void Use_API_Default_Middlewares(this IApplicationBuilder app, Action<IEndpointRouteBuilder>? route = null)
   {
     app.Use_API_DevEnv();
 
@@ -32,6 +32,6 @@ public static partial class DI_API
     app.UseAuthentication();
     app.UseAuthorization();
 
-    app.Use_API_Config_Controller();
+    app.Use_API_Config_Controller(route);
   }
 }
