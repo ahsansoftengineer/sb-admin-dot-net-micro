@@ -65,6 +65,10 @@ spec:
               value: Http2
             - name: Clients__Grpc__Auth
               value: http://sba-srvc-auth-grpc:5104
+            - name: Clients__Grpc__Hierarchy
+              value: http://sba-srvc-hierarchy-grpc:5106
+            - name: Clients__Grpc__Job
+              value: http://sba-srvc-job-grpc:5102
 
             - name: Clients__RabbitMQz__HostName
               value: sba-srvc-cip-rbmq.default.svc.cluster.local
