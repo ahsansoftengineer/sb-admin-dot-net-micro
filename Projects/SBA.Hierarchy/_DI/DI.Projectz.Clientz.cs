@@ -9,5 +9,6 @@ public static partial class DI_Projectz
   {
     srvc.AddSingleton<UOW_API_Httpz>();
     srvc.Add_Projectz_Clientz_RMQ();
+    srvc.Add_Projectz_Clientz_Grpc();
   }
 }
