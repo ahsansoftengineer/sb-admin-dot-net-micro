@@ -1,12 +1,13 @@
-
 using GLOB.API.Config.Optionz;
 using SBA.Projectz.Grpc.Service;
+
+namespace SBA.Projectz.DI;
 
 public static partial class DI_Projectz
 {
   public static void Use_Projectz_Clientz_Grpc(this IEndpointRouteBuilder route, Option_App appConfig)
   {
-    // route.MapGrpcService<GrpcProjectzLookupService>();
+    route.MapGrpcService<GrpcProjectzLookupService>();
     route.MapGet($"{appConfig.ASPNETCORE_ROUTE_PREFIX}/protos/projectz-lookup.proto", async ctx =>
     {
       var path = "_Clients/Protos/projectzLookup.jackson.proto";
@@ -25,7 +26,7 @@ public static partial class DI_Projectz
   }
   public static void Add_Projectz_Clientz_Grpc(this IServiceCollection srvc)
   {
-    srvc.AddScoped<ProjectzLookupClient>();
+    srvc.AddGrpc();
   }
 }
 

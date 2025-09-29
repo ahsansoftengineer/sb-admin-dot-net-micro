@@ -1,4 +1,3 @@
-using SBA.Projectz.Grpc.Service;
 using SBA.Projectz.Mapper;
 namespace SBA.Projectz.DI;
 

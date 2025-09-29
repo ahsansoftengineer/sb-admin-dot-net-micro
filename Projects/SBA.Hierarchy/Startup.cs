@@ -1,7 +1,6 @@
 
 using GLOB.API.Config.Optionz;
 using Microsoft.Extensions.Options;
-using SBA.Projectz.Grpc.Service;
 
 namespace SBA.Hierarchy;
 public class Startup
@@ -27,6 +26,5 @@ public class Startup
     });
 
     app.SeedProjectz();
-    app.PrepPopulation();
   }
 }

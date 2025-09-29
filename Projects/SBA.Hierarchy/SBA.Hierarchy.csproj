@@ -35,7 +35,7 @@
   </ItemGroup>
   
   <ItemGroup>
-    <Protobuf Include="_Clients\Protos\projectzlookup.jackson.proto" GrpcServices="Client" />
+    <Protobuf Include="_Clients\Protos\projectzlookup.jackson.proto" GrpcServices="Server" />
     <!-- <Protobuf Include="_Clients\Protos\**\*.proto" GrpcServices="Server" /> -->
   </ItemGroup>
 

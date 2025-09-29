@@ -22,9 +22,10 @@ public class Startup
 
     app.Use_API_Default_Middlewares((route) =>
     {
-        route.Use_Projectz_Clientz_Grpc(appConfig);
+      route.Use_Projectz_Clientz_Grpc(appConfig);
     });
     app.SeedProjectz().GetAwaiter().GetResult();
+    app.PrepPopulation();
   }
 
 
