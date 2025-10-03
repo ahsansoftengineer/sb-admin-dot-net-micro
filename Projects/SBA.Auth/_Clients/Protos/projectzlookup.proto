@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+option csharp_namespace = "SBA.Projectz.Grpc";
+
+import "SBA.Projectz.Grpc.Base";
+
+package SBA.Auth.Grpc.Model;
+
+service GrpcProjectzLookup {
+  rpc Gets (BaseGets) returns (BaseGrpcProjectzLookups) {
+    option (google.api.http) = {
+      get: "/v1/todos"
+    };
+  }
+
+  rpc Get (BaseGrpcById) returns (BaseGrpcProjectzLookup) {
+    option (google.api.http) = {
+      get: "/v1/todo"
+    };
+  }
+}
