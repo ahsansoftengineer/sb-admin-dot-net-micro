@@ -18,4 +18,28 @@ service GrpcProjectzLookup {
       get: "/v1/todo"
     };
   }
+
+  rpc Create (BaseGrpcCreate) returns (BaseGrpcRes) {
+    option (google.api.http) = {
+      post: "/v1/todo"
+    };
+  }
+
+  rpc Update (BaseGrpcUpdate) returns (BaseGrpcRes) {
+    option (google.api.http) = {
+      put: "/v1/todo"
+    };
+  }
+
+  rpc UpdateStatus (BaseGrpcById) returns (BaseGrpcRes) {
+    option (google.api.http) = {
+      patch: "/v1/todo"
+    };
+  }
+
+  rpc Delete (BaseGrpcById) returns (BaseGrpcRes) {
+    option (google.api.http) = {
+      delete: "/v1/todo"
+    };
+  }
 }

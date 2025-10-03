@@ -40,3 +40,8 @@ message BaseGrpcProjectzLookups {
 message BaseGrpcProjectzLookup {
     BaseGrpcUpdate ProjectzLookup = 1;
 }
+
+message BaseGrpcRes {
+    int32 status = 1;
+    string message = 2;
+}
