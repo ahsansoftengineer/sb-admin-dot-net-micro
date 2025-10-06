@@ -41,7 +41,13 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <Protobuf Include="_Clients\Protos\projectzlookup.jackson.proto" GrpcServices="Client" />
+    <Protobuf Include="_Clients\Protos\base.proto" GrpcServices="Client" />
+    <Protobuf Include="_Clients\Protos\projectzlookup.proto" GrpcServices="Client" AdditionalImportDirs="_Clients\Protos" />
+  </ItemGroup>
+  <ItemGroup>
+    <!-- <Protobuf Include="_Clients\Protos\base.proto" GrpcServices="Client" />
+    <Protobuf Include="_Clients\Protos\projectzlookup.proto" GrpcServices="Client" AdditionalImportDirs="_Clients/Protos" /> -->
+    <!-- <Protobuf Include="_Clients\Protos\projectzlookup.jackson.proto" GrpcServices="Client" /> -->
     <!-- <Protobuf Include="_Clients\Protos\**\*.proto" GrpcServices="Server" /> -->
   </ItemGroup>
 </Project>

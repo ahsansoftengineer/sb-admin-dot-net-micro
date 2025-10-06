@@ -2,7 +2,7 @@ syntax = "proto3";
 
 option csharp_namespace = "SBA.Projectz.Grpc.Base";
 
-package SBA.Projectz.Grpc.Base;
+package sba.projectz.grpc.base;
 
 message BaseGrpcByIdStr {
     string id = 1;

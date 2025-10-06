@@ -1,11 +1,11 @@
 syntax = "proto3";
 
-option csharp_namespace = "SBA.Projectz.Grpc";
+option csharp_namespace = "SBA.Projectz.Grpc.Model";
 
-import "SBA.Projectz.Grpc.Base";
-import "google/api/annotations.proto";
+import "base.proto";
+// import "google/api/annotations.proto";
 
-package SBA.Auth.Grpc.Model;
+package sba.projectz.grpc.model;
 
 service GrpcProjectzLookup {
   rpc Gets (BaseGrpcGets) returns (BaseGrpcProjectzLookups) {
