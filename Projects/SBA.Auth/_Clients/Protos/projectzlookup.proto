@@ -1,45 +1,46 @@
-// syntax = "proto3";
+syntax = "proto3";
 
-// option csharp_namespace = "SBA.Projectz.Grpc";
+option csharp_namespace = "SBA.Projectz.Grpc";
 
-// import "SBA.Projectz.Grpc.Base";
+import "SBA.Projectz.Grpc.Base";
+import "google/api/annotations.proto";
 
-// package SBA.Auth.Grpc.Model;
+package SBA.Auth.Grpc.Model;
 
-// service GrpcProjectzLookup {
-//   rpc Gets (BaseGets) returns (BaseGrpcProjectzLookups) {
-//     option (google.api.http) = {
-//       get: "/v1/todos"
-//     };
-//   }
+service GrpcProjectzLookup {
+  rpc Gets (BaseGrpcGets) returns (BaseGrpcProjectzLookups) {
+    // option (google.api.http) = {
+    //   get: "/v1/todos"
+    // };
+  }
 
-//   rpc Get (BaseGrpcById) returns (BaseGrpcProjectzLookup) {
-//     option (google.api.http) = {
-//       get: "/v1/todo"
-//     };
-//   }
+  rpc Get (BaseGrpcById) returns (BaseGrpcProjectzLookup) {
+    // option (google.api.http) = {
+    //   get: "/v1/todo"
+    // };
+  }
 
-//   rpc Create (BaseGrpcCreate) returns (BaseGrpcRes) {
-//     option (google.api.http) = {
-//       post: "/v1/todo"
-//     };
-//   }
+  rpc Create (BaseGrpcCreate) returns (BaseGrpcRes) {
+    // option (google.api.http) = {
+    //   post: "/v1/todo"
+    // };
+  }
 
-//   rpc Update (BaseGrpcUpdate) returns (BaseGrpcRes) {
-//     option (google.api.http) = {
-//       put: "/v1/todo"
-//     };
-//   }
+  rpc Update (BaseGrpcUpdate) returns (BaseGrpcRes) {
+    // option (google.api.http) = {
+    //   put: "/v1/todo"
+    // };
+  }
 
-//   rpc UpdateStatus (BaseGrpcById) returns (BaseGrpcRes) {
-//     option (google.api.http) = {
-//       patch: "/v1/todo"
-//     };
-//   }
+  rpc UpdateStatus (BaseGrpcById) returns (BaseGrpcRes) {
+    // option (google.api.http) = {
+    //   patch: "/v1/todo"
+    // };
+  }
 
-//   rpc Delete (BaseGrpcById) returns (BaseGrpcRes) {
-//     option (google.api.http) = {
-//       delete: "/v1/todo"
-//     };
-//   }
-// }
+  rpc Delete (BaseGrpcById) returns (BaseGrpcRes) {
+    // option (google.api.http) = {
+    //   delete: "/v1/todo"
+    // };
+  }
+}

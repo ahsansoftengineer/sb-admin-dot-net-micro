@@ -6,10 +6,10 @@ public static class ProjectzLookupGrpcSeed
     {
         using var scope = app.ApplicationServices.CreateScope();
         var grpcClient = scope.ServiceProvider.GetSrvc<ProjectzLookupClient>();
-        var list = grpcClient.Gets();
-        var uow = scope.ServiceProvider.GetSrvc<IUOW_Projectz>();
+        // var list = grpcClient.Gets();
+        // var uow = scope.ServiceProvider.GetSrvc<IUOW_Projectz>();
 
-        SeedData(uow, list);
+        // SeedData(uow, list);
     }
     
     private static void SeedData(IUOW_Projectz uow, IEnumerable<ProjectzLookup> list)

@@ -1,54 +1,54 @@
-// syntax = "proto3";
+syntax = "proto3";
 
-// option csharp_namespace = "SBA.Projectz.Grpc.Base";
+option csharp_namespace = "SBA.Projectz.Grpc.Base";
 
-// package SBA.Projectz.Grpc.Base;
+package SBA.Projectz.Grpc.Base;
 
-// message BaseGrpcByIdStr {
-//     string id = 1;
-// }
+message BaseGrpcByIdStr {
+    string id = 1;
+}
 
-// message BaseGrpcById {
-//     int32 id = 1;
-// }
+message BaseGrpcById {
+    int32 id = 1;
+}
 
-// message BaseGrpcUpdateStatus {
-//     BaseGrpcStatus status = 1;
-// }
+message BaseGrpcUpdateStatus {
+    BaseGrpcStatus status = 1;
+}
 
-// message BaseGrpcCreate {
-//     string name = 2;
-//     BaseGrpcStatus status = 3;
-//     string desc = 4;
-// }
+message BaseGrpcCreate {
+    string name = 1;
+    BaseGrpcStatus status = 2;
+    string desc = 3;
+}
 
-// message BaseGrpcUpdate {
-//     int32 id = 1;
-//     string name = 2;
-//     int32 status = 3;
-//     BaseGrpcStatus desc = 4;
-// }
+message BaseGrpcUpdate {
+    int32 id = 1;
+    string name = 2;
+    BaseGrpcStatus status = 3;
+    string desc = 4;
+}
 
-// message BaseGrpcGets { }
+message BaseGrpcGets { }
 
-// message BaseGrpcGet { }
+message BaseGrpcGet { }
 
-// enum BaseGrpcStatus {
-//   None = 0;
-//   Active = 1;
-//   DeActive = 2;
-//   Delete = 3;
-// }
+enum BaseGrpcStatus {
+  None = 0;
+  Active = 1;
+  DeActive = 2;
+  Delete = 3;
+}
 
-// message BaseGrpcProjectzLookups {
-//     repeated BaseGrpcUpdate ProjectzLookups = 1;
-// }
+message BaseGrpcProjectzLookups {
+    repeated BaseGrpcUpdate ProjectzLookups = 1;
+}
 
-// message BaseGrpcProjectzLookup {
-//     BaseGrpcUpdate ProjectzLookup = 1;
-// }
+message BaseGrpcProjectzLookup {
+    BaseGrpcUpdate ProjectzLookup = 1;
+}
 
-// message BaseGrpcRes {
-//     int32 status = 1;
-//     string message = 2;
-// }
+message BaseGrpcRes {
+    int32 status = 1;
+    string message = 2;
+}
