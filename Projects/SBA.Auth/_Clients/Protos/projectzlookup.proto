@@ -6,38 +6,46 @@ package sba.projectz.grpc;
 
 import "base.proto";
 
+message GrpcResProjectzLookups {
+    repeated GrpcDtoUpdate ProjectzLookups = 1;
+}
+
+message GrpcResProjectzLookup {
+    GrpcDtoUpdate ProjectzLookup = 1;
+}
+
 service GrpcProjectzLookup {
-  rpc Gets (BaseGrpcGets) returns (BaseGrpcProjectzLookups) {
+  rpc Gets (GrpcReq) returns (GrpcResProjectzLookups) {
     // option (google.api.http) = {
     //   get: "/v1/todos"
     // };
   }
 
-  rpc Get (BaseGrpcById) returns (BaseGrpcProjectzLookup) {
+  rpc Get (GrpcReqById) returns (GrpcResProjectzLookup) {
     // option (google.api.http) = {
     //   get: "/v1/todo"
     // };
   }
 
-  rpc Create (BaseGrpcCreate) returns (BaseGrpcRes) {
+  rpc Create (GrpcDtoCreate) returns (GrpcRes) {
     // option (google.api.http) = {
     //   post: "/v1/todo"
     // };
   }
 
-  rpc Update (BaseGrpcUpdate) returns (BaseGrpcRes) {
+  rpc Update (GrpcDtoUpdate) returns (GrpcRes) {
     // option (google.api.http) = {
     //   put: "/v1/todo"
     // };
   }
 
-  rpc UpdateStatus (BaseGrpcById) returns (BaseGrpcRes) {
+  rpc UpdateStatus (GrpcDtoUpdateStatus) returns (GrpcRes) {
     // option (google.api.http) = {
     //   patch: "/v1/todo"
     // };
   }
 
-  rpc Delete (BaseGrpcById) returns (BaseGrpcRes) {
+  rpc Delete (GrpcReqById) returns (GrpcRes) {
     // option (google.api.http) = {
     //   delete: "/v1/todo"
     // };

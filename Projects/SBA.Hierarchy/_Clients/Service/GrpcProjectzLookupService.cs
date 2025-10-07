@@ -3,12 +3,12 @@ using Grpc.Core;
 
 namespace SBA.Projectz.Grpc.Service;
 
-public class GrpcProjectzLookupService : GrpcProjectzLookup.GrpcProjectzLookupBase
+public class GrpcProjectzLookupservice : GrpcProjectzLookup.GrpcProjectzLookupBase
 {
   private readonly IUOW_Projectz _uowProjectz;
   private readonly IMapper _map;
 
-  public GrpcProjectzLookupService(IServiceProvider sp)
+  public GrpcProjectzLookupservice(IServiceProvider sp)
   {
     _uowProjectz = sp.GetSrvc<IUOW_Projectz>();
     _map = sp.GetSrvc<IMapper>();

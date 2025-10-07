@@ -1,41 +1,44 @@
-// namespace SBA.Projectz.Grpc.Service;
+using Grpc.Core;
+using SBA.Projectz.Grpc.Base;
 
-// public partial class ProjectzLookupClient
-// {
-//   public override async Task<BaseGrpcRes> Create(BaseGrpcCreate request, ServerCallContext context)
-//   {
-//     var entity = new ProjectzLookup
-//     {
-//       Name = request.Name,
-//       Status = (Status)request.Status,
-//       Desc = request.Desc
-//     };
+namespace SBA.Projectz.Grpc.Service;
 
-//     await _uow.ProjectzLookups.Add(entity);
-//     await _uow.Save();
+public partial class ProjectzLookupClient
+{
+  public override async Task<GrpcRes> Create(GrpcDtoCreate request, ServerCallContext context)
+  {
+    var entity = new ProjectzLookup
+    {
+      Name = request.Name,
+      Status = (GrpcEnumStatus)request.Status,
+      Desc = request.Desc
+    };
 
-//     return new BaseGrpcRes { Status = 1, Message = "Created successfully" };
-//   }
+    await _uow.ProjectzLookups.Add(entity);
+    await _uow.Save();
 
-//   public override async Task<BaseGrpcRes> Update(BaseGrpcUpdate request, ServerCallContext context)
-//   {
-//     var entity = await _uow.ProjectzLookups.Get(request.Id);
-//     entity.Name = request.Name;
-//     entity.Status = (Status)request.Status;
-//     entity.Desc = request.Desc;
+    return new GrpcRes { Status = 200, Message = "Created successfully" };
+  }
 
-//     _uow.ProjectzLookups.Update(entity);
-//     await _uow.Save();
+  public override async Task<GrpcRes> Update(GrpcDtoUpdate request, ServerCallContext context)
+  {
+    var entity = await _uow.ProjectzLookups.Get(request.Id);
+    entity.Name = request.Name;
+    entity.Status = (GrpcEnumStatus)request.Status;
+    entity.Desc = request.Desc;
 
-//     return new BaseGrpcRes { Status = 1, Message = "Updated successfully" };
-//   }
+    _uow.ProjectzLookups.Update(entity);
+    await _uow.Save();
 
-//   public override async Task<BaseGrpcRes> Delete(BaseGrpcById request, ServerCallContext context)
-//   {
-//     await _uow.ProjectzLookups.Delete(request.Id);
-//     await _uow.Save();
+    return new GrpcRes { Status = 200, Message = "Updated successfully" };
+  }
 
-//     return new BaseGrpcRes { Status = 1, Message = "Deleted successfully" };
-//   }
+  public override async Task<GrpcRes> Delete(GrpcReqById request, ServerCallContext context)
+  {
+    await _uow.ProjectzLookups.Delete(request.Id);
+    await _uow.Save();
 
-// }
+    return new GrpcRes { Status = 200, Message = "Deleted successfully" };
+  }
+
+}

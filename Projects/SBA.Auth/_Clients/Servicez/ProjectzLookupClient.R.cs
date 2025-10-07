@@ -1,61 +1,64 @@
-// using Grpc.Core;
-// using Grpc.Net.Client;
+using Grpc.Core;
+using SBA.Projectz.Grpc.Base;
+using SBA.Projectz.Grpc.Model;
 
-// namespace SBA.Projectz.Grpc.Service;
+namespace SBA.Projectz.Grpc.Service;
 
-// public partial class ProjectzLookupClient
-// {
-  
-//   public override async Task<BaseGrpcProjectzLookups> Gets(BaseGrpcGets request, ServerCallContext context)
-//   {
-//     var data = await _uow.ProjectzLookups.Gets();
-//     var response = new BaseGrpcProjectzLookups();
-//     response.ProjectzLookups.AddRange(data.Select(d => new BaseGrpcUpdate
-//     {
-//       Id = d.Id,
-//       Name = d.Name,
-//       Status = (BaseGrpcStatus)d.Status,
-//       Desc = d.Desc
-//     }));
-//     return response;
-//   }
+public partial class ProjectzLookupClient : GrpcProjectzLookup.GrpcProjectzLookupBase
+{
+  public async override Task<GrpcResProjectzLookups> Gets(GrpcReq request, ServerCallContext context)
+  {
+    var data = await _uow.ProjectzLookups.Gets();
+    var response = new GrpcResProjectzLookups();
+    response.ProjectzLookups.AddRange(data.Select(d => new GrpcDtoUpdate
+    {
+      Id = d.Id,
+      Name = d.Name,
+      Status = (GrpcEnumStatus)d.Status,
+      Desc = d.Desc
+    }));
+    return response;
+  }
 
-//   public override async Task<BaseGrpcProjectzLookup> Get(BaseGrpcById request, ServerCallContext context)
-//   {
-//     var entity = await _uow.ProjectzLookups.Get(request.Id);
-//     return new BaseGrpcProjectzLookup
-//     {
-//       ProjectzLookup = new BaseGrpcUpdate
-//       {
-//         Id = entity.Id,
-//         Name = entity.Name,
-//         Status = (BaseGrpcStatus)entity.Status,
-//         Desc = entity.Desc
-//       }
-//     };
-//   }
-//   // public IEnumerable<ProjectzLookup> Gets()
-//   // {
-//   //   $"Calling Grpc Service {_Option_Host.Auth}".Print("Grpc");
+  public override async Task<GrpcResProjectzLookup> Get(GrpcReqById request, ServerCallContext context)
+  {
+    var entity = await _uow.ProjectzLookups.Get(request.Id);
+    if (entity == null) return new GrpcResProjectzLookup();
 
-//   //   var channel = GrpcChannel.ForAddress(_Option_Host.Auth, new GrpcChannelOptions
-//   //   {
-//   //     Credentials = ChannelCredentials.Insecure
-//   //   });
 
-//   //   var client = new GrpcProjectzLookup.GrpcProjectzLookupClient(channel);
-//   //   var req = new GetAllRequest();
+    return new GrpcResProjectzLookup
+    {
+      ProjectzLookup = new GrpcDtoUpdate
+      {
+        Id = entity.Id,
+        Name = entity.Name,
+        Status = (GrpcEnumStatus)entity.Status,
+        Desc = entity.Desc
+      }
+    };
+  }
+  // public IEnumerable<ProjectzLookup> Gets()
+  // {
+  //   $"Calling Grpc Service {_Option_Host.Auth}".Print("Grpc");
 
-//   //   try
-//   //   {
-//   //     var res = client.Gets(req);
-//   //     return _map.Map<IEnumerable<ProjectzLookup>>(res.ProjectzLookups);
-//   //   }
-//   //   catch (Exception ex)
-//   //   {
-//   //     ex.Print("Grpc Error");
-//   //     return null;
-//   //   }
-//   // }
+  //   var channel = GrpcChannel.ForAddress(_Option_Host.Auth, new GrpcChannelOptions
+  //   {
+  //   Credentials = ChannelCredentials.Insecure
+  //   });
 
-// }
+  //   var client = new GrpcProjectzLookup.GrpcProjectzLookupClient(channel);
+  //   var req = new GetAllRequest();
+
+  //   try
+  //   {
+  //   var res = client.Gets(req);
+  //   return _map.Map<IEnumerable<ProjectzLookup>>(res.ProjectzLookups);
+  //   }
+  //   catch (Exception ex)
+  //   {
+  //   ex.Print("Grpc Error");
+  //   return null;
+  //   }
+  // }
+
+}

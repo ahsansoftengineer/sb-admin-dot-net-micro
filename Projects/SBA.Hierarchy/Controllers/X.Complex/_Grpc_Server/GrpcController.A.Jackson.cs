@@ -7,11 +7,11 @@
 
 // public partial class __GrpcServerController : API_1_InjectorController<__GrpcServerController>
 // {
-//   private readonly GrpcProjectzLookupService grpcProjectzLookupService;
+//   private readonly GrpcProjectzLookupservice GrpcProjectzLookupservice;
 //   // private readonly Projectz_RMQ_Pub _rmqPub;
 //   public __GrpcServerController(IServiceProvider sp) : base(sp)
 //   {
-//     grpcProjectzLookupService = sp.GetSrvc<GrpcProjectzLookupService>();
+//     GrpcProjectzLookupservice = sp.GetSrvc<GrpcProjectzLookupservice>();
 //     // _rmqPub = sp.GetSrvc<Projectz_RMQ_Pub>();
 //   }
 
