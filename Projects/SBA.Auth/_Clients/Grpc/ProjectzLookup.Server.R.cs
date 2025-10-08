@@ -7,14 +7,15 @@ namespace SBA.Projectz.Grpc.Service;
 
 public partial class ProjectzLookupServer
 {
-  public async override Task<GrpcResProjectzLookups> Gets(GrpcReq request, ServerCallContext context)
+  public async override Task<GrpcResProjectzLookups> Gets(GrpcReqEmpty request, ServerCallContext context)
   {
     var data = await _uow.ProjectzLookups.Gets();
 
     if (data == null || !data.Any()) return new GrpcResProjectzLookups(); 
 
     var response = new GrpcResProjectzLookups();
-    response.ProjectzLookups.AddRange(data.Select(d => d.ToProtoStruct()));
+
+    response.ProjectzLookups.AddRange(data.Select(_map.Map<GrpcDtoUpdate>));
     return response;
   }
 
@@ -23,10 +24,18 @@ public partial class ProjectzLookupServer
     var entity = await _uow.ProjectzLookups.Get(request.Id);
     if (entity == null) return new GrpcResProjectzLookup();
 
-
+    var result = _map.Map<GrpcDtoUpdate>(entity);
     return new GrpcResProjectzLookup
     {
-      ProjectzLookup = entity.ToProtoStruct()
+      ProjectzLookup = new GrpcDtoUpdate
+      {
+        Id = result.Id,
+        Name = result.Name,
+        Desc = result.Desc,
+        Status = result.Status,
+        ProjectzLookupBaseId = result.ProjectzLookupBaseId,
+      }
     };
   }
 }
+// ProjectzLookup = entity.ToProtoStruct()

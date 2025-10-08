@@ -21,6 +21,7 @@ message GrpcDtoCreate {
   string name = 1;
   GrpcEnumStatus status = 2;
   string desc = 3;
+  int32 projectzLookupBaseId = 4;
 }
 
 message GrpcDtoUpdate {
@@ -28,12 +29,13 @@ message GrpcDtoUpdate {
   string name = 2;
   GrpcEnumStatus status = 3;
   string desc = 4;
+  int32 projectzLookupBaseId = 5;
 }
 
 
 
 // Request
-message GrpcReq {}
+message GrpcReqEmpty {}
 
 message GrpcReqByIdStr {
   string id = 1;
@@ -47,6 +49,12 @@ message GrpcReqById {
 message GrpcRes {
   int32 status = 1;
   string message = 2;
+}
+
+message GrpcResJson {
+  int32 status = 1;
+  string message = 2;
+  string json = 3;
 }
 
 message GrpcResGets { }

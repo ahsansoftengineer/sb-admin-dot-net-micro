@@ -1,5 +1,6 @@
 using GLOB.API.Config.Optionz;
 using GLOB.API.Extz;
+using SBA.Projectz.Grpc.Service;
 // using SBA.Projectz.Grpc.Service;
 
 namespace SBA.Projectz.DI;
@@ -16,6 +17,7 @@ public static partial class DI_Projectz
   public static void Add_Projectz_Clientz_Grpc(this IServiceCollection srvc)
   {
     srvc.AddGrpc();
+    srvc.AddSingleton<UOW_Projectz_Grpc>();
   }
 }
 
