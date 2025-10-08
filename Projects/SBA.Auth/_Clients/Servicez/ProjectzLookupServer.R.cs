@@ -5,7 +5,7 @@ using SBA.Projectz.Grpc.Model;
 
 namespace SBA.Projectz.Grpc.Service;
 
-public partial class ProjectzLookupClient : GrpcProjectzLookup.GrpcProjectzLookupBase
+public partial class ProjectzLookupServer : GrpcProjectzLookup.GrpcProjectzLookupBase
 {
   public async override Task<GrpcResProjectzLookups> Gets(GrpcReq request, ServerCallContext context)
   {
@@ -38,7 +38,7 @@ public partial class ProjectzLookupClient : GrpcProjectzLookup.GrpcProjectzLooku
   //   Credentials = ChannelCredentials.Insecure
   //   });
 
-  //   var client = new GrpcProjectzLookup.GrpcProjectzLookupClient(channel);
+  //   var client = new GrpcProjectzLookup.GrpcProjectzLookupServer(channel);
   //   var req = new GetAllRequest();
 
   //   try

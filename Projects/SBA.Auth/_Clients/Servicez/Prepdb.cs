@@ -5,7 +5,7 @@
 //     public static void PrepPopulation(this IApplicationBuilder app)
 //     {
 //         using var scope = app.ApplicationServices.CreateScope();
-//         var grpcClient = scope.ServiceProvider.GetSrvc<ProjectzLookupClient>();
+//         var grpcClient = scope.ServiceProvider.GetSrvc<ProjectzLookupServer>();
 //         // var list = grpcClient.Gets();
 //         // var uow = scope.ServiceProvider.GetSrvc<IUOW_Projectz>();
 

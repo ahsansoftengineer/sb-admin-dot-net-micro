@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+option csharp_namespace = "SBA.Projectz.Grpc.Base";
+
+package sba.projectz.grpc;
+
+enum GrpcEnumStatus {
+  None = 0;
+  Active = 1;
+  DeActive = 2;
+  Delete = 3;
+}
+
+// DTO
+message GrpcDtoUpdateStatus {
+  int32 id = 1;
+  GrpcEnumStatus status = 2;
+}
+
+message GrpcDtoCreate {
+  string name = 1;
+  GrpcEnumStatus status = 2;
+  string desc = 3;
+}
+
+message GrpcDtoUpdate {
+  int32 id = 1;
+  string name = 2;
+  GrpcEnumStatus status = 3;
+  string desc = 4;
+}
+
+
+
+// Request
+message GrpcReq {}
+
+message GrpcReqByIdStr {
+  string id = 1;
+}
+
+message GrpcReqById {
+  int32 id = 1;
+}
+
+// Response
+message GrpcRes {
+  int32 status = 1;
+  string message = 2;
+}
+
+message GrpcResGets { }
+
+message GrpcResGet { }

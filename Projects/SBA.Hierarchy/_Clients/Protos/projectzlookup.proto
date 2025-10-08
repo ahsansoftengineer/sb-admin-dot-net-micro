@@ -1,0 +1,63 @@
+syntax = "proto3";
+
+option csharp_namespace = "SBA.Projectz.Grpc.Model";
+
+package sba.projectz.grpc;
+
+// import "google/protobuf/any.proto";
+import "google/protobuf/struct.proto";
+import "base.proto";
+
+// message GrpcResProjectzLookups {
+//   repeated GrpcDtoUpdate ProjectzLookups = 1;
+// }
+
+// message GrpcResProjectzLookup {
+//   GrpcDtoUpdate ProjectzLookup = 1;
+// }
+
+message GrpcResProjectzLookups {
+  repeated google.protobuf.Struct ProjectzLookups = 1;
+}
+
+message GrpcResProjectzLookup {
+  google.protobuf.Struct ProjectzLookup = 1;
+}
+
+service GrpcProjectzLookup {
+  rpc Gets (GrpcReq) returns (GrpcResProjectzLookups) {
+    // option (google.api.http) = {
+    //   get: "/v1/todos"
+    // };
+  }
+
+  rpc Get (GrpcReqById) returns (GrpcResProjectzLookup) {
+    // option (google.api.http) = {
+    //   get: "/v1/todo"
+    // };
+  }
+
+  rpc Create (GrpcDtoCreate) returns (GrpcRes) {
+    // option (google.api.http) = {
+    //   post: "/v1/todo"
+    // };
+  }
+
+  rpc Update (GrpcDtoUpdate) returns (GrpcRes) {
+    // option (google.api.http) = {
+    //   put: "/v1/todo"
+    // };
+  }
+
+  rpc UpdateStatus (GrpcDtoUpdateStatus) returns (GrpcRes) {
+    // option (google.api.http) = {
+    //   patch: "/v1/todo"
+    // };
+  }
+
+  rpc Delete (GrpcReqById) returns (GrpcRes) {
+    // option (google.api.http) = {
+    //   delete: "/v1/todo"
+    // };
+  }
+}

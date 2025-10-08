@@ -24,7 +24,7 @@ public static partial class DI_Projectz
   }
   public static void Add_Projectz_Clientz_Grpc(this IServiceCollection srvc, IConfiguration config)
   {
-    // srvc.AddScoped<ProjectzLookupClient>();
+    // srvc.AddScoped<ProjectzLookupServer>();
   }
 }
 
