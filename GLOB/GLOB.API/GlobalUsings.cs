@@ -9,6 +9,7 @@ global using Microsoft.Extensions.Logging;
 global using Microsoft.Extensions.Hosting;
 global using Microsoft.EntityFrameworkCore;
 global using Microsoft.AspNetCore.Mvc;
+global using Newtonsoft.Json;
 
 // Project namespaces
 global using GLOB.Extz;

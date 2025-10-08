@@ -1,5 +1,5 @@
 using Microsoft.Extensions.Options;
-using SBA.Projectz.Grpc.Service;
+// using SBA.Projectz.Grpc.Service;
 
 namespace SBA.Auth;
 public class Startup
@@ -22,7 +22,7 @@ public class Startup
 
     app.Use_API_Default_Middlewares((route) =>
     {
-        route.Use_Projectz_Clientz_Grpc(appConfig);
+      route.Use_Projectz_Clientz_Grpc(appConfig);
     });
     app.SeedProjectz().GetAwaiter().GetResult();
   }

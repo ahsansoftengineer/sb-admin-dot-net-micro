@@ -1,5 +1,4 @@
 using GLOB.API.Clientz;
-using SBA.Projectz.Clientz;
 
 namespace SBA.Projectz.DI;
 
