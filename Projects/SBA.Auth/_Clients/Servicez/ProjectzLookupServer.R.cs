@@ -5,7 +5,7 @@ using SBA.Projectz.Grpc.Model;
 
 namespace SBA.Projectz.Grpc.Service;
 
-public partial class ProjectzLookupServer : GrpcProjectzLookup.GrpcProjectzLookupBase
+public partial class ProjectzLookupClient : GrpcProjectzLookup.GrpcProjectzLookupBase
 {
   public async override Task<GrpcResProjectzLookups> Gets(GrpcReq request, ServerCallContext context)
   {
