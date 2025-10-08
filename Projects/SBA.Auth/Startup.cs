@@ -25,7 +25,6 @@ public class Startup
       route.Use_Projectz_Clientz_Grpc(appConfig);
     });
     app.SeedProjectz().GetAwaiter().GetResult();
-    // app.PrepPopulation();
   }
 
 

@@ -4,33 +4,9 @@ namespace SBA.Auth.Controllers;
 
 public partial class __GrpcClientController : API_1_InjectorController<__GrpcClientController>
 {
-  private readonly ProjectzLookupClient projectzLookupClient;
+  private readonly UOW_Projectz_Grpc uowGrpc;
   public __GrpcClientController(IServiceProvider sp) : base(sp)
   {
-    projectzLookupClient = sp.GetSrvc<ProjectzLookupClient>();
+    uowGrpc = sp.GetSrvc<UOW_Projectz_Grpc>();
   }
-
-//   [HttpPost] [NoCache]
-//   public async Task<IActionResult> Add([FromBody] ProjectzLookupDtoCreate model)
-//   {
-//     try
-//     {
-//       var data = new
-//       {
-//         model.Name,
-//         model.Code,
-//         model.Desc,
-//         model.ProjectzLookupBaseId,
-//         Status.Active,
-//         Event = $"ProjectzLookup_{EP.Add}"
-//       };
-//       MsgBusJackson.Publish(data);
-//       return data.ToExtVMSingle().Ok();
-//     }
-//     catch (Exception ex)
-//     {
-//       // return ex.Ok();
-//       return $"[Rabbit MQ] Error : {ex.Message}".ToExtVMSingle().Ok();
-//     }
-//   }
 }
