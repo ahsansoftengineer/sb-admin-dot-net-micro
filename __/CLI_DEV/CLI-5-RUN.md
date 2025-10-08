@@ -4,7 +4,13 @@
 - Run ProjectName                   : --project ./Projects/SBA.APIGateway/
 
 ```bash
-                                                                                                                     # http, https
+
+dotnet watch run --property:UseNuget=true --launch-profile https --project ./Projects/SBA.Auth/          # For Grpc https
+dotnet watch run --property:UseNuget=true --launch-profile https --project ./Projects/SBA.Hierarchy/     # For Grpc https
+
+
+
+                                                                                                         # http, https
 dotnet watch run --property:UseNuget=true --launch-profile http --project ./Projects/SBA.APIGateway/     # 1100 1101
 dotnet watch run --property:UseNuget=true --launch-profile http --project ./Projects/SBA.Auth/           # 1104 1105
 dotnet watch run --property:UseNuget=true --launch-profile http --project ./Projects/SBA.Hierarchy/      # 1106 1107
