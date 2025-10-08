@@ -1,3 +1,4 @@
+using GLOB.API.Extz;
 using Grpc.Core;
 using SBA.Projectz.Grpc.Base;
 using SBA.Projectz.Grpc.Model;
@@ -9,14 +10,11 @@ public partial class ProjectzLookupClient : GrpcProjectzLookup.GrpcProjectzLooku
   public async override Task<GrpcResProjectzLookups> Gets(GrpcReq request, ServerCallContext context)
   {
     var data = await _uow.ProjectzLookups.Gets();
+
+    if (data == null || !data.Any()) return new GrpcResProjectzLookups(); 
+
     var response = new GrpcResProjectzLookups();
-    response.ProjectzLookups.AddRange(data.Select(d => new GrpcDtoUpdate
-    {
-      Id = d.Id,
-      Name = d.Name,
-      Status = (GrpcEnumStatus)d.Status,
-      Desc = d.Desc
-    }));
+    response.ProjectzLookups.AddRange(data.Select(d => d.ToProtoStruct()));
     return response;
   }
 
@@ -28,13 +26,7 @@ public partial class ProjectzLookupClient : GrpcProjectzLookup.GrpcProjectzLooku
 
     return new GrpcResProjectzLookup
     {
-      ProjectzLookup = new GrpcDtoUpdate
-      {
-        Id = entity.Id,
-        Name = entity.Name,
-        Status = (GrpcEnumStatus)entity.Status,
-        Desc = entity.Desc
-      }
+      ProjectzLookup = entity.ToProtoStruct()
     };
   }
   // public IEnumerable<ProjectzLookup> Gets()
