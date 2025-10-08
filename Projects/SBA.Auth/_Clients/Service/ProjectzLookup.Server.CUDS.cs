@@ -3,7 +3,7 @@ using SBA.Projectz.Grpc.Base;
 
 namespace SBA.Projectz.Grpc.Service;
 
-public partial class ProjectzLookupClient
+public partial class ProjectzLookupServer
 {
   public override async Task<GrpcRes> Create(GrpcDtoCreate request, ServerCallContext context)
   {

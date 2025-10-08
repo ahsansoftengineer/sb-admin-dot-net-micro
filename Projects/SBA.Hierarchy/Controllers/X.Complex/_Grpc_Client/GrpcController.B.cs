@@ -1,19 +1,14 @@
-// using GLOB.API.Clientz;
+using SBA.Projectz.Grpc.Service;
 
-// using GLOB.Infra.Utils.Attributez;
-// using SBA.Projectz.Clientz;
-// using SBA.Projectz.Grpc.Service;
-// namespace SBA.Auth.Controllers;
+namespace SBA.Auth.Controllers;
 
-// public partial class __GrpcServerController : API_1_InjectorController<__GrpcServerController>
-// {
-//   private readonly GrpcProjectzLookupservice GrpcProjectzLookupservice;
-//   // private readonly Projectz_RMQ_Pub _rmqPub;
-//   public __GrpcServerController(IServiceProvider sp) : base(sp)
-//   {
-//     GrpcProjectzLookupservice = sp.GetSrvc<GrpcProjectzLookupservice>();
-//     // _rmqPub = sp.GetSrvc<Projectz_RMQ_Pub>();
-//   }
+public partial class __GrpcClientController : API_1_InjectorController<__GrpcClientController>
+{
+  private readonly ProjectzLookupClient projectzLookupClient;
+  public __GrpcClientController(IServiceProvider sp) : base(sp)
+  {
+    projectzLookupClient = sp.GetSrvc<ProjectzLookupClient>();
+  }
 
 //   [HttpPost] [NoCache]
 //   public async Task<IActionResult> Add([FromBody] ProjectzLookupDtoCreate model)
@@ -37,6 +32,5 @@
 //       // return ex.Ok();
 //       return $"[Rabbit MQ] Error : {ex.Message}".ToExtVMSingle().Ok();
 //     }
-
 //   }
-// }
+}

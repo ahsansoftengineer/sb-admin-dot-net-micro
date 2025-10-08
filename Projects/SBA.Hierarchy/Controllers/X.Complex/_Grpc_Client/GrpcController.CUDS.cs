@@ -3,7 +3,7 @@
 // using GLOB.Infra.Utils.Attributez;
 // namespace SBA.Auth.Controllers;
 
-// public partial class __GrpcServerController 
+// public partial class __GrpcClientController 
 // {
 
 //   [HttpPost] [NoCache]
