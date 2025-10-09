@@ -4,13 +4,9 @@ using RabbitMQ.Client.Events;
 
 namespace SBA.Projectz.Clientz;
 
-public class RMQ_Sub_Lookup_Delete : BackgroundService
+public class RMQ_Sub_Lookup_Delete : RMQ_Base_Sub
 {
-  private Projectz_RMQ_Sub _sub;
-  public RMQ_Sub_Lookup_Delete(Projectz_RMQ_Sub sub) : base()
-  {
-    _sub = sub;
-  }
+  public RMQ_Sub_Lookup_Delete(IServiceProvider sp) : base(sp) { }
 
   protected override async Task ExecuteAsync(CancellationToken token)
   {

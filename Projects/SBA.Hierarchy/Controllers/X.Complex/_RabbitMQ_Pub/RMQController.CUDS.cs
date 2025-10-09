@@ -7,19 +7,19 @@ public partial class __RabbitMQController
 {
 
   [HttpPost] [NoCache]
-  public async Task<IActionResult> Createz([FromBody] ProjectzLookupDtoCreate dto)
+  public async Task<IActionResult> Create([FromBody] ProjectzLookupDtoCreate dto)
   {
     // dto.Status = Status.Active;
     try
     {
       _rmqPub.Publish(dto, (channel, bytes) =>
-      {
-       channel.BasicPublish(
-        exchange: "sba.topic",
-        routingKey: "auth.lookup.create",
-        basicProperties: null,
-        body: bytes
-      );
+        {
+        channel.BasicPublish(
+          exchange: "sba.topic",
+          routingKey: "auth.lookup.create",
+          basicProperties: null,
+          body: bytes
+        );
       });
       return dto.ToExtVMSingle().Ok();
     }
