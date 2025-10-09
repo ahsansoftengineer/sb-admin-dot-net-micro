@@ -29,13 +29,13 @@ public partial class DBCtxProjectz
       .WithMany(e => e.OUs)
       .HasForeignKey(e => e.LEId)
       .IsRequired(false);
-    
+
     mb.Entity<SU>()
       .HasOne(e => e.OU)
       .WithMany(e => e.SUs)
       .HasForeignKey(e => e.OUId)
       .IsRequired(false);
 
-   
+
   }
 }

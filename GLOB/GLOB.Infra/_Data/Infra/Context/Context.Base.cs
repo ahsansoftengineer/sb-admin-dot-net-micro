@@ -24,7 +24,7 @@ public abstract partial class DBCtx : DbContext
     mb.SeedInfra();
     base.OnModelCreating(mb);
   }
-  
+
   // // SaveChanges Handle in UnitOfWork
   // public override int SaveChanges()
   // {

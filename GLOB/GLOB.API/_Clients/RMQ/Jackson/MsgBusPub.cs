@@ -1,7 +1,6 @@
+using System.Text;
 using Microsoft.Extensions.Options;
 using RabbitMQ.Client;
-using Newtonsoft.Json;
-using System.Text;
 
 namespace GLOB.API.Clientz;
 public class MsgBusPub : IDisposable
@@ -21,7 +20,7 @@ public class MsgBusPub : IDisposable
       var message = JsonConvert.SerializeObject(data);
       if (_connection.IsOpen)
       {
-        "Connection Open, sending message...".Print("Rabbit MQ");;
+        "Connection Open, sending message...".Print("Rabbit MQ"); ;
         SendMessage(message);
       }
       else
@@ -44,7 +43,7 @@ public class MsgBusPub : IDisposable
       basicProperties: null,
       body
     );
-    $"--> We have send: {message}".Print("Rabbit MQ");;
+    $"--> We have send: {message}".Print("Rabbit MQ"); ;
   }
   public void Init()
   {
@@ -63,11 +62,11 @@ public class MsgBusPub : IDisposable
           type: ExchangeType.Fanout
       );
       _connection.ConnectionShutdown += RabbitMQ_ConnectionShutdown;
-      "Connection Successfull".Print("Rabbit MQ");;
+      "Connection Successfull".Print("Rabbit MQ"); ;
     }
     catch (Exception ex)
     {
-      $"Connection Failed{ex.Message}".Print("Rabbit MQ");;
+      $"Connection Failed{ex.Message}".Print("Rabbit MQ"); ;
     }
   }
 
@@ -75,7 +74,7 @@ public class MsgBusPub : IDisposable
   {
     "connection was shut down. Jackson".Print("Rabbit MQ");
   }
-  
+
   public void Dispose()
   {
     if (_channel != null && _channel.IsOpen)

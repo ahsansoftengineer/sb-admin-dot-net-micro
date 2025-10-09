@@ -19,22 +19,22 @@ public abstract partial class DBCtx
       }
     }
   }
-  
+
   // Enum Setups
-  
-//   private static void ConfigEnums(ModelBuilder mb)
-//   {
-//     // Simple
-//     AddStatusEnum<ProjectzEntityTest>(mb);
-//     AddStatusEnum<Org>(mb);
-   
-//   }
-//   private static void AddStatusEnum<TEntity>(ModelBuilder mb)
-//     where TEntity : EntityBase
-//   {
-//     mb.Entity<TEntity>()
-//       .Property(e => e.Status)
-//       .HasConversion<string>();
-//   }
+
+  //   private static void ConfigEnums(ModelBuilder mb)
+  //   {
+  //     // Simple
+  //     AddStatusEnum<ProjectzEntityTest>(mb);
+  //     AddStatusEnum<Org>(mb);
+
+  //   }
+  //   private static void AddStatusEnum<TEntity>(ModelBuilder mb)
+  //     where TEntity : EntityBase
+  //   {
+  //     mb.Entity<TEntity>()
+  //       .Property(e => e.Status)
+  //       .HasConversion<string>();
+  //   }
 
 }

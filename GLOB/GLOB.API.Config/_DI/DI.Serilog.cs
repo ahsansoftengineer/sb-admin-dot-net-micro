@@ -1,6 +1,5 @@
 using Serilog;
 using Serilog.Events;
-using Serilog.Filters;
 using Serilog.Sinks.SystemConsole.Themes;
 
 namespace GLOB.API.Config.DI;

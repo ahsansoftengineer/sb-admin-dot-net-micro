@@ -1,7 +1,5 @@
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
-using System;
-using System.Linq;
 
 namespace GLOB.API.Config.OptionSetup;
 public class SwaggerNullableEnumSchemaFilter : ISchemaFilter

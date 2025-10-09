@@ -1,7 +1,7 @@
 
 
 namespace GLOB.Infra.UOW;
-public partial class UOW_Infra 
+public partial class UOW_Infra
 {
   public readonly DbContext _context;
 

@@ -13,20 +13,21 @@ public partial class AccountController : AccountBaseController<AccountController
   {
   }
 
-  [HttpPost] [AllowAnonymous]
-  public async Task<IActionResult> Register([FromBody] RegisterDto model) 
+  [HttpPost]
+  [AllowAnonymous]
+  public async Task<IActionResult> Register([FromBody] RegisterDto model)
   {
     var user = UserController.MapUser(model);
     var result = await _userManager.CreateAsync(user, model.Password);
 
     if (result.Succeeded)
     {
-        return  await Login(new (){ Email = model.Email, Password = model.Password });
+      return await Login(new() { Email = model.Email, Password = model.Password });
     }
 
     return result.Errors.BadRequestModel();
   }
-  
+
   [HttpPost]
   public async Task<IActionResult> Logout()
   {

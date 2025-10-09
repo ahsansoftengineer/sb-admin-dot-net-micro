@@ -9,7 +9,7 @@ public static partial class ExtResponse
       DtoRequestPageOption<DtoSearch?> dto)
     where T : class, IEntityAlpha, IEntityBeta, IEntityStatus
   {
-      return await query.ToExtVMPageOptionsNoTrack<T, int>(dto);
+    return await query.ToExtVMPageOptionsNoTrack<T, int>(dto);
   }
   public static async Task<VMPaginate<DtoSelect<TKey>>> ToExtVMPageOptionsNoTrack<T, TKey>(
       this IQueryable<T> query,
@@ -27,8 +27,8 @@ public static partial class ExtResponse
   {
     query = query.ToExtQueryFilter(req.Filter); // Fix the Adding Enums to Every Filter
     query = query.ToExtQueryOrderBy(req.Sort);
- 
-    var result =  query.ToExtMapSelect<T, TKey>(); // IEntityAlpha, IEntityStatus
+
+    var result = query.ToExtMapSelect<T, TKey>(); // IEntityAlpha, IEntityStatus
 
     return await result.AsNoTracking().ToExtPageReq(req);
   }

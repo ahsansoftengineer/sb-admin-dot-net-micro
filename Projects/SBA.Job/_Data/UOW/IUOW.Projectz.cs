@@ -1,5 +1,5 @@
-using GLOB.Infra.Repo;
 using GLOB.Hierarchy.Global;
+using GLOB.Infra.Repo;
 namespace SBA.Projectz.Data;
 public interface IUOW_Projectz : IUOW_Infra
 {

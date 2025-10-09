@@ -8,7 +8,7 @@ public static partial class ExtResponse
 {
   public static ResponseRecord ToExtVMSingle(this object? item)
   {
-    return new ResponseRecord 
+    return new ResponseRecord
     {
       Record = item,
       Status = HttpStatusCode.OK
@@ -16,7 +16,7 @@ public static partial class ExtResponse
   }
   public static ResponseRecords ToExtVMList(this object? list)
   {
-    return new ResponseRecords 
+    return new ResponseRecords
     {
       Records = list,
       Status = HttpStatusCode.OK
@@ -32,7 +32,7 @@ public static partial class ExtResponse
     if (p.PageSize > 50) p.PageSize = 50;
 
     p.Count = await source.CountAsync();
-    
+
     var query = source.Skip((p.PageNo - 1) * p.PageSize)
                 .Take(p.PageSize);
 
@@ -53,9 +53,9 @@ public class ResponseRecords
 }
 
 public class ResponseRecord<T>
-  where T: new()
+  where T : new()
 {
-  public T? Record  { get; set; } = new();
+  public T? Record { get; set; } = new();
   [JsonConverter(typeof(JsonStringEnumConverter))]
   public HttpStatusCode Status;
 }

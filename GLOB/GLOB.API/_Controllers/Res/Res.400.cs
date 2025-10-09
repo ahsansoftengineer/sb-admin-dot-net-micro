@@ -9,7 +9,7 @@ public static partial class _Res
   {
     foreach (var ms in modelState)
     {
-      $"{ms.Key} :\t {ms.Value}".Print("Validation");;
+      $"{ms.Key} :\t {ms.Value}".Print("Validation"); ;
     }
 
     if (!modelState.Any(x => x.Key == "Message"))
@@ -36,7 +36,7 @@ public static partial class _Res
     }
     return BadRequestModel(modelState);
   }
-  
+
   public static ObjectResult BadRequestModel(string Title, string Message)
   {
     var modelState = new ModelStateDictionary();

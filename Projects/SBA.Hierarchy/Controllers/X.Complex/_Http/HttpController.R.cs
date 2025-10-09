@@ -36,7 +36,7 @@ public partial class __HttpController
   {
     var result = await ClientHttpAuth.GetsByIds<ResponseRecords<ProjectzLookup>>(new()
     {
-      Body = new { req.Ids}
+      Body = new { req.Ids }
     });
     return result.Ok();
   }
@@ -45,7 +45,7 @@ public partial class __HttpController
   {
     var result = await ClientHttpAuth.GetsByIdsLookup<ResponseRecord<Dictionary<string, string>>>(new()
     {
-      Body = new { req.Ids}
+      Body = new { req.Ids }
     });
     return result.Record.Ok();
   }

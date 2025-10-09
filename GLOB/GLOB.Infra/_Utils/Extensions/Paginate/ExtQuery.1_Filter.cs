@@ -1,7 +1,6 @@
-using LinqKit;
-
 using System.Linq.Expressions;
 using System.Reflection;
+using LinqKit;
 
 namespace GLOB.Infra.Extz;
 public static partial class ExtQuery
@@ -11,9 +10,9 @@ public static partial class ExtQuery
     where TDtoSearch : class, IDtoSearch
   {
     if (DtoSearch == null) return source;
-    if(DtoSearch.DateFrom != null) 
+    if (DtoSearch.DateFrom != null)
       source = source.Where(x => x.UpdatedAt >= DtoSearch.DateFrom.Value);
-    if(DtoSearch.DateTo != null)
+    if (DtoSearch.DateTo != null)
       source = source.Where(x => x.UpdatedAt <= DtoSearch.DateTo.Value);
 
     //var dtoParam = Expression.Parameter(typeof(TDtoSearch), "TDtoSearch"); //

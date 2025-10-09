@@ -26,6 +26,6 @@ public class GlobalLookupDtoCreate : DtoCreate
 }
 public class GlobalLookupDtoSearch : DtoSearch
 {
-  public string? Code { get; set; } 
+  public string? Code { get; set; }
   public int? GlobalLookupBaseId { get; set; }
 }

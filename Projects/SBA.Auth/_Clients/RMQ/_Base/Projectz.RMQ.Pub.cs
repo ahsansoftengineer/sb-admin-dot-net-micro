@@ -13,7 +13,7 @@ public class Projectz_RMQ_Pub : API_RMQ_Pub
   {
     base.ExchangeDeclare((channel) =>
     {
-     
+
     });
   }
 }

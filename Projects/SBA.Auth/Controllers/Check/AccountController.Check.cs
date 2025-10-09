@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace SBA.Auth.Controllers;
 
-public partial class CheckAuthController :  AccountBaseController<CheckAuthController>
+public partial class CheckAuthController : AccountBaseController<CheckAuthController>
 {
   public CheckAuthController(
     IServiceProvider srvcProvider
@@ -13,13 +13,15 @@ public partial class CheckAuthController :  AccountBaseController<CheckAuthContr
   }
 
   // Jwt -> ✅ Login
-  [HttpPost] [AllowAnonymous]
+  [HttpPost]
+  [AllowAnonymous]
   public async Task<IActionResult> CheckAllowAnonymous()
   {
     return $"Check Allow Anonymous Successfull".Ok();
   }
   // Jwt -> ✅ Login
-  [HttpPost] [Authorize]
+  [HttpPost]
+  [Authorize]
   public async Task<IActionResult> CheckLogin()
   {
     var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -27,7 +29,8 @@ public partial class CheckAuthController :  AccountBaseController<CheckAuthContr
   }
 
   // JWT -> ✅ Role OR
-  [HttpPost] [Authorize(Roles = "Admin,Super Admin,Customer")]
+  [HttpPost]
+  [Authorize(Roles = "Admin,Super Admin,Customer")]
   public async Task<IActionResult> CheckRoleOr()
   {
     var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -35,7 +38,9 @@ public partial class CheckAuthController :  AccountBaseController<CheckAuthContr
   }
 
   // JWT -> ✅ Role And
-  [HttpPost] [Authorize(Roles = "Admin")] [Authorize(Roles = "Super Admin")] 
+  [HttpPost]
+  [Authorize(Roles = "Admin")]
+  [Authorize(Roles = "Super Admin")]
   public async Task<IActionResult> CheckRoleAnd()
   {
     var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -43,7 +48,8 @@ public partial class CheckAuthController :  AccountBaseController<CheckAuthContr
   }
 
   // JWT -> ✅ Policy-Admin
-  [HttpPost] [Authorize(Policy = "Policy-Admin")]
+  [HttpPost]
+  [Authorize(Policy = "Policy-Admin")]
   public async Task<IActionResult> CheckPolicyAdmin()
   {
     var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -58,7 +64,8 @@ public partial class CheckAuthController :  AccountBaseController<CheckAuthContr
   }
 
   // JWT -> ✅ Policy-Customer
-  [HttpPost] [Authorize(Policy = "Policy-Customer")]
+  [HttpPost]
+  [Authorize(Policy = "Policy-Customer")]
   public async Task<IActionResult> CheckPolicyCustomer()
   {
     var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -73,7 +80,8 @@ public partial class CheckAuthController :  AccountBaseController<CheckAuthContr
   }
 
   // JWT -> ✅ Policy Multi Or
-  [HttpPost] [Authorize(Policy = "Policy-Admin--SuperAdmin")]
+  [HttpPost]
+  [Authorize(Policy = "Policy-Admin--SuperAdmin")]
   public async Task<IActionResult> CheckPolicyMulti()
   {
     var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -81,14 +89,16 @@ public partial class CheckAuthController :  AccountBaseController<CheckAuthContr
   }
 
   // Cookie -> ✅ Login
-  [HttpPost] [Authorize(AuthenticationSchemes = "AuthorizationCookieScheme")]
+  [HttpPost]
+  [Authorize(AuthenticationSchemes = "AuthorizationCookieScheme")]
   public async Task<IActionResult> CheckSchemeCookie()
   {
     var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
     return $"Current User Id {id} Cookie Based Token Working".Ok();
   }
   // Cookie -> ✅ Role Admin
-  [HttpPost] [Authorize(AuthenticationSchemes = "AuthorizationCookieScheme", Roles = "Admin")]
+  [HttpPost]
+  [Authorize(AuthenticationSchemes = "AuthorizationCookieScheme", Roles = "Admin")]
   public async Task<IActionResult> CheckSchemeCookieAdmin()
   {
     var id = User.FindFirstValue(ClaimTypes.NameIdentifier);

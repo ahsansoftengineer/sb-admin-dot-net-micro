@@ -1,5 +1,5 @@
-using GLOB.Infra.Utils.MIddlewarez;
 using GLOB.Infra.Data.Redisz;
+using GLOB.Infra.Utils.MIddlewarez;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using StackExchange.Redis;

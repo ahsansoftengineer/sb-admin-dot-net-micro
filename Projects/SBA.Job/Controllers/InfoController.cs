@@ -35,7 +35,7 @@ public class InfoController : API_1_InjectorController<InfoController>
     BackgroundJob.Enqueue<SrvcProjectzLookup>(x => x.BulkUpdate());
     return "Email Sent Successfully".Ok();
   }
-  
+
   // Fire and Forget
   [HttpPost]
   public async Task<IActionResult> UpdateDBProjectzLookup([FromBody] bool isSuccess)
@@ -43,17 +43,17 @@ public class InfoController : API_1_InjectorController<InfoController>
     if (!isSuccess)
       return "Failed to Send Email".Ok();
 
-      "--> RecurringJob.AddOrUpdate<SrvcProjectzLookup> x.UpdateDatabase() Minutly".Print("Job");
-     RecurringJob.AddOrUpdate<SrvcProjectzLookup>(
-      recurringJobId: "job-notify-send-email",
-      methodCall: x => x.UpdateDatabase(),
-      cronExpression: Cron.Minutely,
-      queue: "queue-daily",
-      options: new RecurringJobOptions
-      {
-        TimeZone = TimeZoneInfo.Local,
-      }
-    );
+    "--> RecurringJob.AddOrUpdate<SrvcProjectzLookup> x.UpdateDatabase() Minutly".Print("Job");
+    RecurringJob.AddOrUpdate<SrvcProjectzLookup>(
+     recurringJobId: "job-notify-send-email",
+     methodCall: x => x.UpdateDatabase(),
+     cronExpression: Cron.Minutely,
+     queue: "queue-daily",
+     options: new RecurringJobOptions
+     {
+       TimeZone = TimeZoneInfo.Local,
+     }
+   );
     return "Email Sent Successfully".Ok();
   }
 }

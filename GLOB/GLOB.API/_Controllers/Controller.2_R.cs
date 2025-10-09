@@ -10,7 +10,7 @@ public abstract partial class API_2_RDS_Controller<TController, TEntity>
   [HttpPost("{Id:int}")]
   public async Task<IActionResult> Get(int Id, [FromBody] DtoRequestGet dto)
   {
-    
+
     return await _repo.ToActionGet(Id, dto.Includes);
   }
 

@@ -32,7 +32,7 @@ public partial class RepoGenericz<T, TKey> : IRepoGenericz<T, TKey>
   public bool AnyId(TKey Id)
   {
     // if (typeof(TKey) == typeof(int) || typeof(TKey) == typeof(string)) {
-      return Any(x =>  Id.ToString() == x.Id.ToString());
+    return Any(x => Id.ToString() == x.Id.ToString());
     // } else {
     //   return false;
     // }
@@ -76,5 +76,5 @@ public partial class RepoGenericz<T, TKey> : IRepoGenericz<T, TKey>
         _context.Entry(entity).State = EntityState.Modified;
       }
     }
-  } 
+  }
 }

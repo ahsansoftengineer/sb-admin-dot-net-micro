@@ -68,7 +68,7 @@ public class API_RMQ_Sub : IDisposable
       "Message Recieved".Print("Rabbit MQ");
       await handler(ea);
     };
-    
+
     _channel.BasicConsume(
       queue: queueName,
       autoAck: true,

@@ -26,8 +26,8 @@ public class _GlobalLookupController : Project_RDS_Controller<_GlobalLookupContr
     try
     {
       bool hasParent = _uowProjectz.GlobalLookupBases.AnyId(data.GlobalLookupBaseId);
-      if(!hasParent) return _Res.BadRequestzId("GlobalLookupBaseId",data.GlobalLookupBaseId);
-      
+      if (!hasParent) return _Res.BadRequestzId("GlobalLookupBaseId", data.GlobalLookupBaseId);
+
       var result = _mapper.Map<GlobalLookup>(data);
       var entity = await _repo.Add(result);
       await _uowProjectz.Save();
@@ -43,9 +43,9 @@ public class _GlobalLookupController : Project_RDS_Controller<_GlobalLookupContr
   public async Task<IActionResult> Update(int Id, [FromBody] GlobalLookupDtoCreate data)
   {
     var item = await _repo.Get(q => q.Id == Id);
-    
+
     bool hasParent = _uowProjectz.GlobalLookupBases.AnyId(data.GlobalLookupBaseId);
-    if(!hasParent) return _Res.BadRequestzId("GlobalLookupBaseId",data.GlobalLookupBaseId);
+    if (!hasParent) return _Res.BadRequestzId("GlobalLookupBaseId", data.GlobalLookupBaseId);
 
     var result = _mapper.Map(data, item);
     _repo.Update(item);

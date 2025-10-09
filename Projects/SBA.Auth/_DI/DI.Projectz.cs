@@ -1,7 +1,7 @@
-using SBA.Projectz.Mapper;
-using SBA.Auth.Services;
 using GLOB.API.Clientz;
 using GLOB.Infra.Data.Auth;
+using SBA.Auth.Services;
+using SBA.Projectz.Mapper;
 
 namespace SBA.Projectz.DI;
 

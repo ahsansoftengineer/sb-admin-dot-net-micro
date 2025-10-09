@@ -27,8 +27,8 @@ public static partial class _Res
     var errors = modelState.ToExtValidationError();
     return new NotFoundObjectResult(new
     {
-        Errors = errors,
-        Message = "Bad Request, Validation Failed"
+      Errors = errors,
+      Message = "Bad Request, Validation Failed"
     });
   }
 }

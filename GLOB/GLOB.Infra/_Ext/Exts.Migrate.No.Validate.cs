@@ -1,5 +1,3 @@
-using GLOB.Infra.Data.Sqlz;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,7 +16,7 @@ public static partial class Exts_Infra
     using var scope = sp.CreateScope();
     var env = scope.ServiceProvider.GetSrvc<IHostEnvironment>();
     if (env.IsDevelopment()) return null;
-    
+
     var context = scope.ServiceProvider.GetSrvc<T>();
     var migrator = context.GetService<IMigrator>();
     string con = context.Database.GetDbConnection().ConnectionString;
@@ -51,6 +49,6 @@ public static partial class Exts_Infra
       context.Database.EnsureCreated();
     }
     return null;
-    
+
   }
 }

@@ -16,5 +16,5 @@ public class SrvcInfo
   {
     $"Sending SMS...: Short Running Job {date}".Print("Job");
   }
-  
+
 }

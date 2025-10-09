@@ -18,5 +18,5 @@ public static partial class SeedzInfra
     builder.Entity<ProjectzLookupBase>().HasData(SeedDataEntityBase<ProjectzLookupBase>());
   }
 
-  
+
 }

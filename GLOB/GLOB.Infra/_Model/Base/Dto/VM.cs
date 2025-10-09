@@ -1,7 +1,7 @@
 using System.Net;
 
 namespace GLOB.Infra.Model.Base;
-public class VMPaginate<T> 
+public class VMPaginate<T>
 {
   public List<T> Records { get; set; }
   public int PageNo { get; set; } = 1;
@@ -15,7 +15,7 @@ public class VMPaginate<T>
 
   public VMPaginate()
   {
-    
+
   }
 
   public VMPaginate(DtoPage data)

@@ -1,7 +1,6 @@
+using System.Text;
 using Microsoft.Extensions.Options;
 using RabbitMQ.Client;
-using Newtonsoft.Json;
-using System.Text;
 
 namespace GLOB.API.Clientz;
 

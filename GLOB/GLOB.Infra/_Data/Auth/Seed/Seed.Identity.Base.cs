@@ -1,9 +1,5 @@
 using Microsoft.AspNetCore.Builder;
 
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.AspNetCore.Identity;
-using GLOB.Domain.Model.Auth;
-
 namespace GLOB.Infra.Data.Auth;
 
 public static partial class InfraSeedIdentity

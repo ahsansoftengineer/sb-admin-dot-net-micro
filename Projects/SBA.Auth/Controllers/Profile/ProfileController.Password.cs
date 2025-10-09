@@ -7,7 +7,8 @@ namespace SBA.Auth.Controllers;
 
 public partial class ProfileController
 {
-  [HttpPost] [AllowAnonymous]
+  [HttpPost]
+  [AllowAnonymous]
   public async Task<IActionResult> PasswordForgot([FromQuery] string email)
   {
     if (!ModelState.IsValid)
@@ -28,7 +29,8 @@ public partial class ProfileController
     return new { message = "Reset link sent to email.", token = resetLink }.Ok();
   }
 
-  [HttpPost] [AllowAnonymous]
+  [HttpPost]
+  [AllowAnonymous]
   public async Task<IActionResult> PasswordReset([FromBody] ResetPasswordDto model)
   {
     if (!ModelState.IsValid)
@@ -50,15 +52,15 @@ public partial class ProfileController
   public async Task<IActionResult> PasswordChange([FromBody] ChangePasswordDto model)
   {
     if (model.NewPassword != model.ConfirmPassword)
-        return _Res.BadRequestzId("newPassword, confirmPassword", "passwords does not match.");
+      return _Res.BadRequestzId("newPassword, confirmPassword", "passwords does not match.");
 
     var user = await _userManager.GetUserAsync(User);
     if (user == null)
-        return Unauthorized();
+      return Unauthorized();
 
     var result = await _userManager.ChangePasswordAsync(user, model.CurrentPassword, model.NewPassword);
     if (!result.Succeeded)
-      return  result.Errors.BadRequestModel();
+      return result.Errors.BadRequestModel();
 
     return "Password changed successfully.".Ok();
   }

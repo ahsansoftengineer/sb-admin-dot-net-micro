@@ -1,10 +1,10 @@
-using GLOB.Infra.Repo;
 using GLOB.Domain.Hierarchy;
 using GLOB.Hierarchy.Global;
+using GLOB.Infra.Repo;
 namespace SBA.Projectz.Data;
 public partial class UOW_Projectz : UOW_Infra, IUOW_Projectz
 {
-  public UOW_Projectz(DBCtxProjectz context): base(context) { }
+  public UOW_Projectz(DBCtxProjectz context) : base(context) { }
   // .-*
   private IRepoGenericz<GlobalLookupBase>? _GlobalLookupBase;
   private IRepoGenericz<Org>? _Orgs;
@@ -14,7 +14,7 @@ public partial class UOW_Projectz : UOW_Infra, IUOW_Projectz
   private IRepoGenericz<Brand>? _Brand;
   private IRepoGenericz<Industry>? _Industry;
   private IRepoGenericz<Profession>? _Profession;
-  
+
   // *-.
   private IRepoGenericz<GlobalLookup>? _GlobalLookup;
   private IRepoGenericz<Systemz>? _Systemz;
@@ -23,5 +23,5 @@ public partial class UOW_Projectz : UOW_Infra, IUOW_Projectz
   private IRepoGenericz<SU>? _SU;
   private IRepoGenericz<City>? _City;
 
-    
+
 }

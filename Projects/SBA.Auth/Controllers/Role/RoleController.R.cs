@@ -4,7 +4,7 @@ using GLOB.Domain.Model.Auth;
 
 namespace SBA.Auth.Controllers;
 
-public partial class RoleController 
+public partial class RoleController
 {
   [HttpPost]
   public async Task<IActionResult> Gets()
@@ -24,7 +24,7 @@ public partial class RoleController
   public async Task<IActionResult> GetsLookup()
   {
     var result = await _repo.Select(x => new { x.Id, x.Name })
-        .ToDictionaryAsync(x => x.Id, y =>  y.Name);
+        .ToDictionaryAsync(x => x.Id, y => y.Name);
     return result.ToExtVMSingle().Ok();
   }
 
@@ -35,7 +35,7 @@ public partial class RoleController
     try
     {
       var list = await _repo.Where(x => dto.Ids.Contains(x.Id)).ToListAsync();
-      return  list.ToExtVMList().Ok();
+      return list.ToExtVMList().Ok();
     }
     catch (Exception ex)
     {
@@ -50,7 +50,7 @@ public partial class RoleController
       var list = await _repo
         .Select(x => new { x.Id, x.Name })
         .Where((x) => dto.Ids.Contains(x.Id))
-        .ToDictionaryAsync(x => x.Id, y =>  y.Name);
+        .ToDictionaryAsync(x => x.Id, y => y.Name);
       return list.ToExtVMSingle().Ok();
     }
     catch (Exception ex)

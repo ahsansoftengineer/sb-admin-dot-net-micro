@@ -1,17 +1,16 @@
-using Microsoft.AspNetCore.Mvc.ApplicationModels;
-using Newtonsoft.Json;
-
 using GLOB.API.Config.OptionSetup;
+using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
 
 namespace GLOB.API.Config.DI;
 
 public static partial class DI_API_Config
 {
-public static void Add_API_Config_Controller(
-    this IServiceCollection srvc,
-    IConfiguration config,
-    Action<MvcOptions>? configureMvcOptions = null)
+  public static void Add_API_Config_Controller(
+      this IServiceCollection srvc,
+      IConfiguration config,
+      Action<MvcOptions>? configureMvcOptions = null)
   {
     // var appConfig = config.Get<Option_App>();
     // appConfig.Print("ENV");
@@ -85,5 +84,5 @@ public static void Add_API_Config_Controller(
       await next();
     });
   }
-  
+
 }

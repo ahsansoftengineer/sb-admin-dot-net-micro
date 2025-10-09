@@ -28,9 +28,9 @@ public class Option_Clients
   public Option_Host Http_Host { get; set; } = new Option_Host() { Protocols = "Http1" };
   public Option_Host Grpc { get; set; } = new Option_Host() { Protocols = "Http2" };
 }
-    //   // Uri = "",
-    //   // Port = 5672,
-    //   HostName = hostName,
-    //   VirtualHost = virtualHost,
-    //   UserName = user,
-    //   Password = password
+//   // Uri = "",
+//   // Port = 5672,
+//   HostName = hostName,
+//   VirtualHost = virtualHost,
+//   UserName = user,
+//   Password = password

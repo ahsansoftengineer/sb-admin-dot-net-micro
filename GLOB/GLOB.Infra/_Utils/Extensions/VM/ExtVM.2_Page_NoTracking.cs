@@ -17,7 +17,8 @@ public static partial class ExtResponse
   public static async Task<VMPaginate<T>> ToExtPageReq<T, TDtoSearch>(
     this IQueryable<T> source, DtoRequestPageOption<TDtoSearch?> dto)
   {
-    var dtoPage = new DtoPage(){
+    var dtoPage = new DtoPage()
+    {
       PageNo = dto.PageNo,
       PageSize = dto.PageSize,
     };
@@ -36,6 +37,6 @@ public static partial class ExtResponse
 
     return await query.AsNoTracking().ToExtPageReq(dto);
   }
- 
+
 
 }

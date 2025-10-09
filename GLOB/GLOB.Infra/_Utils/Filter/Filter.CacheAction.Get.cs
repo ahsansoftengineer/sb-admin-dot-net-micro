@@ -40,7 +40,7 @@ public class FilterCacheActionGet : IAsyncActionFilter
     };
 
     var cached = await _cache.Get(cm);
-   
+
     if (cached != null)
     {
       context.Result = new ObjectResult(cached);

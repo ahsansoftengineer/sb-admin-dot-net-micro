@@ -1,8 +1,6 @@
 using Hangfire;
 using Hangfire.SqlServer;
 using Hangfire.Storage.SQLite;
-using HangfireBasicAuthenticationFilter;
-using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Options;
 
 namespace SBA.Projectz.DI;

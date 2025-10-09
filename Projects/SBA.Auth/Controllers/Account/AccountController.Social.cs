@@ -61,6 +61,6 @@ public partial class AccountController
     if (!result.Succeeded) return Unauthorized();
 
     var claims = result.Principal.Claims.ToDictionary(c => c.Type, c => c.Value);
-    return Ok(new { Provider, ReturnUrl, Claims = claims});
+    return Ok(new { Provider, ReturnUrl, Claims = claims });
   }
 }

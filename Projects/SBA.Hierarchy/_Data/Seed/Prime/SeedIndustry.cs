@@ -16,6 +16,6 @@ public static partial class SeedzProjectz
   {
     builder.Entity<Industry>().HasData(SeedzInfra.SeedDataEntityBase<Industry>());
   }
-  
+
 
 }

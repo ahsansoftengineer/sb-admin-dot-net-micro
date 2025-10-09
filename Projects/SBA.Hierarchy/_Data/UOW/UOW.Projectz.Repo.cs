@@ -1,6 +1,6 @@
-using GLOB.Infra.Repo;
 using GLOB.Domain.Hierarchy;
 using GLOB.Hierarchy.Global;
+using GLOB.Infra.Repo;
 
 namespace SBA.Projectz.Data;
 public partial class UOW_Projectz

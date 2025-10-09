@@ -1,6 +1,3 @@
-using GLOB.Infra.Data.Auth;
-
-
 namespace SBA.Projectz.Data;
 public static partial class SeedzProjectz
 {
@@ -13,7 +10,7 @@ public static partial class SeedzProjectz
   public static async Task SeedProjectz(this IApplicationBuilder app)
   {
     using (var srvcScp = app.ApplicationServices.CreateScope())
-    { 
+    {
       var provider = srvcScp.ServiceProvider;
       DBCtxProjectz? context = provider.GetSrvc<DBCtxProjectz>();
       context.Database.EnsureCreated();

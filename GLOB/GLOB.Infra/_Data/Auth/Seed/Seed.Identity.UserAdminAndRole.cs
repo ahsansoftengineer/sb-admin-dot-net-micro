@@ -53,7 +53,7 @@ public static partial class InfraSeedIdentity
         await userManager.AddToRoleAsync(data, ROLE);
         IEnumerable<Claim> claims = [
           new Claim("ManageUsers", "true")
-        ]; 
+        ];
         await userManager.AddClaimsAsync(data, claims);
       }
     }

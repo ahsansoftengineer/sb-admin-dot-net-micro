@@ -1,7 +1,6 @@
+using System.Net.Http.Json;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-
-using System.Net.Http.Json;
 
 namespace GLOB.API.Clientz;
 
@@ -105,9 +104,10 @@ public class API_HttpBase
       try
       {
         // Status: NotFound, Content: {"errors":[{"field":"Id","errors":["Invalid Id 3 does not exsist"]}],"message":"Bad Request, Validation Failed"}
-        
+
       }
-      catch(Exception ex){
+      catch (Exception ex)
+      {
         ex.Message.Print();
         var content = await response.Content.ReadAsStringAsync();
         throw new HttpRequestException($"Status: {response.StatusCode}, Content: {content}");

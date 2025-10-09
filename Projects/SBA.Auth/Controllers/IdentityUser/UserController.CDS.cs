@@ -11,7 +11,7 @@ public partial class UserController : AccountBaseController<UserController>
   {
     _repo = _userManager.Users;
   }
- 
+
   [HttpPost]
   public async Task<IActionResult> Add([FromBody] RegisterDto model)
   {

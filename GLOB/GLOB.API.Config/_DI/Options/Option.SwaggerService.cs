@@ -1,8 +1,8 @@
 namespace GLOB.API.Config.Optionz;
 public class Option_SwaggerService
 {
-    public string Name { get; set; }
-    public string Url { get; set; }
+  public string Name { get; set; }
+  public string Url { get; set; }
 }
 public class Option_SwaggerServices
 {

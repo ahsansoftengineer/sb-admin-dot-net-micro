@@ -1,12 +1,12 @@
 using AutoMapper;
-
-using GLOB.Infra.Utils.Attributez;
 using GLOB.Infra.Data.Redisz;
+using GLOB.Infra.Utils.Attributez;
 using Microsoft.Extensions.Options;
 namespace GLOB.API.Controllers.Base;
 
 [Route("[controller]/[action]")]
-[ApiController] [Cache]
+[ApiController]
+[Cache]
 public abstract class API_1_InjectorController<TController> : ControllerBase
 
 {

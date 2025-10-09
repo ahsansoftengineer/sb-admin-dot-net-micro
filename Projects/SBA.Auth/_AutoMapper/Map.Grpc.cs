@@ -1,5 +1,4 @@
 using GLOB.API.Mapper;
-using SBA.Projectz.Grpc;
 using SBA.Projectz.Grpc.Base;
 
 namespace SBA.Projectz.Mapper;
