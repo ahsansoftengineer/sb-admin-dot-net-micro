@@ -10,7 +10,7 @@ public partial class __RabbitMQController
     //   Body = new { includes = new List<string>() { "ProjectzLookupBase" } }
     // });
     // return result.Records.ToExtVMList().Ok();
-    return null;
+    return new[] { new { Message = "Not Yet Implemented" } }.ToExtVMList().Ok();
   }
   // Single, Include
   [HttpPost("{Id:int}")]
@@ -22,6 +22,6 @@ public partial class __RabbitMQController
     //   Body = new { Includes = req?.Includes ?? null }
     // });
     // return result.Record.ToExtVMSingle().Ok();
-    return null;
+    return new { Message = "Not Yet Implemented" }.ToExtVMSingle().Ok();
   }
 }
