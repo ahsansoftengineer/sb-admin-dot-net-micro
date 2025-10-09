@@ -26,6 +26,6 @@ public class ProjectzLookupDtoCreate : DtoCreate
 }
 public class ProjectzLookupDtoSearch : DtoSearch
 {
-  public string? Code { get; set; } 
+  public string? Code { get; set; }
   public int? ProjectzLookupBaseId { get; set; }
 }

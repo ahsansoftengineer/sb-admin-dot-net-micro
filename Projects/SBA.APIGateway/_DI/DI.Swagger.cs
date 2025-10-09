@@ -14,7 +14,8 @@ public static partial class DI_Projectz
 
   public static void Use_Swagger_Gateway(this IApplicationBuilder app)
   {
-    app.Use_API_Config_Swagger((c) => {
+    app.Use_API_Config_Swagger((c) =>
+    {
       var Option = app.GetSrvc<IOptions<Option_SwaggerServices>>();
       foreach (var service in Option?.Value?.Services)
       {

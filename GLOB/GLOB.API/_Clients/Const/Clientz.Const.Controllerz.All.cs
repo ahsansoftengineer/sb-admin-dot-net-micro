@@ -10,7 +10,7 @@ public class ControllerzAuth : ControllerzX
   public readonly string userz = "userz";
   public readonly string rolez = "rolez";
   public readonly string permission = "permission";
-  
+
 }
 public class ControllerzHierarchy : ControllerzX
 {
@@ -20,5 +20,5 @@ public class ControllerzHierarchy : ControllerzX
   public readonly string country = "country";
   public readonly string state = "state";
   public readonly string city = "city";
-  
+
 }

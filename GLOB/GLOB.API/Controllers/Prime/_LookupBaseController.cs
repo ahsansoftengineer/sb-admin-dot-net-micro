@@ -10,7 +10,7 @@ public class _ProjectzLookupBaseController : API_4_Default_Controller<_ProjectzL
   {
     _repo = _uowInfra.ProjectzLookupBases;
   }
-  
+
   [HttpPost]
   public async Task<IActionResult> CreateParentChild([FromBody] ProjectzLookupBaseDto data)
   {

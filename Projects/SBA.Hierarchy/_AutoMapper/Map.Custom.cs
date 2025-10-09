@@ -18,7 +18,7 @@ public partial class ProjectzMapper : API_Base_Mapper
     MapCRUD<OU, OUDtoCreate, OUDtoRead, OUDtoSearch>();
     MapCRUD<SU, SUDtoCreate, SUDtoRead, SUDtoSearch>();
     MapCRUD<City, CityDtoCreate, CityDtoRead, CityDtoSearch>();
-    
+
     MapGrpc();
   }
 }

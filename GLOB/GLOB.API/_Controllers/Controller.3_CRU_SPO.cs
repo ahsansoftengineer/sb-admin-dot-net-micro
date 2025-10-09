@@ -24,7 +24,7 @@ public abstract partial class API_3_CRUD_SPO_Controller<TController, TEntity, TD
     return await _repo.ToActionGetsPaginateOptions(dto);
   }
 
-  [HttpPost] 
+  [HttpPost]
   public async Task<IActionResult> Add([FromBody] TDtoCreate data)
   {
     try
@@ -46,7 +46,7 @@ public abstract partial class API_3_CRUD_SPO_Controller<TController, TEntity, TD
     try
     {
       if (Id < 1) return _Res.NotFoundId(Id);
-      
+
       var item = await _repo.Get(Id);
 
       if (item == null) return _Res.NotFoundId(Id);

@@ -8,7 +8,8 @@ namespace SBA.Auth.Controllers;
 
 public partial class AccountController
 {
-  [HttpPost] [AllowAnonymous]
+  [HttpPost]
+  [AllowAnonymous]
   public async Task<IActionResult> Login([FromBody] LoginDto model)
   {
     var user = await _userManager.FindByEmailAsync(model.Email);
@@ -19,7 +20,8 @@ public partial class AccountController
     return StatusCode(500, "An error occurred during login.");
   }
 
-  [HttpPost] [AllowAnonymous]
+  [HttpPost]
+  [AllowAnonymous]
   public async Task<IActionResult> LoginCookie([FromBody] LoginDto model)
   {
     var user = await _userManager.FindByEmailAsync(model.Email);

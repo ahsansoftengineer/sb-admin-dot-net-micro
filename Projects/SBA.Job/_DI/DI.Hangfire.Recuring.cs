@@ -22,7 +22,7 @@ public static partial class DI_Projectz
     RecurringJob.AddOrUpdate<SrvcInfo>(
       recurringJobId: "job-notify-send-email",
       methodCall: x => x.SendEmail(data),
-      cronExpression:  Cron.Minutely, //"* * * ? * *",
+      cronExpression: Cron.Minutely, //"* * * ? * *",
       queue: "queue-short-time",
       options: new RecurringJobOptions
       {

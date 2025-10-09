@@ -1,4 +1,3 @@
-using GLOB.Infra.Contants;
 using Microsoft.AspNetCore.Identity;
 
 namespace GLOB.Domain.Model.Auth;
@@ -38,7 +37,7 @@ public class InfraUserDtoRead : DtoRead<string>
   public string UserName { get; set; }
   public string Email { get; set; }
 }
-public class InfraUserDtoSearch: DtoSearch
+public class InfraUserDtoSearch : DtoSearch
 {
   public string? EMAIL { get; set; }
 }

@@ -38,7 +38,7 @@ public static partial class SeedzInfra
         Desc = $"{className} {i} Desc",
         Status = Status.None,
         IsSelected = false
-        
+
       });
     }
     return list;

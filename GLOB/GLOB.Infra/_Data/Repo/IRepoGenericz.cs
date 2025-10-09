@@ -3,7 +3,7 @@ using System.Linq.Expressions;
 
 namespace GLOB.Infra.Repo;
 
-public interface IRepoGenericz<T> : IRepoGenericz<T, int> 
+public interface IRepoGenericz<T> : IRepoGenericz<T, int>
   where T : class, IEntityAlpha<int>
 {
 
@@ -21,7 +21,7 @@ public interface IRepoGenericz<T, TKey>
     Expression<Func<T, bool>>? expression = null,
     Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null,
     List<string>? Include = null);
-  
+
   Task<T> Add(T entity);
   Task Delete(TKey Id);
   T Update(T entity);

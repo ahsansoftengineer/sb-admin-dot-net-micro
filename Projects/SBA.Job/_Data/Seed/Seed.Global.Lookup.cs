@@ -33,5 +33,5 @@ public static partial class SeedzProjectz
     }
     return list;
   }
-  
+
 }

@@ -16,7 +16,7 @@ public static partial class SeedzProjectz
   {
     builder.Entity<SU>().HasData(SeedDataSU<SU>());
   }
- public static List<T> SeedDataSU<T>() where T : SU, new()
+  public static List<T> SeedDataSU<T>() where T : SU, new()
   {
     string className = typeof(T).Name;
     List<T> list = new List<T>();

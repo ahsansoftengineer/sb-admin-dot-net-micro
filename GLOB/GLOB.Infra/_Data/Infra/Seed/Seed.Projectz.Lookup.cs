@@ -33,5 +33,5 @@ public static partial class SeedzInfra
     }
     return list;
   }
-  
+
 }

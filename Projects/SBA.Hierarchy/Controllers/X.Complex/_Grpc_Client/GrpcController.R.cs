@@ -10,10 +10,11 @@ public partial class __GrpcClientController
     var res = await uowGrpc.auth.projectzLookup.GetsAsync(new());
     return res.ProjectzLookups.ToExtVMList().Ok();
   }
-  [HttpPost("{Id:int}")] [NoCache]
+  [HttpPost("{Id:int}")]
+  [NoCache]
   public async Task<IActionResult> Get(int Id)
   {
-    var res = await uowGrpc.auth.projectzLookup.GetAsync(new () { Id = Id });
+    var res = await uowGrpc.auth.projectzLookup.GetAsync(new() { Id = Id });
     return res.ProjectzLookup.ToExtVMSingle().Ok();
   }
 }

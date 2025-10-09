@@ -6,7 +6,7 @@ public abstract partial class Project_RDS_Controller<TController, TEntity>
   where TEntity : EntityBase
 {
   protected readonly IUOW_Projectz _uowProjectz;
-  public Project_RDS_Controller(IServiceProvider sp) : 
+  public Project_RDS_Controller(IServiceProvider sp) :
     base(sp)
   {
     _uowProjectz = sp.GetSrvc<IUOW_Projectz>();

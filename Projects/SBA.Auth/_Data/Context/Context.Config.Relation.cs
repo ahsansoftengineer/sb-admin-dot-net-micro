@@ -3,7 +3,7 @@
 namespace SBA.Projectz.Data;
 public partial class DBCtxProjectz
 {
- 
+
   private static void ConfigProjectzMapping(ModelBuilder mb)
   {
     mb.MapRefreshToken();
@@ -11,6 +11,6 @@ public partial class DBCtxProjectz
     //   .HasNoKey();
     // mb.Entity<Mapping_UserBusinessProfession>()
     //   .HasNoKey();
-      // .HasKey(cs => new { cs.UserBusinessID, cs.IndustryID })
+    // .HasKey(cs => new { cs.UserBusinessID, cs.IndustryID })
   }
 }

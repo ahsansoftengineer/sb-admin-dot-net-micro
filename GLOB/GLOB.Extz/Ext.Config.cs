@@ -5,7 +5,8 @@ public static partial class Exts
   public static string GetValueStr(this IConfiguration configuration, string key)
   {
     string result = configuration.GetValue(key, default(string));
-    if (string.IsNullOrEmpty(result)){
+    if (string.IsNullOrEmpty(result))
+    {
       string msg = $"Env has no Value for [{key}]";
       msg.Print();
       return msg;
@@ -15,7 +16,8 @@ public static partial class Exts
   public static int GetValueInt(this IConfiguration configuration, string key)
   {
     string result = configuration.GetValue(key, default(string));
-    if (string.IsNullOrEmpty(result)){
+    if (string.IsNullOrEmpty(result))
+    {
       string msg = $"Env has no Value for [{key}]";
       msg.Print();
       return 0;

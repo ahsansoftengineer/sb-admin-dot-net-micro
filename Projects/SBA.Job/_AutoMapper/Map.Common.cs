@@ -1,7 +1,7 @@
 namespace SBA.Projectz.Mapper;
-public partial class ProjectzMapper 
+public partial class ProjectzMapper
 {
-  public override void MapCommon() 
+  public override void MapCommon()
   {
     base.MapCommon();
   }

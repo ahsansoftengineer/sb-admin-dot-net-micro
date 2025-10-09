@@ -35,6 +35,6 @@ public static partial class _Res
 }
 public class OkMsg
 {
-  public string Message  { get; set; }
+  public string Message { get; set; }
   public HttpStatusCode Status { get; set; }
 }

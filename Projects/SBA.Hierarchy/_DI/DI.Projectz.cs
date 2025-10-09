@@ -19,5 +19,5 @@ public static partial class DI_Projectz
     srvc.AddAutoMapper(typeof(ProjectzMapper));
   }
 
-  
+
 }

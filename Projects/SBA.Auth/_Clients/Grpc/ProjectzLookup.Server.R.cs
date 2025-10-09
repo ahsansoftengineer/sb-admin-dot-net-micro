@@ -1,4 +1,3 @@
-using GLOB.API.Extz;
 using Grpc.Core;
 using SBA.Projectz.Grpc.Base;
 using SBA.Projectz.Grpc.Model;
@@ -11,7 +10,7 @@ public partial class ProjectzLookupServer
   {
     var data = await _uow.ProjectzLookups.Gets();
 
-    if (data == null || !data.Any()) return new GrpcResProjectzLookups(); 
+    if (data == null || !data.Any()) return new GrpcResProjectzLookups();
 
     var response = new GrpcResProjectzLookups();
 

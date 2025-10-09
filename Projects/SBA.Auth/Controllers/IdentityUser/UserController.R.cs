@@ -4,7 +4,7 @@ using GLOB.Domain.Model.Auth;
 
 namespace SBA.Auth.Controllers;
 
-public partial class UserController 
+public partial class UserController
 {
   [HttpPost]
   public async Task<IActionResult> Gets()
@@ -25,7 +25,7 @@ public partial class UserController
   public async Task<IActionResult> GetsLookup()
   {
     var result = await _repo.Select(x => new { x.Id, x.Name })
-        .ToDictionaryAsync(x => x.Id, y =>  y.Name);
+        .ToDictionaryAsync(x => x.Id, y => y.Name);
     return result.ToExtVMSingle().Ok();
   }
 
@@ -33,40 +33,41 @@ public partial class UserController
   [HttpPost]
   public async Task<IActionResult> GetsByIds([FromBody] DtoRequestGetByIds<string> dto)
   {
-   
+
     var list = await _repo.Where(x => dto.Ids.Contains(x.Id)).ToListAsync();
     var result = _mapper.Map<List<InfraUserDtoRead>>(list).ToExtVMList();
     return Ok(result);
-  
+
   }
   [HttpPost]
   public async Task<IActionResult> GetsByIdsLookup([FromBody] DtoRequestGetByIds<string> dto)
   {
-   
+
     var list = await _repo
       .Select(x => new { x.Id, x.Name })
       .Where((x) => dto.Ids.Contains(x.Id))
-        .ToDictionaryAsync(x => x.Id, y =>  y.Name);
+        .ToDictionaryAsync(x => x.Id, y => y.Name);
     return list.ToExtVMSingle().Ok();
-   
+
   }
-  
+
   [HttpPost]
   public async Task<IActionResult> GetsPaginate(DtoRequestPage<DtoSearch?> dto)
   {
     var query = _repo
       .ToExtQueryFilter(dto.Filter)
       .ToExtQueryOrderBy(dto.Sort)
-      .Select(x => new {
+      .Select(x => new
+      {
         x.Id,
-        x.Name, 
+        x.Name,
         x.Email,
         x.PhoneNumber,
         x.Status,
         x.CreatedAt,
         x.UpdatedAt
       });
-   
+
     var result = await query.ToExtPageReq(dto);
     return Ok(result);
   }

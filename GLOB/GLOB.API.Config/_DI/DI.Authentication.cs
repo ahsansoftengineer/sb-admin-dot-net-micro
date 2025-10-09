@@ -65,7 +65,7 @@ public static partial class DI_API_Config
       options.ExpireTimeSpan = TimeSpan.FromMinutes(jwt.AccessTokenExpiryMinutes);
       options.SlidingExpiration = true; // cookie’s lifetime will renew on every request
     });
-   
+
   }
 
   public static void Add_API_Config_JWT_Option(this IServiceCollection srvc)

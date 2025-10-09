@@ -1,7 +1,7 @@
 using System.Net;
 using System.Reflection;
-using GLOB.Infra.Utils.Attributez;
 using GLOB.Infra.Data.Redisz;
+using GLOB.Infra.Utils.Attributez;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.Filters;
 
@@ -75,7 +75,7 @@ public class FilterCacheActionSave : IAsyncActionFilter
       }
     }
   }
-  
+
 
   public static bool AllowToContinue(
     ActionExecutingContext context,

@@ -16,11 +16,11 @@ public static partial class DI_Projectz
     return srvc
       .Add_OAuthFromAccount(accounts.Google)
       .Add_OAuthFromAccount(accounts.Microsoft);
-      // .Add_OAuthFromAccount(accounts.Facebook)
-      // .Add_OAuthFromAccount(accounts.Github)
-      // .Add_OAuthFromAccount(accounts.LinkedIn)
-      // .Add_OAuthFromAccount(accounts.Twitter)
-      // .Add_OAuthFromAccount(accounts.Apple);
+    // .Add_OAuthFromAccount(accounts.Facebook)
+    // .Add_OAuthFromAccount(accounts.Github)
+    // .Add_OAuthFromAccount(accounts.LinkedIn)
+    // .Add_OAuthFromAccount(accounts.Twitter)
+    // .Add_OAuthFromAccount(accounts.Apple);
   }
   private static AuthenticationBuilder Add_OAuthFromAccount(this AuthenticationBuilder builder, Option_SocialAccount account)
   {

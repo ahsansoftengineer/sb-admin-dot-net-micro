@@ -24,5 +24,5 @@ public class SrvcProjectzLookup
   {
     $"UpdateDatabase: Long Running Job {date}".Print("Job");
   }
-  
+
 }

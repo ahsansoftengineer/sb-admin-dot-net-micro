@@ -1,5 +1,3 @@
-using System.ComponentModel.DataAnnotations.Schema;
-
 namespace GLOB.Domain.Hierarchy;
 public class Industry : EntityBase
 {

@@ -12,7 +12,7 @@ public partial class __HttpController : API_1_InjectorController<__HttpControlle
     // ClientHttpAuth = new API_Client_Http(_Option_App.Option_Http.Auth, PrefixHttp.Auth, Controllerz.ProjectzLookup);
     ClientHttpAuth = sp.GetSrvc<UOW_API_Httpz>().ClientHttpAuth;
   }
- 
+
   // [HttpPost]
   // public async Task<IActionResult> Add([FromBody] RegisterDto model)
   // {
@@ -37,7 +37,7 @@ public partial class __HttpController : API_1_InjectorController<__HttpControlle
     var result = await ClientHttpAuth.Status<ResponseRecord<ProjectzLookup>>(new()
     {
       Resource = Id,
-      Body = dto 
+      Body = dto
     });
     return result.Ok();
   }

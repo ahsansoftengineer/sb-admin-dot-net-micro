@@ -16,5 +16,5 @@ public partial class UOW_API_Httpz
     _Option_Host = sp.GetSrvc<IOptions<Option_App>>().Value.Clients.Http_Host;
   }
 
-  public API_Client_Http ClientHttpAuth => _ClientHttpAuth ??= new API_Client_Http(_sp, _Option_Host.Auth, PrefixHttp.Auth, Controllerz.Auth.ProjectzLookup) ;
+  public API_Client_Http ClientHttpAuth => _ClientHttpAuth ??= new API_Client_Http(_sp, _Option_Host.Auth, PrefixHttp.Auth, Controllerz.Auth.ProjectzLookup);
 }

@@ -28,11 +28,11 @@ public static partial class InfraSeedIdentity
   //   }
   // }
   public static List<T> SeedDataRole<T>() where T : InfraRole, new()
-  //  IdentityRole<string>
+    //  IdentityRole<string>
   {
     string className = typeof(T).Name;
     List<T> list = new List<T>();
-    var guid = new []
+    var guid = new[]
     {
       "b4206884-fc69-4a1b-a4ca-81f4cf594ee5",
       "832f9537-20c4-49ca-9f12-b8c5f9515c17",
@@ -46,7 +46,7 @@ public static partial class InfraSeedIdentity
       var data = new T()
       {
 
-        Id = guid[i-1],
+        Id = guid[i - 1],
         Name = name,
         NormalizedName = NAME
       };

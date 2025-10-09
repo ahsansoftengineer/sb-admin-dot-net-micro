@@ -17,5 +17,5 @@ public class Option_App
   public Option_Clients Clients { get; set; }
   public Option_SwaggerServices SwaggerServices { get; set; }
   public Option_Hangfire Hangfire { get; set; }
-  
+
 }

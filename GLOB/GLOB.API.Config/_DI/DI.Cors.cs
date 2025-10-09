@@ -5,7 +5,7 @@ public static partial class DI_API_Config
   {
     srvc.AddCors(opt =>
     {
-      opt.AddDefaultPolicy(opt => 
+      opt.AddDefaultPolicy(opt =>
         opt
           .AllowAnyHeader()
           .AllowAnyOrigin()

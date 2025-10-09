@@ -5,6 +5,6 @@ public static partial class DI_Projectz
   {
     srvc.Add_API_Config_Options(config);
     srvc.Configure<Option_Hangfire>(config);
-    
+
   }
 }

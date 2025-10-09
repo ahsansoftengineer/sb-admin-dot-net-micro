@@ -1,29 +1,30 @@
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System.Reflection;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace GLOB.Common.API;
 [ApiExplorerSettings(IgnoreApi = true)]
 public class FileUploderz
 {
   private readonly IWebHostEnvironment hostEnv;
-    private readonly ModelStateDictionary ms;
-    private string storageFiles = "/assets/ouz";
+  private readonly ModelStateDictionary ms;
+  private string storageFiles = "/assets/ouz";
   public FileUploderz(
   IWebHostEnvironment hostingEnvironment,
   ModelStateDictionary ms
   )
   {
     hostEnv = hostingEnvironment;
-        this.ms = ms;
-    }
+    this.ms = ms;
+  }
   // Async Methods Cannot have output parameters
   // Don't use this methods
   public async Task<string> UploadFile(IFormFile file, string fileName)
   {
-    if (file == null || file.Length == 0){
+    if (file == null || file.Length == 0)
+    {
       ms.AddModelError(fileName, "Invalid File");
       return "";
-    } 
+    }
 
     // Specify the directory where you want to save the file
     //var uploadDirectory = "D:/Directory";
@@ -61,10 +62,11 @@ public class FileUploderz
     object obj
   )
   {
-    if (file == null || file.Length == 0){
+    if (file == null || file.Length == 0)
+    {
       ms.AddModelError(propertyName, "Invalid File");
       return "";
-    } 
+    }
     // Specify the directory where you want to save the file
     //var uploadDirectory = "D:/Directory";
     var uploadDirectory = hostEnv.ContentRootPath + storageFiles;

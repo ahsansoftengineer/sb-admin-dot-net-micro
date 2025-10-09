@@ -24,10 +24,10 @@ public abstract class AccountBaseController<T> : API_1_InjectorController<T>
     _uowProjectz = _sp.GetSrvc<IUOW_Projectz>();
 
     _userManager = _sp.GetSrvc<UserManager<InfraUser>>();
-    _signInManager = _sp.GetSrvc<SignInManager<InfraUser>>();;
+    _signInManager = _sp.GetSrvc<SignInManager<InfraUser>>(); ;
     _tokenService = _sp.GetSrvc<TokenService>();
     _emailSender = _sp.GetSrvc<SmtpEmailSender>();
-    
+
     _jwt = _sp.GetSrvc<IOptions<Option_JwtSettings>>().Value;
   }
 }

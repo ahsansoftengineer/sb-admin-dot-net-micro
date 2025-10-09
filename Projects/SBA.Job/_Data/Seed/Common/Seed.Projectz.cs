@@ -1,7 +1,3 @@
-
-
-using LinqKit;
-
 namespace SBA.Projectz.Data;
 public static partial class SeedzProjectz
 {

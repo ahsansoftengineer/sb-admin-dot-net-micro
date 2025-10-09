@@ -1,8 +1,8 @@
-using Microsoft.AspNetCore.Identity;
 using GLOB.Domain.Model.Auth;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace GLOB.Infra.DI;
 public static partial class DI_Infra

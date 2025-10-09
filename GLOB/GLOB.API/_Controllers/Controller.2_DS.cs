@@ -12,8 +12,8 @@ public abstract partial class API_2_RDS_Controller<TController, TEntity>
   public API_2_RDS_Controller(IServiceProvider srvcProvider) : base(srvcProvider)
   {
 
-  } 
-  protected virtual IRepoGenericz<TEntity> _repo {get; set;} // Will be initialize in Last Child Class
+  }
+  protected virtual IRepoGenericz<TEntity> _repo { get; set; } // Will be initialize in Last Child Class
 
   [HttpDelete("{Id:int}")]
   public async Task<IActionResult> Delete(int Id)
@@ -25,5 +25,5 @@ public abstract partial class API_2_RDS_Controller<TController, TEntity>
   {
     return await _repo.ToActionStatus(_uowInfra, Id, dto.Status);
   }
-  
+
 }

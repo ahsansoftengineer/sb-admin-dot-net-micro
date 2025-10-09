@@ -1,8 +1,5 @@
-using System.Text;
 using GLOB.API.Clientz;
-using Newtonsoft.Json;
 using RabbitMQ.Client;
-using RabbitMQ.Client.Events;
 
 namespace SBA.Projectz.Clientz;
 
