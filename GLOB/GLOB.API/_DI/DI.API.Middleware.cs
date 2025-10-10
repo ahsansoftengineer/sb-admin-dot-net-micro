@@ -1,4 +1,3 @@
-
 namespace GLOB.API.DI;
 
 public static partial class DI_API
@@ -32,6 +31,6 @@ public static partial class DI_API
     app.UseAuthentication();
     app.UseAuthorization();
 
-    app.Use_API_Config_Controller(route);
+    app.Use_API_Config_Controller();
   }
 }

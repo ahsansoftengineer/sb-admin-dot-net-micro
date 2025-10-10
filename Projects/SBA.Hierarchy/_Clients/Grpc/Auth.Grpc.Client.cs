@@ -1,3 +1,4 @@
+using Grpc.Core;
 using Grpc.Net.Client;
 using SBA.Projectz.Grpc.Model;
 
@@ -11,7 +12,7 @@ public partial class AuthGrpcClient
   {
     var channel = GrpcChannel.ForAddress(url, new GrpcChannelOptions
     {
-      // Credentials = ChannelCredentials.Insecure // <-- default https
+      Credentials = ChannelCredentials.Insecure // <-- default https
     });
 
     projectzLookup = new GrpcProjectzLookup.GrpcProjectzLookupClient(channel);

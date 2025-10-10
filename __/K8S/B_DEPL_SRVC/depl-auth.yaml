@@ -59,17 +59,21 @@ spec:
             
             - name: Clients__Http_Host__Gateway
               value: http://srvc-cip-gateway:1100
+            - name: Clients__Http_Host__Job
+              value: http://srvc-cip-job:1102
             - name: Clients__Http_Host__Auth
               value: http://srvc-cip-auth:1104
+            - name: Hierarchy
+              value: http://srvc-cip-hierarchy:1106
 
             - name: Clients__Grpc__Protocols
-              value: Http2
-            - name: Clients__Grpc__Auth
-              value: http://srvc-auth-grpc:5104
-            - name: Clients__Grpc__Hierarchy
-              value: http://srvc-hierarchy-grpc:5106
+              value: Http1
             - name: Clients__Grpc__Job
-              value: http://srvc-job-grpc:5102
+              value: http://srvc-cip-job:1102
+            - name: Clients__Grpc__Auth
+              value: http://srvc-cip-auth:1104
+            - name: Clients__Grpc__Hierarchy
+              value: http://srvc-cip-hierarchy:1106
 
             - name: Clients__RabbitMQz__HostName
               value: srvc-cip-rbmq.default.svc.cluster.local
