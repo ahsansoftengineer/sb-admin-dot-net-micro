@@ -5,73 +5,74 @@
 
 ## BASH BUILD Dockerfile
 ## -t tagname, -f file/reference, ./buildContext  
-# docker build -t mansanhhub/sba-srvc-auth -f Projects/SBA.Auth/Dockerfile .
-# docker push mansanhhub/sba-srvc-auth
-# docker pull mansanhhub/sba-srvc-auth
+# docker build -t mansanhhub/srvc-auth -f Projects/SBA.Auth/Dockerfile .
+# docker push mansanhhub/srvc-auth
+# docker pull mansanhhub/srvc-auth
 
 #---------------------------------------------# 
-## BASH RUN Deployment sba-srvc-auth
-# kubectl apply -f ./__/K8S/B_DEPL_SRVC/sba-depl-auth.yaml
-# kubectl get pods
-# kubectl get deployments
-# kubectl logs -l app=sba-srvc-auth --all-containers=true --tail=-1
-# kubectl rollout restart deployments sba-depl-auth
+## BASH RUN Deployment srvc-auth
+# kubectl apply -f ./__/K8S/B_DEPL_SRVC/depl-auth.yaml -n sba-dev
+# kubectl get pods -n sba-dev
+# kubectl get deployments -n sba-dev
+# kubectl logs -l app=srvc-auth --all-containers=true --tail=-1 -n sba-dev
+# kubectl rollout restart deployments depl-auth -n sba-dev
 
 ## BASH DELETE (Deployments & Service)
-# kubectl scale deployment sba-depl-auth --replicas=0
-# kubectl delete -f ./__/K8S/B_DEPL_SRVC/sba-depl-auth.yaml
-# kubectl delete deployments sba-depl-auth
-# kubectl delete services sba-srvc-cip-auth
+# kubectl scale deployment depl-auth --replicas=0 -n sba-dev
+# kubectl delete -f ./__/K8S/B_DEPL_SRVC/depl-auth.yaml -n sba-dev
+# kubectl delete deployments depl-auth -n sba-dev
+# kubectl delete services srvc-cip-auth -n sba-dev
 #---------------------------------------------# 
 #### (1) API Deployment (Auth) 
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: sba-depl-auth
+  name: depl-auth
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: sba-srvc-auth
+      app: srvc-auth
   template:
     metadata:
       labels:
-        app: sba-srvc-auth
+        app: srvc-auth
     spec:
       enableServiceLinks: false   # ✅ disables auto-injected env vars
       containers:
-        - name: sba-srvc-auth
-          image: mansanhhub/sba-srvc-auth
+        - name: srvc-auth
+          image: mansanhhub/srvc-auth
           imagePullPolicy: Always
           ports:
-            - containerPort: 1104
+            - containerPort: 1104   # optional http
+            - containerPort: 1105   # https + grpc
           env:
             - name: DOTNET_ENVIRONMENT
               value: K8S
             - name: ASPNETCORE_URLS
-              value: http://+:1104
+              value: "http://+:1104;https://+:1105"
               
             - name: ConnectionStrings__Redis
-              value: "sba-srvc-cip-redis-dev:6379,password=P@55w0rd!123"
+              value: "srvc-cip-redis-dev:6379,password=P@55w0rd!123"
             - name: ConnectionStrings__SqlConnection
-              value: "Server=sba-srvc-cip-mssql-dev.default.svc.cluster.local,1433;Initial Catalog=SBA_Auth;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
+              value: "Server=srvc-cip-mssql-dev.default.svc.cluster.local,1433;Initial Catalog=SBA_Auth;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
             
             - name: Clients__Http_Host__Gateway
-              value: http://sba-srvc-cip-gateway:1100
+              value: http://srvc-cip-gateway:1100
             - name: Clients__Http_Host__Auth
-              value: http://sba-srvc-cip-auth:1104
+              value: http://srvc-cip-auth:1104
 
             - name: Clients__Grpc__Protocols
               value: Http2
             - name: Clients__Grpc__Auth
-              value: http://sba-srvc-auth-grpc:5104
+              value: http://srvc-auth-grpc:5104
             - name: Clients__Grpc__Hierarchy
-              value: http://sba-srvc-hierarchy-grpc:5106
+              value: http://srvc-hierarchy-grpc:5106
             - name: Clients__Grpc__Job
-              value: http://sba-srvc-job-grpc:5102
+              value: http://srvc-job-grpc:5102
 
             - name: Clients__RabbitMQz__HostName
-              value: sba-srvc-cip-rbmq.default.svc.cluster.local
+              value: srvc-cip-rbmq.default.svc.cluster.local
             - name: Clients__RabbitMQz__Port
               value: "5672"
             - name: Clients__RabbitMQz__VirtualHost
@@ -81,33 +82,33 @@ spec:
             - name: Clients__RabbitMQz__Password
               value: guest
             # - name: Clients__RabbitMQz__Uri
-            #   value: amqp://guest:guest@sba-srvc-cip-rbmq.default.svc.cluster.local/
+            #   value: amqp://guest:guest@srvc-cip-rbmq.default.svc.cluster.local/
 ---
 #---------------------------------------------# 
 #### (2) API Cluster IP (Auth)
 # - We need ClusterIP for Inter Service Communication
 # - Production Required
-# kubectl port-forward svc/sba-srvc-cip-auth 1104:1104
-# http://sba-srvc-cip-auth:1104/api/Auth/v1/swagger/index.html
-# http://sba-srvc-cip-auth:1104/api/Auth/v1/_projectz-lookup/gets-lookup
+# kubectl port-forward svc/srvc-cip-auth 1104:1104 -n sba-dev
+# http://srvc-cip-auth:1104/api/Auth/v1/swagger/index.html
+# http://srvc-cip-auth:1104/api/Auth/v1/_projectz-lookup/gets-lookup
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: sba-srvc-cip-auth
+  name: srvc-cip-auth
 spec:
   type: ClusterIP
   selector:
-    app: sba-srvc-auth
+    app: srvc-auth
   ports:
-  - name: sba-srvc-auth       # Port for Inter Srvc Comm over Http
+  - name: http            # Port for Inter Srvc Comm over Http
     protocol: TCP
     port: 1104
     targetPort: 1104
-  - name: sba-srvc-auth-grpc  # Port for Inter Srvc Comm over Grpc
+  - name: https-grpc  # Port for Inter Srvc Comm over Grpc
     protocol: TCP
-    port: 5104
-    targetPort: 5104
+    port: 1105
+    targetPort: 1105
 
 ---
 #---------------------------------------------#
@@ -117,17 +118,22 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: sba-srvc-np-auth
+  name: srvc-np-auth
 spec:
   type: NodePort
   selector:
-    app: sba-srvc-auth
+    app: srvc-auth
   ports:
-    - name: sba-srvc-auth
+    - name: http
       protocol: TCP
       port: 1104            # ClusterIP service port (internal service port)
       targetPort: 1104      # Pod's container port
       nodePort: 31104       # External NodePort (must be 30000–32767)
+    - name: https-grpc
+      protocol: TCP
+      port: 1105
+      targetPort: 1105
+      nodePort: 31105
 
 ## ROUTES (K8S Node Port)
 # - http://localhost:31104/api/Auth/v1/swagger/index.html

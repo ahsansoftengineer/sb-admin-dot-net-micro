@@ -3,47 +3,47 @@
 # - ClusterIP
 # - Node Port
 
-## BASH BUILD Dockerfile sba-srvc-hierarchy
+## BASH BUILD Dockerfile srvc-hierarchy
 ## -t tagname, -f file/reference, ./buildContext  
-# docker build -t mansanhhub/sba-srvc-hierarchy -f Projects/SBA.Hierarchy/Dockerfile .
-# docker push mansanhhub/sba-srvc-hierarchy
-# docker pull mansanhhub/sba-srvc-hierarchy
+# docker build -t mansanhhub/srvc-hierarchy -f Projects/SBA.Hierarchy/Dockerfile .
+# docker push mansanhhub/srvc-hierarchy
+# docker pull mansanhhub/srvc-hierarchy
 
 #---------------------------------------------# 
-## BASH RUN Deployment sba-srvc-hierarchy
-# kubectl apply -f ./__/K8S/B_DEPL_SRVC/sba-depl-hierarchy.yaml
-# kubectl get pods
-# kubectl get deployments
-# kubectl logs -l app=sba-srvc-hierarchy
-# kubectl logs -l app=sba-srvc-hierarchy --all-containers=true --tail=-1
-# kubectl logs -l app=sba-srvc-hierarchy -f --all-containers=true
-# kubectl rollout restart deployments sba-depl-hierarchy
+## BASH RUN Deployment srvc-hierarchy
+# kubectl apply -f ./__/K8S/B_DEPL_SRVC/depl-hierarchy.yaml -n sba-dev
+# kubectl get pods -n sba-dev
+# kubectl get deployments -n sba-dev -n sba-dev
+# kubectl logs -l app=srvc-hierarchy -n sba-dev
+# kubectl logs -l app=srvc-hierarchy --all-containers=true --tail=-1 -n sba-dev
+# kubectl logs -l app=srvc-hierarchy -f --all-containers=true -n sba-dev
+# kubectl rollout restart deployments depl-hierarchy -n sba-dev
 
 ## BASH DELETE (Deployments & Service)
-# kubectl scale deployment sba-depl-hierarchy --replicas=0
-# kubectl delete -f ./__/K8S/B_DEPL_SRVC/sba-depl-hierarchy.yaml
-# kubectl delete deployments sba-depl-hierarchy
-# kubectl delete services sba-srvc-cip-hierarchy
+# kubectl scale deployment depl-hierarchy --replicas=0 -n sba-dev
+# kubectl delete -f ./__/K8S/B_DEPL_SRVC/depl-hierarchy.yaml -n sba-dev
+# kubectl delete deployments depl-hierarchy -n sba-dev
+# kubectl delete services srvc-cip-hierarchy -n sba-dev
 #---------------------------------------------# 
 #### (1) API Deployment (Hierarchy) 
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: sba-depl-hierarchy
+  name: depl-hierarchy
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: sba-srvc-hierarchy
+      app: srvc-hierarchy
   template:
     metadata:
       labels:
-        app: sba-srvc-hierarchy
+        app: srvc-hierarchy
     spec:
       enableServiceLinks: false   # ✅ disables auto-injected env vars
       containers:
-        - name: sba-srvc-hierarchy
-          image: mansanhhub/sba-srvc-hierarchy
+        - name: srvc-hierarchy
+          image: mansanhhub/srvc-hierarchy
           imagePullPolicy: Always
           ports:
             - containerPort: 1106
@@ -54,27 +54,27 @@ spec:
               value: http://+:1106
 
             - name: ConnectionStrings__Redis
-              value: "sba-srvc-cip-redis-dev:6379,password=P@55w0rd!123"
+              value: "srvc-cip-redis-dev:6379,password=P@55w0rd!123"
             - name: ConnectionStrings__SqlConnection
-              value: "Server=sba-srvc-cip-mssql-dev.default.svc.cluster.local,1433;Initial Catalog=SBA_Hierarchy;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
-              # value: "Server=sba-srvc-cip-mssql-hierarchy.default.svc.cluster.local,1433;Initial Catalog=SBA_Hierarchy;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
+              value: "Server=srvc-cip-mssql-dev.default.svc.cluster.local,1433;Initial Catalog=SBA_Hierarchy;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
+              # value: "Server=srvc-cip-mssql-hierarchy.default.svc.cluster.local,1433;Initial Catalog=SBA_Hierarchy;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
             
             - name: Clients__Http_Host__Gateway
-              value: http://sba-srvc-cip-gateway:1100
+              value: http://srvc-cip-gateway:1100
             - name: Clients__Http_Host__Auth
-              value: http://sba-srvc-cip-auth:1104
+              value: http://srvc-cip-auth:1104
 
             - name: Clients__Grpc__Protocols
               value: Http2
             - name: Clients__Grpc__Auth
-              value: http://sba-srvc-auth-grpc:5104
+              value: http://srvc-auth-grpc:5104
             - name: Clients__Grpc__Hierarchy
-              value: http://sba-srvc-hierarchy-grpc:5106
+              value: http://srvc-hierarchy-grpc:5106
             - name: Clients__Grpc__Job
-              value: http://sba-srvc-job-grpc:5102
+              value: http://srvc-job-grpc:5102
 
             - name: Clients__RabbitMQz__HostName
-              value: sba-srvc-cip-rbmq.default.svc.cluster.local
+              value: srvc-cip-rbmq.default.svc.cluster.local
             - name: Clients__RabbitMQz__Port
               value: "5672"
             - name: Clients__RabbitMQz__VirtualHost
@@ -84,26 +84,26 @@ spec:
             - name: Clients__RabbitMQz__Password
               value: guest
             # - name: Clients__RabbitMQz__Uri
-            #   value: amqp://guest:guest@sba-srvc-cip-rbmq.default.svc.cluster.local/
+            #   value: amqp://guest:guest@srvc-cip-rbmq.default.svc.cluster.local/
 ---
 #---------------------------------------------# 
 #### (2) API Cluster IP (Hierarchy)
 # - We need ClusterIP for Inter Service Communication
 # - Production Required
-# kubectl port-forward svc/sba-srvc-cip-hierarchy 1106:1106
-# http://sba-srvc-cip-hierarchy:1106/api/hierarchy/v1/swagger/index.html
-# http://sba-srvc-cip-hierarchy:1106/api/hierarchy/v1/_projectz-lookup/gets-lookup
+# kubectl port-forward svc/srvc-cip-hierarchy 1106:1106 -n sba-dev
+# http://srvc-cip-hierarchy:1106/api/hierarchy/v1/swagger/index.html
+# http://srvc-cip-hierarchy:1106/api/hierarchy/v1/_projectz-lookup/gets-lookup
 
 apiVersion: v1
 kind: Service
 metadata:
-  name: sba-srvc-cip-hierarchy
+  name: srvc-cip-hierarchy
 spec:
   type: ClusterIP
   selector:
-    app: sba-srvc-hierarchy
+    app: srvc-hierarchy
   ports:
-  - name: sba-srvc-hierarchy
+  - name: srvc-hierarchy
     protocol: TCP
     port: 1106
     targetPort: 1106
@@ -117,13 +117,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: sba-srvc-np-hierarchy
+  name: srvc-np-hierarchy
 spec:
   type: NodePort
   selector:
-    app: sba-srvc-hierarchy
+    app: srvc-hierarchy
   ports:
-    - name: sba-srvc-hierarchy
+    - name: srvc-hierarchy
       protocol: TCP
       port: 1106 # Node Port
       targetPort: 1106 # Pod's App port

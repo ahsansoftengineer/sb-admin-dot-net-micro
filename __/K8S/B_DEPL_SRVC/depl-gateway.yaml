@@ -5,43 +5,43 @@
 
 ## BASH BUILD Dockerfile
 ## -t tagname, -f file/reference, ./buildContext  
-# docker build -t mansanhhub/sba-srvc-gateway -f Projects/SBA.APIGateway/Dockerfile .
-# docker push mansanhhub/sba-srvc-gateway
-# docker pull mansanhhub/sba-srvc-gateway
+# docker build -t mansanhhub/srvc-gateway -f Projects/SBA.APIGateway/Dockerfile .
+# docker push mansanhhub/srvc-gateway
+# docker pull mansanhhub/srvc-gateway
 
 #---------------------------------------------# 
-## BASH RUN Deployment sba-srvc-gateway
-# kubectl apply -f ./__/K8S/B_DEPL_SRVC/sba-depl-gateway.yaml
-# kubectl get pods
-# kubectl get deployments
-# kubectl logs -l app=sba-srvc-gateway --all-containers=true --tail=-1
-# kubectl rollout restart deployments sba-depl-gateway
+## BASH RUN Deployment srvc-gateway
+# kubectl apply -f ./__/K8S/B_DEPL_SRVC/depl-gateway.yaml -n sba-dev
+# kubectl get pods -n sba-dev
+# kubectl get deployments -n sba-dev
+# kubectl logs -l app=srvc-gateway --all-containers=true --tail=-1 -n sba-dev
+# kubectl rollout restart deployments depl-gateway -n sba-dev
 
 ## BASH DELETE (Deployments & Service)8
-# kubectl scale deployment sba-depl-gateway --replicas=0
-# kubectl delete -f ./__/K8S/B_DEPL_SRVC/sba-depl-gateway.yaml
-# kubectl delete deployments sba-depl-gateway
-# kubectl delete services sba-srvc-cip-gateway
+# kubectl scale deployment depl-gateway --replicas=0 -n sba-dev
+# kubectl delete -f ./__/K8S/B_DEPL_SRVC/depl-gateway.yaml -n sba-dev
+# kubectl delete deployments depl-gateway -n sba-dev
+# kubectl delete services srvc-cip-gateway -n sba-dev
 #---------------------------------------------# 
 #### (1) API Deployment (APIGateway)
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: sba-depl-gateway
+  name: depl-gateway
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: sba-srvc-gateway
+      app: srvc-gateway
   template:
     metadata:
       labels:
-        app: sba-srvc-gateway
+        app: srvc-gateway
     spec:
       enableServiceLinks: false   # ✅ disables auto-injected env vars
       containers:
-        - name: sba-srvc-gateway
-          image: mansanhhub/sba-srvc-gateway
+        - name: srvc-gateway
+          image: mansanhhub/srvc-gateway
           imagePullPolicy: Always
           ports:
             - containerPort: 1100
@@ -58,20 +58,20 @@ spec:
 #### (2) API Cluster IP (APIGateway)
 # - We need ClusterIP for Inter Service Communication
 # - Production Required
-# kubectl port-forward svc/sba-srvc-cip-gateway 1100:1100
+# kubectl port-forward svc/srvc-cip-gateway 1100:1100 -n sba-dev
 # http://localhost:1100/api/Gateway/v1/swagger/index.html
 # http://localhost:1100/api/Hierarchy/v1/_projectz-lookup/gets-lookup
 
 apiVersion: v1
 kind: Service
 metadata:
-  name: sba-srvc-cip-gateway
+  name: srvc-cip-gateway
 spec:
   type: ClusterIP
   selector:
-    app: sba-srvc-gateway
+    app: srvc-gateway
   ports:
-  - name: sba-srvc-gateway
+  - name: srvc-gateway
     protocol: TCP
     port: 1100
     targetPort: 1100
@@ -85,13 +85,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: sba-srvc-np-gateway
+  name: srvc-np-gateway
 spec:
   type: NodePort
   selector:
-    app: sba-srvc-gateway
+    app: srvc-gateway
   ports:
-    - name: sba-srvc-gateway
+    - name: srvc-gateway
       protocol: TCP
       port: 1100 # Node Port
       targetPort: 1100 # Pod's App port
