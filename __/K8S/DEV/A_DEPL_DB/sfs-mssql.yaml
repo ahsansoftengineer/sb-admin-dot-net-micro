@@ -1,9 +1,13 @@
 ################~~~~ DB SBA Dev ~~~~~##################
 #### Run Command
 ## BASH
-# kubectl apply -f ./__/K8S/A_DEPL_DB/sba-depl-mssql-dev.yaml
-# kubectl delete -f ./__/K8S/A_DEPL_DB/sba-depl-mssql-dev.yaml
-# kubectl rollout restart deployments sba-depl-mssql-dev
+# kubectl apply -f ./__/K8S/DEV/A_DEPL_DB/sfs-mssql.yaml -n sba-dev
+# kubectl delete -f ./__/K8S/DEV/A_DEPL_DB/sfs-mssql.yaml -n sba-dev
+# kubectl rollout restart statefulsets sfs-mssql -n sba-dev
+
+# kubectl logs sfs-mssql-0 -n sba-dev
+# kubectl exec -it sfs-mssql-0 -n sba-dev -- rabbitmqctl list_vhosts
+# kubectl describe pod sfs-mssql-0 -n sba-dev
 
 ## Connect
 # Server=127.0.0.1,32000;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;
@@ -14,13 +18,14 @@
 
 # - This Task Done Only Once
 # - Creating Claim for Database
-# kubectl get pvc
-# kubectl get pvc sba-claim-mssql-dev
-# kubectl delete pvc sba-claim-mssql-dev
+# kubectl get pvc -n sba-dev
+# kubectl get pvc claim-mssql -n sba-dev
+# kubectl delete pvc claim-mssql -n sba-dev
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: sba-claim-mssql-dev
+  name: claim-mssql
+  namespace: sba-dev
 spec:
   resources:
     requests:
@@ -29,23 +34,25 @@ spec:
   - ReadWriteMany
 
 ---
-#### (3) DB Deployment (Dev) 
-# - kubectl get deployment
-# - kubectl get deployment sba-depl-mssql-dev
-# - kubectl delete deployment sba-depl-mssql-dev
+#### (3) DB StatefulSet (Dev) 
+# - kubectl get statefulset -n sba-dev
+# - kubectl get statefulset sfs-mssql -n sba-dev
+# - kubectl delete statefulset sfs-mssql -n sba-dev
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
-  name: sba-depl-mssql-dev
+  name: sfs-mssql
+  namespace: sba-dev
 spec:
+  serviceName: srvc-cip-mssql
   replicas: 1
   selector:
     matchLabels:
-      app: sba-mssql-dev
+      app: mssql
   template:
     metadata:
       labels:
-        app: sba-mssql-dev
+        app: mssql
     spec:
       enableServiceLinks: false   # ✅ disables auto-injected env vars
       containers:
@@ -86,23 +93,24 @@ spec:
       volumes:
         - name: mssqldb
           persistentVolumeClaim:
-            claimName: sba-claim-mssql-dev
+            claimName: claim-mssql
 
 ---
 #---------------------------------------------# 
 #### (4) DB ClusterIP (Dev)
 # - We need ClusterIP for Inter Service Communication
 # - Production Required
-# - kubectl get svc
-# - kubectl get svc sba-srvc-cip-mssql-dev
+# - kubectl get svc -n sba-dev
+# - kubectl get svc srvc-cip-mssql -n sba-dev
 apiVersion: v1
 kind: Service
 metadata:
-  name: sba-srvc-cip-mssql-dev
+  name: srvc-cip-mssql
+  namespace: sba-dev
 spec:
   type: ClusterIP
   selector:
-    app: sba-mssql-dev
+    app: mssql
   ports:
     - name: mssql
       protocol: TCP
@@ -114,16 +122,17 @@ spec:
 #### (5) DB NodePort (Dev) (Optional)
 # - We need NodePort for (PC) External Service Access
 # - No Production Required
-# - kubectl get svc sba-srvc-np-mssql-dev
+# - kubectl get svc srvc-np-mssql -n sba-dev
 # - CREADENTIALS 127.0.0.1,32000 sa 'P@55w0rd!123'
 apiVersion: v1
 kind: Service
 metadata:
-  name: sba-srvc-np-mssql-dev
+  name: srvc-np-mssql
+  namespace: sba-dev
 spec:
   type: NodePort
   selector:
-    app: sba-mssql-dev
+    app: mssql
   ports:
     - protocol: TCP
       port: 1433
@@ -136,17 +145,18 @@ spec:
 #### (6) DB LoadBalancer (Dev)
 # - We need LoadBalancer for (Public) External Service Access
 # - No Production Required
-# - kubectl get svc sba-srvc-lb-mssql-dev
+# - kubectl get svc srvc-lb-mssql -n sba-dev
 ## Creadentials for LoadBalancer
 # - Not Working 127.0.0.1,1433 sa 'P@55w0rd!123'
 apiVersion: v1
 kind: Service
 metadata:
-  name: sba-srvc-lb-mssql-dev
+  name: srvc-lb-mssql
+  namespace: sba-dev
 spec:
   type: LoadBalancer
   selector:
-    app: sba-mssql-dev
+    app: mssql
   ports:
     - protocol: TCP
       port: 2000 # External
