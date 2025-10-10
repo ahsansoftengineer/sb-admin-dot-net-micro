@@ -1,13 +1,13 @@
 ################~~~~ Redis SBA Hierarchy ~~~~~##################
 #### Run Command
 ## BASH
-# kubectl apply -f ./__/K8S/DEV/A_DEPL_DB/depl-redis.yaml -n sba-dev
-# kubectl delete -f ./__/K8S/DEV/A_DEPL_DB/depl-redis.yaml -n sba-dev
-# kubectl rollout restart statefulsets depl-redis -n sba-dev
+# kubectl apply -f ./__/K8S/DEV/A_DEPL_DB/sfs-redis.yaml -n sba-dev
+# kubectl delete -f ./__/K8S/DEV/A_DEPL_DB/sfs-redis.yaml -n sba-dev
+# kubectl rollout restart statefulsets sfs-redis -n sba-dev
 
-# kubectl logs depl-redis-0 -n sba-dev
-# kubectl exec -it depl-redis-0 -n sba-dev -- rabbitmqctl list_vhosts
-# kubectl describe pod depl-redis-0 -n sba-dev
+# kubectl logs sfs-redis-0 -n sba-dev
+# kubectl exec -it sfs-redis-0 -n sba-dev -- rabbitmqctl list_vhosts
+# kubectl describe pod sfs-redis-0 -n sba-dev
 
 # kubectl port-forward svc/srvc-cip-redis 6379:6379
 # ps aux | grep kubectl
@@ -40,12 +40,12 @@ spec:
 
 #### (3) Redis StatefulSet (Hierarchy) 
 # - kubectl get statefulset -n sba-dev
-# - kubectl get statefulset depl-redis -n sba-dev
-# - kubectl delete statefulset depl-redis -n sba-dev
+# - kubectl get statefulset sfs-redis -n sba-dev
+# - kubectl delete statefulset sfs-redis -n sba-dev
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: depl-redis
+  name: sfs-redis
   namespace: sba-dev
 spec:
   replicas: 1

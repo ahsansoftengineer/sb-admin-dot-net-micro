@@ -1,13 +1,13 @@
 ################~~~~ DB SBA Dev ~~~~~##################
 #### Run Command
 ## BASH
-# kubectl apply -f ./__/K8S/DEV/A_DEPL_DB/depl-mssql.yaml -n sba-dev
-# kubectl delete -f ./__/K8S/DEV/A_DEPL_DB/depl-mssql.yaml -n sba-dev
-# kubectl rollout restart statefulsets depl-mssql -n sba-dev
+# kubectl apply -f ./__/K8S/DEV/A_DEPL_DB/sfs-mssql.yaml -n sba-dev
+# kubectl delete -f ./__/K8S/DEV/A_DEPL_DB/sfs-mssql.yaml -n sba-dev
+# kubectl rollout restart statefulsets sfs-mssql -n sba-dev
 
-# kubectl logs depl-mssql-0 -n sba-dev
-# kubectl exec -it depl-mssql-0 -n sba-dev -- rabbitmqctl list_vhosts
-# kubectl describe pod depl-mssql-0 -n sba-dev
+# kubectl logs sfs-mssql-0 -n sba-dev
+# kubectl exec -it sfs-mssql-0 -n sba-dev -- rabbitmqctl list_vhosts
+# kubectl describe pod sfs-mssql-0 -n sba-dev
 
 ## Connect
 # Server=127.0.0.1,32000;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;
@@ -36,12 +36,12 @@ spec:
 ---
 #### (3) DB StatefulSet (Dev) 
 # - kubectl get statefulset -n sba-dev
-# - kubectl get statefulset depl-mssql -n sba-dev
-# - kubectl delete statefulset depl-mssql -n sba-dev
+# - kubectl get statefulset sfs-mssql -n sba-dev
+# - kubectl delete statefulset sfs-mssql -n sba-dev
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: depl-mssql
+  name: sfs-mssql
   namespace: sba-dev
 spec:
   serviceName: srvc-cip-mssql
