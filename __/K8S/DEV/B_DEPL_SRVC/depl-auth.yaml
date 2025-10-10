@@ -45,12 +45,11 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 1104   # optional http
-            - containerPort: 1105   # https + grpc
           env:
             - name: DOTNET_ENVIRONMENT
               value: K8S
             - name: ASPNETCORE_URLS
-              value: "http://+:1104;https://+:1105"
+              value: "http://+:1104"
               
             - name: ConnectionStrings__Redis
               value: "srvc-cip-redis-dev:6379,password=P@55w0rd!123"
@@ -109,10 +108,6 @@ spec:
     protocol: TCP
     port: 1104
     targetPort: 1104
-  - name: https-grpc  # Port for Inter Srvc Comm over Grpc
-    protocol: TCP
-    port: 1105
-    targetPort: 1105
 
 ---
 #---------------------------------------------#
@@ -133,11 +128,6 @@ spec:
       port: 1104            # ClusterIP service port (internal service port)
       targetPort: 1104      # Pod's container port
       nodePort: 31104       # External NodePort (must be 30000–32767)
-    - name: https-grpc
-      protocol: TCP
-      port: 1105
-      targetPort: 1105
-      nodePort: 31105
 
 ## ROUTES (K8S Node Port)
 # - http://localhost:31104/api/Auth/v1/swagger/index.html

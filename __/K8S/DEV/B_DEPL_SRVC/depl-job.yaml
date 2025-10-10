@@ -13,17 +13,17 @@
 
 #---------------------------------------------# 
 ## BASH RUN Deployment sba-srvc-job
-# kubectl apply -f ./__/K8S/B_DEPL_SRVC/sba-depl-job.yaml
-# kubectl get pods
-# kubectl get deployments
-# kubectl logs -l app=sba-srvc-job --all-containers=true --tail=-1
-# kubectl rollout restart deployments sba-depl-job
+# kubectl apply -f ./__/K8S/DEV/B_DEPL_SRVC/sba-depl-job.yaml -n sba-dev
+# kubectl get pods -n sba-dev
+# kubectl get deployments -n sba-dev
+# kubectl logs -l app=sba-srvc-job --all-containers=true --tail=-1 -n sba-dev
+# kubectl rollout restart deployments sba-depl-job -n sba-dev
 
-## BASH DELETE (Deployments & Service)8
-# kubectl scale deployment sba-depl-job --replicas=0
-# kubectl delete -f ./__/K8S/B_DEPL_SRVC/sba-depl-job.yaml
-# kubectl delete deployments sba-depl-job
-# kubectl delete services sba-srvc-cip-job
+## BASH DELETE (Deployments & Service)
+# kubectl scale deployment sba-depl-job --replicas=0 -n sba-dev
+# kubectl delete -f ./__/K8S/DEV/B_DEPL_SRVC/sba-depl-job.yaml -n sba-dev
+# kubectl delete deployments sba-depl-job -n sba-dev
+# kubectl delete services sba-srvc-cip-job -n sba-dev
 #---------------------------------------------# 
 #### (1) API Deployment (Job) 
 apiVersion: apps/v1
@@ -67,6 +67,15 @@ spec:
             - name: Clients__Http_Host__Auth
               value: http://sba-srvc-cip-auth:1104
 
+            - name: Clients__Grpc__Protocols
+              value: Http1
+            - name: Clients__Grpc__Job
+              value: http://srvc-cip-job:1102
+            - name: Clients__Grpc__Auth
+              value: http://srvc-cip-auth:1104
+            - name: Clients__Grpc__Hierarchy
+              value: http://srvc-cip-hierarchy:1106
+
             - name: Clients__RabbitMQz__HostName
               value: sba-srvc-cip-rbmq
             - name: Clients__RabbitMQz__Port
@@ -92,7 +101,7 @@ spec:
 #### (2) API Cluster IP (Job)
 # - We need ClusterIP for Inter Service Communication
 # - Production Required
-# kubectl port-forward svc/sba-srvc-cip-job 1102:1102
+# kubectl port-forward svc/sba-srvc-cip-job 1102:1102 -n sba-dev
 # http://sba-srvc-cip-job:1102/api/job/v1/swagger/index.html
 # http://sba-srvc-cip-job:1102/api/job/v1/_projectz-lookup/gets-lookup
 # http://sba-srvc-cip-job:1102/api/job/v1/hangfire
