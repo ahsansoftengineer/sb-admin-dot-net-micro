@@ -1,8 +1,8 @@
 ################~~~~ Redis SBA Hierarchy ~~~~~##################
 #### Run Command
 ## BASH
-# kubectl apply -f ./__/K8S/DEV/A_DEPL_DB/sfs-redis.yaml -n sba-dev
-# kubectl delete -f ./__/K8S/DEV/A_DEPL_DB/sfs-redis.yaml -n sba-dev
+# kubectl apply -f ./__/K8S/DEV/A_DB/sfs-redis.yaml -n sba-dev
+# kubectl delete -f ./__/K8S/DEV/A_DB/sfs-redis.yaml -n sba-dev
 # kubectl rollout restart statefulsets sfs-redis -n sba-dev
 
 # kubectl logs sfs-redis-0 -n sba-dev
