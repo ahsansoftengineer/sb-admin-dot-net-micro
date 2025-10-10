@@ -1,11 +1,15 @@
 ################~~~~ Redis SBA Hierarchy ~~~~~##################
 #### Run Command
 ## BASH
-# kubectl apply -f ./__/K8S/A_DEPL_DB/sba-depl-redis-dev.yaml
-# kubectl delete -f ./__/K8S/A_DEPL_DB/sba-depl-redis-dev.yaml
-# kubectl rollout restart deployments sba-depl-redis-dev
+# kubectl apply -f ./__/K8S/DEV/A_DEPL_DB/depl-redis.yaml -n sba-dev
+# kubectl delete -f ./__/K8S/DEV/A_DEPL_DB/depl-redis.yaml -n sba-dev
+# kubectl rollout restart statefulsets depl-redis -n sba-dev
 
-# kubectl port-forward svc/sba-srvc-cip-redis-dev 6379:6379
+# kubectl logs depl-redis-0 -n sba-dev
+# kubectl exec -it depl-redis-0 -n sba-dev -- rabbitmqctl list_vhosts
+# kubectl describe pod depl-redis-0 -n sba-dev
+
+# kubectl port-forward svc/srvc-cip-redis 6379:6379
 # ps aux | grep kubectl
 
 ## Connect
@@ -16,14 +20,16 @@
 
 # - This Task Done Only Once
 # - Creating Claim for Redis
-# kubectl get pvc
-# kubectl get pvc sba-claim-redis-dev
-# kubectl delete pvc sba-claim-redis-dev
+# kubectl get pvc -n sba-dev
+# kubectl get pvc claim-redis -n sba-dev
+# kubectl delete pvc claim-redis -n sba-dev
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: sba-claim-redis-dev
+  name: claim-redis
+  namespace: sba-dev
 spec:
+  storageClassName: hostpath
   resources:
     requests:
       storage: 500Mi
@@ -32,23 +38,24 @@ spec:
 
 ---
 
-#### (3) Redis Deployment (Hierarchy) 
-# - kubectl get deployment
-# - kubectl get deployment sba-depl-redis-dev
-# - kubectl delete deployment sba-depl-redis-dev
+#### (3) Redis StatefulSet (Hierarchy) 
+# - kubectl get statefulset -n sba-dev
+# - kubectl get statefulset depl-redis -n sba-dev
+# - kubectl delete statefulset depl-redis -n sba-dev
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
-  name: sba-depl-redis-dev
+  name: depl-redis
+  namespace: sba-dev
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: sba-redis-dev
+      app: redis
   template:
     metadata:
       labels:
-        app: sba-redis-dev
+        app: redis
     spec:
       enableServiceLinks: false   # ✅ disables auto-injected env vars
       containers:
@@ -70,7 +77,7 @@ spec:
       volumes:
         - name: redisdb
           persistentVolumeClaim:
-            claimName: sba-claim-redis-dev
+            claimName: claim-redis
 
 ---
 
@@ -78,16 +85,17 @@ spec:
 #### (4) Redis ClusterIP (Hierarchy)
 # - We need ClusterIP for Inter Service Communication
 # - Production Required
-# - kubectl get svc
-# - kubectl get svc sba-srvc-cip-redis-dev
+# - kubectl get svc -n sba-dev
+# - kubectl get svc srvc-cip-redis -n sba-dev
 apiVersion: v1
 kind: Service
 metadata:
-  name: sba-srvc-cip-redis-dev
+  name: srvc-cip-redis
+  namespace: sba-dev
 spec:
   type: ClusterIP
   selector:
-    app: sba-redis-dev
+    app: redis
   ports:
     - name: redis
       protocol: TCP
@@ -99,16 +107,17 @@ spec:
 #### (5) Redis NodePort (Dev)
 # - We need NodePort for (PC) External Service Access
 # - No Production Required
-# - kubectl get svc sba-srvc-np-redis-dev
+# - kubectl get svc srvc-np-redis -n sba-dev
 # - CREADENTIALS 127.0.0.1,32100 sa 'P@55w0rd!123'
 apiVersion: v1
 kind: Service
 metadata:
-  name: sba-srvc-np-redis-dev
+  name: srvc-np-redis
+  namespace: sba-dev
 spec:
   type: NodePort
   selector:
-    app: sba-redis-dev
+    app: redis
   ports:
     - protocol: TCP
       port: 6379
@@ -120,17 +129,18 @@ spec:
 #### (6) Redis LoadBalancer (Dev)
 # - We need LoadBalancer for (Public) External Service Access
 # - No Production Required
-# - kubectl get svc sba-srvc-lb-redis-dev
+# - kubectl get svc srvc-lb-redis -n sba-dev
 ## Credentials for LoadBalancer
 # - 127.0.0.1,6379 'P@55w0rd!123'
 apiVersion: v1
 kind: Service
 metadata:
-  name: sba-srvc-lb-redis-dev
+  name: srvc-lb-redis
+  namespace: sba-dev
 spec:
   type: LoadBalancer
   selector:
-    app: sba-redis-dev
+    app: redis
   ports:
     - protocol: TCP
       port: 6379

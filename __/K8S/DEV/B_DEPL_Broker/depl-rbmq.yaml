@@ -5,7 +5,7 @@
 
 # kubectl apply -f ./__/K8S/SBA_DEV/A_DEPL_Broker/depl-rbmq.yaml -n sba-dev
 # kubectl delete -f ./__/K8S/SBA_DEV/A_DEPL_Broker/depl-rbmq.yaml -n sba-dev
-# kubectl rollout restart deployments depl-rbmq -n sba-dev
+# kubectl rollout restart statefulsets depl-rbmq -n sba-dev
 
 # kubectl logs depl-rbmq-0 -n sba-dev
 # kubectl exec -it depl-rbmq-0 -n sba-dev -- rabbitmqctl list_vhosts
@@ -69,12 +69,12 @@ spec:
 ---
 
 #---------------------------------------------#
-# (1) RabbitMQ Deployment (SBA)
-# - kubectl get deployment -n sba-dev
-# - kubectl get deployment depl-rbmq -n sba-dev
+# (1) RabbitMQ StatefulSet (SBA)
+# - kubectl get statefulset -n sba-dev
+# - kubectl get statefulset depl-rbmq -n sba-dev
 # - docker exec -it contID rabbitmqctl list_users -n sba-dev # aec4
 # - docker exec -it aec4 rabbitmqctl list_vhosts -n sba-dev
-# - kubectl delete deployment depl-rbmq -n sba-dev
+# - kubectl delete statefulset depl-rbmq -n sba-dev
 #---------------------------------------------#
 apiVersion: apps/v1
 kind: StatefulSet
