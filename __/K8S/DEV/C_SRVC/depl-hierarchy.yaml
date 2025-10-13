@@ -13,7 +13,7 @@
 ## BASH RUN Deployment srvc-hierarchy
 # kubectl apply -f ./__/K8S/DEV/C_SRVC/depl-hierarchy.yaml -n sba-dev
 # kubectl get pods -n sba-dev
-# kubectl get deployments -n sba-dev -n sba-dev
+# kubectl get deployments -n sba-dev
 # kubectl logs -l app=srvc-hierarchy -n sba-dev
 # kubectl logs -l app=srvc-hierarchy --all-containers=true --tail=-1 -n sba-dev
 # kubectl logs -l app=srvc-hierarchy -f --all-containers=true -n sba-dev

@@ -4,6 +4,8 @@
 # kubectl create namespace sba-dev
 
 # kubectl apply -f ./__/K8S/DEV/B_Broker/sfs-rbmq.yaml -n sba-dev
+# kubectl get pods -n sba-dev
+# kubectl get StatefulSet -n sba-dev
 # kubectl delete -f ./__/K8S/DEV/B_Broker/sfs-rbmq.yaml -n sba-dev
 # kubectl rollout restart statefulsets sfs-rbmq -n sba-dev
 
