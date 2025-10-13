@@ -17,11 +17,20 @@ WORKDIR /app
 # COPY GLOB/GLOB.Infra/*.csproj ./GLOB/GLOB.Infra/
 # COPY GLOB/GLOB.API/*.csproj ./GLOB/GLOB.API/
 
+# COPY ../../nuget.config ./GLOB/GLOB.Domain/
 COPY GLOB/GLOB.Domain/*.csproj ./GLOB/GLOB.Domain/
+
+COPY ../../nuget.config ./Projects/SBA.Auth/
 COPY Projects/SBA.Auth/*.csproj ./Projects/SBA.Auth/
 
 # Restore dependencies
-RUN dotnet restore ./Projects/SBA.Auth/SBA.Auth.csproj --property:UseNuget=true
+# RUN dotnet restore ./Projects/SBA.Auth/SBA.Auth.csproj --property:UseNuget=true --verbosity detailed
+# RUN --mount=type=bind,source=./Packages,target=/Packages \
+#     dotnet restore Projects/SBA.Auth/SBA.Auth.csproj --property:UseNuget=true --verbosity detailed
+
+RUN --mount=type=cache,target=/root/.nuget/packages \
+    --mount=type=bind,source=Packages,target=/Packages \
+    dotnet restore Projects/SBA.Auth/SBA.Auth.csproj --property:UseNuget=true --verbosity detailed
 
 # Copy the rest of the source files
 # COPY GLOB/GLOB.API.Config/ ./GLOB/GLOB.API.Config/

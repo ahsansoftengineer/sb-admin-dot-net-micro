@@ -18,6 +18,7 @@ dotnet build ./GLOB/GLOB.Extz/GLOB.Extz.csproj -c Release -p:PackageVersion=1.0.
 dotnet pack ./GLOB/GLOB.Extz/GLOB.Extz.csproj -c Release -p:PackageVersion=1.0.72
 dotnet nuget push ./GLOB/GLOB.Extz/bin/Release/GLOB.Extz.1.0.72.nupkg --api-key oy2admcfuhtm3ub5pnu5qghl2y6ykti2u5ovdy5dl55i66m --source https://api.nuget.org/v3/index.json
 cp ./GLOB/GLOB.Extz/bin/Release/GLOB.Extz.1.0.72.nupkg /c/Packages/
+dotnet nuget push ./GLOB/GLOB.Extz/bin/Release/GLOB.Extz.1.0.72.nupkg --source LocalBaGet --api-key xxy23343
 ```
 
 #### GLOB.API.Config (Specific)
@@ -27,6 +28,7 @@ dotnet build ./GLOB/GLOB.API.Config/GLOB.API.Config.csproj -c Release -p:Package
 dotnet pack ./GLOB/GLOB.API.Config/GLOB.API.Config.csproj -c Release -p:PackageVersion=1.0.72 -p:UseNuget=true
 dotnet nuget push ./GLOB/GLOB.API.Config/bin/Release/GLOB.API.Config.1.0.72.nupkg --api-key oy2abz6ry2ev5umiibufqs64izjruy5duppzurlosmyoxye --source https://api.nuget.org/v3/index.json
 cp ./GLOB/GLOB.API.Config/bin/Release/GLOB.API.Config.1.0.72.nupkg /c/Packages/
+dotnet nuget push  ./GLOB/GLOB.API.Config/bin/Release/GLOB.API.Config.1.0.72.nupkg --source LocalBaGet --api-key xxy23343
 
 ```
 #### GLOB.Infra
@@ -38,6 +40,7 @@ dotnet build ./GLOB/GLOB.Infra/GLOB.Infra.csproj -c Release -p:PackageVersion=1.
 dotnet pack ./GLOB/GLOB.Infra/GLOB.Infra.csproj -c Release -p:PackageVersion=1.0.72 -p:UseNuget=true
 dotnet nuget push ./GLOB/GLOB.Infra/bin/Release/GLOB.Infra.1.0.72.nupkg --api-key oy2admcfuhtm3ub5pnu5qghl2y6ykti2u5ovdy5dl55i66m --source https://api.nuget.org/v3/index.json
 cp ./GLOB/GLOB.Infra/bin/Release/GLOB.Infra.1.0.72.nupkg /c/Packages/
+dotnet nuget push  ./GLOB/GLOB.Infra/bin/Release/GLOB.Infra.1.0.72.nupkg --source LocalBaGet --api-key xxy23343
 
 ```
 #### GLOB.API
@@ -47,6 +50,7 @@ dotnet build ./GLOB/GLOB.API/GLOB.API.csproj -c Release -p:PackageVersion=1.0.72
 dotnet pack ./GLOB/GLOB.API/GLOB.API.csproj -c Release -p:PackageVersion=1.0.72 -p:UseNuget=true
 dotnet nuget push ./GLOB/GLOB.API/bin/Release/GLOB.API.1.0.72.nupkg --api-key oy2admcfuhtm3ub5pnu5qghl2y6ykti2u5ovdy5dl55i66m --source https://api.nuget.org/v3/index.json
 cp ./GLOB/GLOB.API/bin/Release/GLOB.API.1.0.72.nupkg /c/Packages/
+dotnet nuget push  ./GLOB/GLOB.API/bin/Release/GLOB.API.1.0.72.nupkg --source LocalBaGet --api-key xxy23343
 
 ```
 ### Adding the Packages to Class Library

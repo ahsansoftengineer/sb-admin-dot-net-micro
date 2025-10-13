@@ -18,6 +18,7 @@ WORKDIR /app
 # COPY GLOB/GLOB.Infra/*.csproj ./GLOB/GLOB.Infra/
 # COPY GLOB/GLOB.API/*.csproj ./GLOB/GLOB.API/
 
+COPY ../../nuget.config ./
 COPY GLOB/GLOB.Domain/*.csproj ./GLOB/GLOB.Domain/
 COPY Projects/SBA.Hierarchy/*.csproj ./Projects/SBA.Hierarchy/
 

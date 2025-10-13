@@ -1,0 +1,23 @@
+# Binaries
+**/bin
+**/obj
+
+# Packages
+# Packages
+.nuget
+
+# Node
+**/node_modules
+
+# Git
+.git
+.gitignore
+
+# IDE
+.vs
+.vscode
+
+# Temp files
+*.log
+*.tmp
+*.cache
