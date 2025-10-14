@@ -23,7 +23,7 @@
 mono_crash.*
 
 # Build results
-[Pp]ackages/
+[Pp]ublished/
 [Dd]ebug/
 [Dd]ebugPublic/
 [Rr]elease/

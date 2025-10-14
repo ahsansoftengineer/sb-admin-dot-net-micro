@@ -18,12 +18,14 @@ WORKDIR /app
 # COPY GLOB/GLOB.Infra/*.csproj ./GLOB/GLOB.Infra/
 # COPY GLOB/GLOB.API/*.csproj ./GLOB/GLOB.API/
 
-COPY ../../nuget.config ./
 COPY GLOB/GLOB.Domain/*.csproj ./GLOB/GLOB.Domain/
 COPY Projects/SBA.Hierarchy/*.csproj ./Projects/SBA.Hierarchy/
 
+COPY Published/nuget.config ./Projects/SBA.Auth/
+COPY Published/GLOB.*.nupkg ./Published/
+
 # Restore dependencies
-RUN dotnet restore ./Projects/SBA.Hierarchy/SBA.Hierarchy.csproj --property:UseNuget=true
+RUN dotnet restore ./Projects/SBA.Auth/SBA.Auth.csproj --property:UseNuget=true --configfile ./Projects/SBA.Hierarchy/nuget.config --verbosity detailed
 
 # Copy the rest of the source files
 # COPY GLOB/GLOB.API.Config/ ./GLOB/GLOB.API.Config/
@@ -35,7 +37,7 @@ COPY Projects/SBA.Hierarchy/ ./Projects/SBA.Hierarchy/
 
 # Build and publish
 WORKDIR /app/Projects/SBA.Hierarchy
-RUN dotnet publish -c Release -o /app/out --property:UseNuget=true
+RUN dotnet publish -c Release -o /app/out --property:UseNuget=true --no-restore
 
 # Stage 2: Runtime
 FROM mcr.microsoft.com/dotnet/aspnet:9.0

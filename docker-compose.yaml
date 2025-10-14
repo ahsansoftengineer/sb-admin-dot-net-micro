@@ -1,0 +1,33 @@
+# version: "3.9"
+
+# services:
+#   baget:
+#     image: loicsharma/baget:latest
+#     container_name: baget
+#     ports:
+#       - "5555:80"
+#     networks:
+#       - sba-net
+#     volumes:
+#       - ../../Packages:/var/baget/packages
+#     environment:
+#       BAGET__STORAGE__TYPE: "FileSystem"
+#       BAGET__STORAGE__PATH: "/var/baget/packages"
+
+#   sba-auth:
+#     build:
+#       context: .
+#       dockerfile: Projects/SBA.Auth/Dockerfile
+#       target: build-env
+#     depends_on:
+#       - baget
+#     networks:
+#       - sba-net
+#     extra_hosts:
+#       - "baget:baget"   # ensures baget hostname resolves
+#     # environment:
+#     #   NUGET_PACKAGES: "/root/.nuget/packages"
+
+# networks:
+#   sba-net:
+#     driver: bridge

@@ -11,7 +11,7 @@
 
 #---------------------------------------------# 
 ## BASH RUN Deployment srvc-auth
-# kubectl apply -f ./__/K8S/C_SRVC/depl-auth.yaml -n sba-dev
+# kubectl apply -f ./__/K8S/DEV/C_SRVC/depl-auth.yaml -n sba-dev
 # kubectl get pods -n sba-dev
 # kubectl get deployments -n sba-dev
 # kubectl logs -l app=srvc-auth --all-containers=true --tail=-1 -n sba-dev
@@ -19,7 +19,7 @@
 
 ## BASH DELETE (Deployments & Service)
 # kubectl scale deployment depl-auth --replicas=0 -n sba-dev
-# kubectl delete -f ./__/K8S/C_SRVC/depl-auth.yaml -n sba-dev
+# kubectl delete -f ./__/K8S/DEV/C_SRVC/depl-auth.yaml -n sba-dev
 # kubectl delete deployments depl-auth -n sba-dev
 # kubectl delete services srvc-cip-auth -n sba-dev
 #---------------------------------------------# 

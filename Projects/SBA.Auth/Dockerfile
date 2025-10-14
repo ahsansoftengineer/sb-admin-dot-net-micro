@@ -17,20 +17,14 @@ WORKDIR /app
 # COPY GLOB/GLOB.Infra/*.csproj ./GLOB/GLOB.Infra/
 # COPY GLOB/GLOB.API/*.csproj ./GLOB/GLOB.API/
 
-# COPY ../../nuget.config ./GLOB/GLOB.Domain/
 COPY GLOB/GLOB.Domain/*.csproj ./GLOB/GLOB.Domain/
-
-COPY ../../nuget.config ./Projects/SBA.Auth/
 COPY Projects/SBA.Auth/*.csproj ./Projects/SBA.Auth/
 
-# Restore dependencies
-# RUN dotnet restore ./Projects/SBA.Auth/SBA.Auth.csproj --property:UseNuget=true --verbosity detailed
-# RUN --mount=type=bind,source=./Packages,target=/Packages \
-#     dotnet restore Projects/SBA.Auth/SBA.Auth.csproj --property:UseNuget=true --verbosity detailed
+COPY Published/nuget.config ./Projects/SBA.Auth/
+COPY Published/GLOB.*.nupkg ./Published/
 
-RUN --mount=type=cache,target=/root/.nuget/packages \
-    --mount=type=bind,source=Packages,target=/Packages \
-    dotnet restore Projects/SBA.Auth/SBA.Auth.csproj --property:UseNuget=true --verbosity detailed
+# Restore dependencies
+RUN dotnet restore ./Projects/SBA.Auth/SBA.Auth.csproj --property:UseNuget=true --configfile ./Projects/SBA.Auth/nuget.config --verbosity detailed
 
 # Copy the rest of the source files
 # COPY GLOB/GLOB.API.Config/ ./GLOB/GLOB.API.Config/
@@ -42,8 +36,7 @@ COPY Projects/SBA.Auth/ ./Projects/SBA.Auth/
 
 # Build and publish
 WORKDIR /app/Projects/SBA.Auth
-# RUN dotnet publish -c Release -o /app/out --property:UseNuget=true
-RUN dotnet publish -c Release -o /app/out --property:UseNuget=true
+RUN dotnet publish -c Release -o /app/out --property:UseNuget=true --no-restore
 
 # Stage 2: Runtime
 FROM mcr.microsoft.com/dotnet/aspnet:9.0
