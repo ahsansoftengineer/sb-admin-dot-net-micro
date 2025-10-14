@@ -1,8 +1,8 @@
 # Build:
-# docker build -t mansanhhub/sba-srvc-gateway -f Projects/SBA.APIGateway/Dockerfile .
-# docker push mansanhhub/sba-srvc-gateway
-# docker run -d --name sba-srvc-gateway -p 1100:1100 -e DOTNET_ENVIRONMENT=Docker mansanhhub/sba-srvc-gateway
-# docker rm -f sba-srvc-gateway
+# docker build -t mansanhhub/srvc-gateway -f Projects/SBA.APIGateway/Dockerfile .
+# docker push mansanhhub/srvc-gateway
+# docker run -d --name srvc-gateway -p 1100:1100 -e DOTNET_ENVIRONMENT=Docker mansanhhub/srvc-gateway
+# docker rm -f srvc-gateway
 # docker exec -it <container_id> /bin/bash
 
 # http://localhost:1100/api/gateway/v1/swagger/index.html

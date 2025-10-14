@@ -1,9 +1,9 @@
 # ===========================================================
 # Build:
-# docker build -t mansanhhub/sba-srvc-hierarchy -f Projects/SBA.Hierarchy/Dockerfile .
-# docker push mansanhhub/sba-srvc-hierarchy
-# docker run -d --name sba-srvc-hierarchy -p 1106:1106 -e DOTNET_ENVIRONMENT=Docker mansanhhub/sba-srvc-hierarchy
-# docker rm -f sba-srvc-hierarchy
+# docker build -t mansanhhub/srvc-hierarchy -f Projects/SBA.Hierarchy/Dockerfile .
+# docker push mansanhhub/srvc-hierarchy
+# docker run -d --name srvc-hierarchy -p 1106:1106 -e DOTNET_ENVIRONMENT=Docker mansanhhub/srvc-hierarchy
+# docker rm -f srvc-hierarchy
 # docker exec -it <container_id> /bin/bash
 
 # http://localhost:1106/api/hierarchy/v1/swagger/index.html
