@@ -11,9 +11,9 @@
 
 #---------------------------------------------# 
 ## BASH RUN Deployment srvc-hierarchy
-# kubectl apply -f ./__/K8S/B_DEPL_SRVC/depl-hierarchy.yaml -n sba-dev
+# kubectl apply -f ./__/K8S/DEV/C_SRVC/depl-hierarchy.yaml -n sba-dev
 # kubectl get pods -n sba-dev
-# kubectl get deployments -n sba-dev -n sba-dev
+# kubectl get deployments -n sba-dev
 # kubectl logs -l app=srvc-hierarchy -n sba-dev
 # kubectl logs -l app=srvc-hierarchy --all-containers=true --tail=-1 -n sba-dev
 # kubectl logs -l app=srvc-hierarchy -f --all-containers=true -n sba-dev
@@ -21,7 +21,7 @@
 
 ## BASH DELETE (Deployments & Service)
 # kubectl scale deployment depl-hierarchy --replicas=0 -n sba-dev
-# kubectl delete -f ./__/K8S/B_DEPL_SRVC/depl-hierarchy.yaml -n sba-dev
+# kubectl delete -f ./__/K8S/DEV/C_SRVC/depl-hierarchy.yaml -n sba-dev
 # kubectl delete deployments depl-hierarchy -n sba-dev
 # kubectl delete services srvc-cip-hierarchy -n sba-dev
 #---------------------------------------------# 
@@ -54,9 +54,9 @@ spec:
               value: http://+:1106
 
             - name: ConnectionStrings__Redis
-              value: "srvc-cip-redis-dev:6379,password=P@55w0rd!123"
+              value: "srvc-cip-redis:6379,password=P@55w0rd!123"
             - name: ConnectionStrings__SqlConnection
-              value: "Server=srvc-cip-mssql-dev.default.svc.cluster.local,1433;Initial Catalog=SBA_Hierarchy;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
+              value: "Server=srvc-cip-mssql.default.svc.cluster.local,1433;Initial Catalog=SBA_Hierarchy;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
               # value: "Server=srvc-cip-mssql-hierarchy.default.svc.cluster.local,1433;Initial Catalog=SBA_Hierarchy;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
             
             - name: Clients__Http_Host__Gateway
@@ -65,13 +65,13 @@ spec:
               value: http://srvc-cip-auth:1104
 
             - name: Clients__Grpc__Protocols
-              value: Http2
-            - name: Clients__Grpc__Auth
-              value: http://srvc-auth-grpc:5104
-            - name: Clients__Grpc__Hierarchy
-              value: http://srvc-hierarchy-grpc:5106
+              value: Http1
             - name: Clients__Grpc__Job
-              value: http://srvc-job-grpc:5102
+              value: http://srvc-cip-job:1102
+            - name: Clients__Grpc__Auth
+              value: http://srvc-cip-auth:1104
+            - name: Clients__Grpc__Hierarchy
+              value: http://srvc-cip-hierarchy:1106
 
             - name: Clients__RabbitMQz__HostName
               value: srvc-cip-rbmq.default.svc.cluster.local

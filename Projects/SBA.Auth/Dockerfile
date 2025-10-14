@@ -1,9 +1,10 @@
 # ===========================================================
 # Build:
-# docker build -t mansanhhub/sba-srvc-auth -f Projects/SBA.Auth/Dockerfile .
-# docker push mansanhhub/sba-srvc-auth
-# docker run -d --name sba-srvc-auth -p 1104:1104 -e DOTNET_ENVIRONMENT=Docker mansanhhub/sba-srvc-auth
-# docker rm -f sba-srvc-auth
+# docker build -t mansanhhub/srvc-auth -f Projects/SBA.Auth/Dockerfile .
+# docker push mansanhhub/srvc-auth
+# docker pull mansanhhub/srvc-auth
+# docker run -d --name srvc-auth -p 1104:1104 -e DOTNET_ENVIRONMENT=Docker mansanhhub/srvc-auth
+# docker rm -f srvc-auth
 # docker exec -it <container_id> /bin/bash
 
 # http://localhost:1104/api/auth/v1/swagger/index.html
@@ -20,8 +21,11 @@ WORKDIR /app
 COPY GLOB/GLOB.Domain/*.csproj ./GLOB/GLOB.Domain/
 COPY Projects/SBA.Auth/*.csproj ./Projects/SBA.Auth/
 
+COPY Published/nuget.config ./Projects/SBA.Auth/
+COPY Published/GLOB.*.nupkg ./Published/
+
 # Restore dependencies
-RUN dotnet restore ./Projects/SBA.Auth/SBA.Auth.csproj --property:UseNuget=true
+RUN dotnet restore ./Projects/SBA.Auth/SBA.Auth.csproj --property:UseNuget=true --configfile ./Projects/SBA.Auth/nuget.config --verbosity detailed
 
 # Copy the rest of the source files
 # COPY GLOB/GLOB.API.Config/ ./GLOB/GLOB.API.Config/
@@ -33,8 +37,7 @@ COPY Projects/SBA.Auth/ ./Projects/SBA.Auth/
 
 # Build and publish
 WORKDIR /app/Projects/SBA.Auth
-# RUN dotnet publish -c Release -o /app/out --property:UseNuget=true
-RUN dotnet publish -c Release -o /app/out --property:UseNuget=true
+RUN dotnet publish -c Release -o /app/out --property:UseNuget=true --no-restore
 
 # Stage 2: Runtime
 FROM mcr.microsoft.com/dotnet/aspnet:9.0

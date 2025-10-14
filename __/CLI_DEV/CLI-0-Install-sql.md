@@ -34,11 +34,11 @@ get myKey
 ```
 ### Rabbit MQ
 ```bash
-docker run -d --name sba-rabbit-mq-dev --hostname sba-dev-rabbit-host -p 5672:5672 -p 15672:15672 rabbitmq:3-management
-# docker run -d --name sba-rabbit-mq-dev --hostname sba-dev-rabbit-host -p 5672:5672 -p 15672:15672 -e RABBITMQ_SERVER_ADDITIONAL_ERL_ARGS='-rabbitmq_management listener [{port,15672},{ip,"0.0.0.0"}]' rabbitmq:3-management
+docker run -d --name sba-rmq-dev --hostname sba-rmq-host-dev -p 5672:5672 -p 15672:15672 rabbitmq:3-management
+# docker run -d --name sba-rmq-dev --hostname sba-rmq-host-dev -p 5672:5672 -p 15672:15672 -e RABBITMQ_SERVER_ADDITIONAL_ERL_ARGS='-rabbitmq_management listener [{port,15672},{ip,"0.0.0.0"}]' rabbitmq:3-management
 
-docker start sba-rabbit-mq-dev
-docker stop sba-rabbit-mq-dev
-docker rm sba-rabbit-mq-dev
+docker start sba-rmq-dev
+docker stop sba-rmq-dev
+docker rm sba-rmq-dev
 
 ```

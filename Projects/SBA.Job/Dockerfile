@@ -1,9 +1,9 @@
 # ===========================================================
 # Build:
-# docker build -t mansanhhub/sba-srvc-job -f Projects/SBA.Job/Dockerfile .
-# docker push mansanhhub/sba-srvc-job
-# docker run -d --name sba-srvc-job -p 1102:1102 -e DOTNET_ENVIRONMENT=Docker mansanhhub/sba-srvc-job
-# docker rm -f sba-srvc-job
+# docker build -t mansanhhub/srvc-job -f Projects/SBA.Job/Dockerfile .
+# docker push mansanhhub/srvc-job
+# docker run -d --name srvc-job -p 1102:1102 -e DOTNET_ENVIRONMENT=Docker mansanhhub/srvc-job
+# docker rm -f srvc-job
 # docker exec -it <container_id> /bin/bash
 
 # http://localhost:1102/api/job/v1/swagger/index.html
