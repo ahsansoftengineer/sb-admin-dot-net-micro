@@ -21,6 +21,7 @@ WORKDIR /app
 COPY GLOB/GLOB.Domain/*.csproj ./GLOB/GLOB.Domain/
 COPY Projects/SBA.Auth/*.csproj ./Projects/SBA.Auth/
 
+COPY Published/nuget.config ./GLOB/GLOB.Domain/
 COPY Published/nuget.config ./Projects/SBA.Auth/
 COPY Published/GLOB.*.nupkg ./Published/
 
