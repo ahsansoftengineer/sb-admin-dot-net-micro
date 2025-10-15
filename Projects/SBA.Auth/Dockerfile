@@ -26,7 +26,11 @@ COPY Published/nuget.config ./Projects/SBA.Auth/
 COPY Published/GLOB.*.nupkg ./Published/
 
 # Restore dependencies
-RUN dotnet restore ./Projects/SBA.Auth/SBA.Auth.csproj --property:UseNuget=true --configfile ./Projects/SBA.Auth/nuget.config --verbosity detailed
+RUN --mount=type=cache,target=/root/.nuget/packages,sharing=locked,id=nuget-cache \
+    dotnet restore ./Projects/SBA.Auth/SBA.Auth.csproj \
+        --property:UseNuget=true \
+        --configfile ./Projects/SBA.Auth/nuget.config \
+        --verbosity detailed
 
 # Copy the rest of the source files
 # COPY GLOB/GLOB.API.Config/ ./GLOB/GLOB.API.Config/
