@@ -42,7 +42,10 @@ COPY Projects/SBA.Auth/ ./Projects/SBA.Auth/
 
 # Build and publish
 WORKDIR /app/Projects/SBA.Auth
-RUN dotnet publish -c Release -o /app/out --property:UseNuget=true --no-restore
+RUN --mount=type=cache,target=/root/.nuget/packages,sharing=locked,id=nuget-cache \
+    dotnet publish SBA.Auth.csproj -c Release -o /app/out \
+        --property:UseNuget=true \
+        --no-restore
 
 # Stage 2: Runtime
 FROM mcr.microsoft.com/dotnet/aspnet:9.0
