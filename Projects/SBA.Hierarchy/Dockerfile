@@ -10,7 +10,7 @@
 # http://localhost:1106/api/hierarchy/v1/_projectz-lookup/gets-lookup
 
 # Stage 1: Build
-FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build-env
+FROM local/sdk:9.0 AS sdk
 WORKDIR /app
 
 # Copy only .csproj files first (to enable Docker caching of restore)
@@ -21,11 +21,16 @@ WORKDIR /app
 COPY GLOB/GLOB.Domain/*.csproj ./GLOB/GLOB.Domain/
 COPY Projects/SBA.Hierarchy/*.csproj ./Projects/SBA.Hierarchy/
 
-COPY Published/nuget.config ./Projects/SBA.Auth/
+COPY Published/nuget.config ./GLOB/GLOB.Domain/
+COPY Published/nuget.config ./Projects/SBA.Hierarchy/
 COPY Published/GLOB.*.nupkg ./Published/
 
 # Restore dependencies
-RUN dotnet restore ./Projects/SBA.Auth/SBA.Auth.csproj --property:UseNuget=true --configfile ./Projects/SBA.Hierarchy/nuget.config --verbosity detailed
+RUN --mount=type=cache,target=/root/.nuget/packages,sharing=locked,id=nuget-cache \
+    dotnet restore ./Projects/SBA.Hierarchy/SBA.Hierarchy.csproj \
+        --property:UseNuget=true \
+        --configfile ./Projects/SBA.Hierarchy/nuget.config \
+        --verbosity detailed
 
 # Copy the rest of the source files
 # COPY GLOB/GLOB.API.Config/ ./GLOB/GLOB.API.Config/
@@ -37,23 +42,22 @@ COPY Projects/SBA.Hierarchy/ ./Projects/SBA.Hierarchy/
 
 # Build and publish
 WORKDIR /app/Projects/SBA.Hierarchy
-RUN dotnet publish -c Release -o /app/out --property:UseNuget=true --no-restore
+RUN --mount=type=cache,target=/root/.nuget/packages,sharing=locked,id=nuget-cache \
+    dotnet publish SBA.Hierarchy.csproj -c Release -o /app/out \
+        --property:UseNuget=true \
+        --no-restore
 
 # Stage 2: Runtime
-FROM mcr.microsoft.com/dotnet/aspnet:9.0
+FROM local/runtime:9.0
 WORKDIR /app/Projects/SBA.Hierarchy
 
 # Copy the published app from build stage
-COPY --from=build-env /app/out .
+COPY --from=sdk /app/out .
 
 # Runtime environment variables (can be overridden at runtime via CLI, Docker Compose, etc.)
 ENV ASPNETCORE_URLS=http://+:1106
 ENV DOTNET_ENVIRONMENT=Docker
 ENV ConnectionStrings__SqlConnection="Server=host.docker.internal,1433;Initial Catalog=SBA_Hierarchy;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
-
-# Cannot do this
-# Need Network for this
-# ENV API_Httpz__Auth=http://srvc-auth:1104/api/auth/v1
 
 EXPOSE 1106
 
