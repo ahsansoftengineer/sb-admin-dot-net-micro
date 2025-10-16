@@ -11,15 +11,22 @@
 # ===========================================================
 
 # Stage 1: Build
-FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build-env
+FROM local/sdk:9.0 AS sdk
 WORKDIR /app
 
 # Copy only .csproj files first (to enable Docker caching of restore)
 # COPY GLOB/GLOB.API.Config/*.csproj ./GLOB/GLOB.API.Config/
 COPY Projects/SBA.APIGateway/*.csproj ./Projects/SBA.APIGateway/
 
+COPY Published/nuget.config ./Projects/SBA.APIGateway/
+COPY Published/GLOB.*.nupkg ./Published/
+
 # Restore dependencies
-RUN dotnet restore ./Projects/SBA.APIGateway/SBA.APIGateway.csproj --property:UseNuget=true
+RUN --mount=type=cache,target=/root/.nuget/packages,sharing=locked,id=nuget-cache \
+    dotnet restore ./Projects/SBA.APIGateway/SBA.APIGateway.csproj \
+        --property:UseNuget=true \
+        --configfile ./Projects/SBA.APIGateway/nuget.config \
+        --verbosity detailed
 
 # Copy the rest of the source files
 # COPY GLOB/GLOB.API.Config/ ./GLOB/GLOB.API.Config/
@@ -27,14 +34,17 @@ COPY Projects/SBA.APIGateway/ ./Projects/SBA.APIGateway/
 
 # Build and publish
 WORKDIR /app/Projects/SBA.APIGateway
-RUN dotnet publish -c Release -o /app/out --property:UseNuget=true
+RUN --mount=type=cache,target=/root/.nuget/packages,sharing=locked,id=nuget-cache \
+    dotnet publish SBA.APIGateway.csproj -c Release -o /app/out \
+        --property:UseNuget=true \
+        --no-restore
 
 # Stage 2: Runtime
-FROM mcr.microsoft.com/dotnet/aspnet:9.0
+FROM local/runtime:9.0
 WORKDIR /app/Projects/SBA.APIGateway
 
 # Copy the published app from build stage
-COPY --from=build-env /app/out .
+COPY --from=sdk /app/out .
 
 # Runtime environment variables (can be overridden at runtime via CLI, Docker Compose, etc.)
 ENV ASPNETCORE_URLS=http://+:1100

@@ -56,9 +56,9 @@ spec:
             - name: ConnectionStrings__Redis
               value: "srvc-cip-redis:6379,password=P@55w0rd!123"
             - name: ConnectionStrings__SqlConnection
-              value: "Server=srvc-cip-mssql.default.svc.cluster.local,1433;Initial Catalog=SBA_Job;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
+              value: "Server=srvc-cip-mssql.sba-dev.svc.cluster.local,1433;Initial Catalog=SBA_Job;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
             - name: ConnectionStrings__SqlConnectionHangfire
-              value: "Server=srvc-cip-mssql.default.svc.cluster.local,1433;Initial Catalog=SBA_Job_Hangfire;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
+              value: "Server=srvc-cip-mssql.sba-dev.svc.cluster.local,1433;Initial Catalog=SBA_Job_Hangfire;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
             - name: ConnectionStrings__SQLite
               value: "Job.SQLite.db"
 
@@ -77,7 +77,7 @@ spec:
               value: http://srvc-cip-hierarchy:1106
 
             - name: Clients__RabbitMQz__HostName
-              value: srvc-cip-rbmq
+              value: srvc-cip-rbmq.sba-dev.svc.cluster.local
             - name: Clients__RabbitMQz__Port
               value: "5672"
             - name: Clients__RabbitMQz__VirtualHost
