@@ -131,3 +131,5 @@ spec:
 ## ROUTES (K8S Node Port)
 # - http://localhost:31106/api/Hierarchy/v1/swagger/index.html
 # - http://localhost:31106/api/hierarchy/v1/_projectz-lookup/gets-lookup
+# - http://localhost:31106/api/hierarchy/v1/protos/base.proto
+# - http://localhost:31106/api/hierarchy/v1/protos/projectzlookup.proto

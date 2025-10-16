@@ -134,3 +134,5 @@ spec:
 ## ROUTES (K8S Node Port)
 # - http://localhost:31104/api/Auth/v1/swagger/index.html
 # - http://localhost:31104/api/Auth/v1/_projectz-lookup/gets-lookup
+# - http://localhost:31104/api/Auth/v1/protos/base.proto
+# - http://localhost:31104/api/Auth/v1/protos/projectzlookup.proto
