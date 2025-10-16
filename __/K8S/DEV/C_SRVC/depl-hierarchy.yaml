@@ -56,8 +56,7 @@ spec:
             - name: ConnectionStrings__Redis
               value: "srvc-cip-redis:6379,password=P@55w0rd!123"
             - name: ConnectionStrings__SqlConnection
-              value: "Server=srvc-cip-mssql.default.svc.cluster.local,1433;Initial Catalog=SBA_Hierarchy;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
-              # value: "Server=srvc-cip-mssql-hierarchy.default.svc.cluster.local,1433;Initial Catalog=SBA_Hierarchy;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
+              value: "Server=srvc-cip-mssql.sba-dev.svc.cluster.local,1433;Initial Catalog=SBA_Hierarchy;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
             
             - name: Clients__Http_Host__Gateway
               value: http://srvc-cip-gateway:1100
@@ -74,7 +73,7 @@ spec:
               value: http://srvc-cip-hierarchy:1106
 
             - name: Clients__RabbitMQz__HostName
-              value: srvc-cip-rbmq.default.svc.cluster.local
+              value: srvc-cip-rbmq.sba-dev.svc.cluster.local
             - name: Clients__RabbitMQz__Port
               value: "5672"
             - name: Clients__RabbitMQz__VirtualHost
@@ -84,7 +83,7 @@ spec:
             - name: Clients__RabbitMQz__Password
               value: guest
             # - name: Clients__RabbitMQz__Uri
-            #   value: amqp://guest:guest@srvc-cip-rbmq.default.svc.cluster.local/
+            #   value: amqp://guest:guest@srvc-cip-rbmq.sba-dev.svc.cluster.local/
 ---
 #---------------------------------------------# 
 #### (2) API Cluster IP (Hierarchy)

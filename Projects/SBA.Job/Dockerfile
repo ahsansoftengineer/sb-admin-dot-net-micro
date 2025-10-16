@@ -51,7 +51,7 @@ FROM local/runtime:9.0
 WORKDIR /app/Projects/SBA.Job
 
 # Copy the published app from build stage
-COPY --from=build-env /app/out .
+COPY --from=sdk /app/out .
 
 # Runtime environment variables (can be overridden at runtime via CLI, Docker Compose, etc.)
 ENV ASPNETCORE_URLS=http://+:1102
