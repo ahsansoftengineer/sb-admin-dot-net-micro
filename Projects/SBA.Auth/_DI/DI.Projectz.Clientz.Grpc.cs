@@ -11,11 +11,14 @@ public static partial class DI_Projectz
     route.MapFileToRoute($"{prefix}base.proto", "_Clients/Protos/base.proto");
 
     route.MapGrpcService<ProjectzLookupServer>();
+    // route.MapGrpcReflectionService();
     route.MapFileToRoute($"{prefix}projectzlookup.proto", "_Clients/Protos/projectzlookup.proto");
   }
   public static void Add_Projectz_Clientz_Grpc(this IServiceCollection srvc, IConfiguration config)
   {
     srvc.AddGrpc();
+    // srvc.AddGrpcHttpApi();       // 👈 add this
+    // srvc.AddGrpcSwagger();       // 👈 optional (for Swagger UI)
   }
 }
 
