@@ -10,10 +10,10 @@ public partial class AuthGrpcClient
 
   public AuthGrpcClient(string url)
   {
-    AppContext.SetSwitch("System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
+    // AppContext.SetSwitch("System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
     var channel = GrpcChannel.ForAddress(url, new GrpcChannelOptions
     {
-      Credentials = ChannelCredentials.Insecure // <-- default https
+      // Credentials = ChannelCredentials.Insecure // <-- default https
     });
 
     projectzLookup = new GrpcProjectzLookup.GrpcProjectzLookupClient(channel);
