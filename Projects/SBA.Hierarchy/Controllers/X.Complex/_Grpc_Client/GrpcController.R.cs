@@ -2,7 +2,7 @@ using GLOB.Infra.Utils.Attributez;
 
 namespace SBA.Auth.Controllers;
 
-public partial class __GrpcClientController
+public partial class __GrpcController
 {
   [HttpPost]
   public async Task<IActionResult> Gets()
