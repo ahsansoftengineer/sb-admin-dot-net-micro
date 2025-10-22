@@ -21,6 +21,10 @@ public class Program
     .UseSerilog()
     .ConfigureWebHostDefaults(webBuilder =>
     {
+      webBuilder.ConfigureKestrel((ctx, opt) =>
+      {
+        opt.Configure(ctx.Configuration.GetSection("Kestrel"));
+      });
       webBuilder.UseStartup<Startup>();
     });
 }
