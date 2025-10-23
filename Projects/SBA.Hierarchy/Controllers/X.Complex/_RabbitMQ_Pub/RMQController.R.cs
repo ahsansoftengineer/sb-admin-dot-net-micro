@@ -1,6 +1,6 @@
 namespace SBA.Auth.Controllers;
 
-public partial class __RabbitMQController
+public partial class __RMQController
 {
   [HttpPost]
   public async Task<IActionResult> Gets()

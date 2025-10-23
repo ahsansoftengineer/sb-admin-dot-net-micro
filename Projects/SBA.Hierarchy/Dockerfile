@@ -55,7 +55,6 @@ WORKDIR /app/Projects/SBA.Hierarchy
 COPY --from=sdk /app/out .
 
 # Runtime environment variables (can be overridden at runtime via CLI, Docker Compose, etc.)
-ENV ASPNETCORE_URLS=http://+:1106
 ENV DOTNET_ENVIRONMENT=Docker
 ENV ConnectionStrings__SqlConnection="Server=host.docker.internal,1433;Initial Catalog=SBA_Hierarchy;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
 

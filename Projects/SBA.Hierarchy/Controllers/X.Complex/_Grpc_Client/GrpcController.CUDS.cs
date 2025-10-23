@@ -2,7 +2,7 @@ using GLOB.Infra.Utils.Attributez;
 using SBA.Projectz.Grpc.Base;
 namespace SBA.Auth.Controllers;
 
-public partial class __GrpcClientController
+public partial class __GrpcController
 {
 
   [HttpPost]

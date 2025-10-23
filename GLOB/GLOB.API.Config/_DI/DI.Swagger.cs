@@ -11,7 +11,8 @@ public static partial class DI_API_Config
   // http://localhost:1106/api/Hierarchy/v1/swagger/v1/swagger.json
   public static void Add_API_Config_Swagger(this IServiceCollection srvc, IConfiguration config)
   {
-    string hostName = config.GetValueStr("ASPNETCORE_URLS"); // http://localhost:1106
+    string hostName = config.GetValueStr("Kestrel:Endpoints:Https:Url"); // http://localhost:1106
+    hostName.Print("ENV");
     string prefix = config.GetValueStr("ASPNETCORE_ROUTE_PREFIX"); // "api/Hierarchy/v1";
     string projectzName = config.GetValueStr("ASPNETCORE_PROJECTZ_NAME"); // "Hierarchy";
 

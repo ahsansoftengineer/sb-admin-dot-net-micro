@@ -12,7 +12,8 @@ public partial class UOW_Projectz_Grpc
   public UOW_Projectz_Grpc(IOptions<Option_App> optionApp)
   {
     option_Grpc = optionApp.Value.Clients.Grpc;
-
+    option_Grpc.Print("GRPC");
+    
     auth = new AuthGrpcClient(option_Grpc.Auth);
   }
 }

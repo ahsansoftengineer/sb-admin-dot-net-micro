@@ -8,7 +8,6 @@ services:
     image: mansanhhub/sba-srvc-hierarchy
     container_name: sba-srvc-hierarchy
     environment:
-      - ASPNETCORE_URLS=http://+:1106
       - DOTNET_ENVIRONMENT=DockerCompose
     ports:
       - "1106:1106" # Map host port 1106 to container port 1106

@@ -2,7 +2,7 @@ using GLOB.Infra.Utils.Attributez;
 using RabbitMQ.Client;
 namespace SBA.Auth.Controllers;
 
-public partial class __RabbitMQController
+public partial class __RMQController
 {
 
   [HttpPost]
