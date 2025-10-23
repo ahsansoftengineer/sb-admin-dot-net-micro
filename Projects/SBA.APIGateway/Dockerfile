@@ -47,7 +47,6 @@ WORKDIR /app/Projects/SBA.APIGateway
 COPY --from=sdk /app/out .
 
 # Runtime environment variables (can be overridden at runtime via CLI, Docker Compose, etc.)
-ENV ASPNETCORE_URLS=http://+:1100
 ENV DOTNET_ENVIRONMENT=Docker
 
 EXPOSE 1100

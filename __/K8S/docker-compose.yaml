@@ -44,7 +44,6 @@ services:
       context: ../SBA.APIGateway/
       dockerfile: Dockerfile
     environment:
-      - ASPNETCORE_URLS=http://+:1100
       - DOTNET_ENVIRONMENT=DockerCompose
     ports:
       - "1100:1100"
@@ -57,7 +56,6 @@ services:
       context: ../SBA.Auth/
       dockerfile: Dockerfile
     environment:
-      - ASPNETCORE_URLS=http://+:1104
       - DOTNET_ENVIRONMENT=DockerCompose
       - ConnectionStrings__SqlConnection="Server=network-dc-sba,1433;Initial Catalog=SBA_Auth;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
     ports:
@@ -71,7 +69,6 @@ services:
       context: ../SBA.Hierarchy/
       dockerfile: Dockerfile
     environment:
-      - ASPNETCORE_URLS=http://+:1106
       - DOTNET_ENVIRONMENT=DockerCompose
       - ConnectionStrings__SqlConnection="Server=network-dc-sba,1433;Initial Catalog=SBA_Auth;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
     ports:

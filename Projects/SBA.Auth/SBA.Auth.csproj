@@ -42,12 +42,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="..\certs\dev-cert.pfx" Link="certs\dev-cert.pfx" CopyToOutputDirectory="Always" />
     <Protobuf Include="_Clients\Protos\base.proto" GrpcServices="Server" />
     <Protobuf Include="_Clients\Protos\projectzlookup.proto" GrpcServices="Server" AdditionalImportDirs="_Clients\Protos" />
-  </ItemGroup>
-  
-  <ItemGroup>
-    <!-- <Protobuf Include="_Clients\Protos\projectzlookup.jackson.proto" GrpcServices="Client" /> -->
-    <!-- <Protobuf Include="_Clients\Protos\**\*.proto" GrpcServices="Server" /> -->
   </ItemGroup>
 </Project>
