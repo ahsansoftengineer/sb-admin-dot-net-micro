@@ -29,7 +29,7 @@ public static partial class Exts
 
   public static string GetWebUrl(this IConfiguration configuration)
   {
-    string hostName = configuration.GetValueStr("ASPNETCORE_URLS");
+    string hostName = configuration.GetValueStr("Kestrel:Endpoints:Https:Url");
     string prefix = configuration.GetValueStr("ASPNETCORE_ROUTE_PREFIX");
     return $"{hostName}/{prefix}";
   }

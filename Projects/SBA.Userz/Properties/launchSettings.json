@@ -4,13 +4,19 @@
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "api/Userz/v1/swagger/index.html",
-      "dotnetRunMessages": true
+      "dotnetRunMessages": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
     },
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
       "launchUrl": "api/Userz/v1/swagger/index.html",
-      "dotnetRunMessages": true
+      "dotnetRunMessages": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
     }
   },
   "$schema": "http://json.schemastore.org/launchsettings.json",

@@ -26,6 +26,6 @@ dotnet dev-certs https --trust
 - Adding it in the Project
 ```xml
   <ItemGroup>
-    <None Include="..\certs\dev-cert.pfx" Link="certs\dev-cert.pfx" CopyToOutputDirectory="Always" />
+    <None Include="..\..\certs\dev-cert.pfx" Link="certs\dev-cert.pfx" CopyToOutputDirectory="Always" />
   </ItemGroup>
 ```

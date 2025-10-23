@@ -22,7 +22,7 @@
     <PackageReference Include="MMLib.SwaggerForOcelot" Version="8.1.0" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\certs\dev-cert.pfx" Link="certs\dev-cert.pfx" CopyToOutputDirectory="Always" />
+    <None Include="..\..\certs\dev-cert.pfx" Link="certs\dev-cert.pfx" CopyToOutputDirectory="Always" />
   </ItemGroup>
 
 </Project>
