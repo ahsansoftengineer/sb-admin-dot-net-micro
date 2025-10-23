@@ -35,8 +35,4 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="..\..\certs\dev-cert.pfx" Link="certs\dev-cert.pfx" CopyToOutputDirectory="Always" />
-  </ItemGroup>
-
 </Project>
