@@ -1,17 +1,25 @@
-﻿{
-  "$schema": "http://json.schemastore.org/launchsettings.json",
+{
   "profiles": {
     "default": {
       "commandName": "Project",
-      "dotnetRunMessages": true,
-      "launchUrl": "api/Job/v1/swagger/index.html",
       "launchBrowser": true,
+      "launchUrl": "api/Job/v1/swagger/index.html",
+      "dotnetRunMessages": true
     },
     "IIS Express": {
       "commandName": "IISExpress",
-      "dotnetRunMessages": true,
-      "launchUrl": "api/Job/v1/swagger/index.html",
       "launchBrowser": true,
+      "launchUrl": "api/Job/v1/swagger/index.html",
+      "dotnetRunMessages": true
+    }
+  },
+  "$schema": "http://json.schemastore.org/launchsettings.json",
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:56338/",
+      "sslPort": 1102
     }
   }
 }
