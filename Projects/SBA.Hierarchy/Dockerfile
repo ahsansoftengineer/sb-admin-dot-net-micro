@@ -2,7 +2,7 @@
 # Build:
 # docker build -t mansanhhub/srvc-hierarchy -f Projects/SBA.Hierarchy/Dockerfile .
 # docker push mansanhhub/srvc-hierarchy
-# docker run -d --name srvc-hierarchy -p 1106:1106 -e DOTNET_ENVIRONMENT=Docker mansanhhub/srvc-hierarchy
+# docker run -d --name srvc-hierarchy --network sba-dev-network -p 1106:1106 -e DOTNET_ENVIRONMENT=Docker mansanhhub/srvc-hierarchy
 # docker rm -f srvc-hierarchy
 # docker exec -it <container_id> /bin/bash
 
@@ -25,7 +25,7 @@ COPY Published/nuget.config ./GLOB/GLOB.Domain/
 COPY Published/nuget.config ./Projects/SBA.Hierarchy/
 COPY Published/GLOB.*.nupkg ./Published/
 COPY GlobalUsings.cs ./
-# COPY certs/*.pfx ./certs/
+COPY certs/*.pfx ./certs/
 
 # Restore dependencies
 RUN --mount=type=cache,target=/root/.nuget/packages,sharing=locked,id=nuget-cache \
@@ -57,8 +57,15 @@ WORKDIR /app/Projects/SBA.Hierarchy
 COPY --from=sdk /app/out .
 
 # Runtime environment variables (can be overridden at runtime via CLI, Docker Compose, etc.)
-ENV DOTNET_ENVIRONMENT=Docker
-ENV ConnectionStrings__SqlConnection="Server=host.docker.internal,1433;Initial Catalog=SBA_Hierarchy;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
+ENV DOTNET_ENVIRONMENT=Development
+ENV ConnectionStrings__SqlConnection="Server=sba-dev-sql,1433;Initial Catalog=SBA_Docker_Hierarchy;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
+ENV ConnectionStrings__Redis="sba-dev-redis:6379,password=P@55w0rd!123"
+ENV Clients__RabbitMQz__Uri="amqps://unique-id-here.mq.ap-southeast-2.amazonaws.com"
+ENV Clients__RabbitMQz__HostName="sba-dev-rmq"
+ENV Clients__RabbitMQz__VirtualHost="/"
+ENV Clients__RabbitMQz__Port="5672"
+ENV Clients__RabbitMQz__UserName="guest"
+ENV Clients__RabbitMQz__Password="guest"
 
 EXPOSE 1106
 
