@@ -24,6 +24,7 @@ COPY Projects/SBA.Hierarchy/*.csproj ./Projects/SBA.Hierarchy/
 COPY Published/nuget.config ./GLOB/GLOB.Domain/
 COPY Published/nuget.config ./Projects/SBA.Hierarchy/
 COPY Published/GLOB.*.nupkg ./Published/
+# COPY certs/*.pfx ./certs/
 
 # Restore dependencies
 RUN --mount=type=cache,target=/root/.nuget/packages,sharing=locked,id=nuget-cache \
