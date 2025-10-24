@@ -57,6 +57,7 @@ COPY --from=sdk /app/out .
 
 # Runtime environment variables (can be overridden at runtime via CLI, Docker Compose, etc.)
 ENV DOTNET_ENVIRONMENT=Development
+ENV USE_HTTPS=true
 ENV ConnectionStrings__SqlConnection="Server=sba-dev-sql,1433;Initial Catalog=SBA_Docker_Auth;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
 ENV ConnectionStrings__Redis="sba-dev-redis:6379,password=P@55w0rd!123"
 

@@ -25,7 +25,7 @@ COPY Published/nuget.config ./GLOB/GLOB.Domain/
 COPY Published/nuget.config ./Projects/SBA.Hierarchy/
 COPY Published/GLOB.*.nupkg ./Published/
 COPY GlobalUsings.cs ./
-COPY certs/*.pfx ./certs/
+COPY dev-cert.pfx ./
 
 # Restore dependencies
 RUN --mount=type=cache,target=/root/.nuget/packages,sharing=locked,id=nuget-cache \
@@ -57,15 +57,30 @@ WORKDIR /app/Projects/SBA.Hierarchy
 COPY --from=sdk /app/out .
 
 # Runtime environment variables (can be overridden at runtime via CLI, Docker Compose, etc.)
+
+# Certificate configuration
+ENV Kestrel__Endpoints__Https__Certificate__Path="/app/dev-cert.pfx"
+
 ENV DOTNET_ENVIRONMENT=Development
 ENV ConnectionStrings__SqlConnection="Server=sba-dev-sql,1433;Initial Catalog=SBA_Docker_Hierarchy;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
 ENV ConnectionStrings__Redis="sba-dev-redis:6379,password=P@55w0rd!123"
+
 ENV Clients__RabbitMQz__Uri="amqps://unique-id-here.mq.ap-southeast-2.amazonaws.com"
 ENV Clients__RabbitMQz__HostName="sba-dev-rmq"
-ENV Clients__RabbitMQz__VirtualHost="/"
-ENV Clients__RabbitMQz__Port="5672"
-ENV Clients__RabbitMQz__UserName="guest"
-ENV Clients__RabbitMQz__Password="guest"
+
+# HTTP base addresses (internal communication)
+ENV Clients__Httpz__Gateway="http://srvc-gateway:1100"
+ENV Clients__Httpz__Job="http://srvc-job:1102"
+ENV Clients__Httpz__Auth="http://srvc-auth:1104"
+ENV Clients__Httpz__Hierarchy="http://srvc-hierarchy:1106"
+
+# gRPC (HTTPS)
+ENV Clients__Grpc__Protocols="Http2"
+ENV Clients__Grpc__Gateway="https://srvc-gateway:1101"
+ENV Clients__Grpc__Job="https://srvc-job:1103"
+ENV Clients__Grpc__Auth="https://srvc-auth:1105" 
+ENV Clients__Grpc__Hierarchy="https://srvc-hierarchy:1107"
+
 
 EXPOSE 1106
 
