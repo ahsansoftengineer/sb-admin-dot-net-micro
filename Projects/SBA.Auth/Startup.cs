@@ -20,7 +20,8 @@ public class Startup
     Option_App appConfig = app.GetSrvc<IOptions<Option_App>>().Value;
     appConfig.Print("ENV");
 
-    app.Use_API_Default_Middlewares((route) =>
+    app.Use_API_Default_Middlewares();
+    app.Use_API_Config_Controller((route) =>
     {
       route.Use_Projectz_Clientz_Grpc(appConfig);
     });
