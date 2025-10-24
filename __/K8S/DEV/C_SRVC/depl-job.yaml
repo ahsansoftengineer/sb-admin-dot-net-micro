@@ -72,9 +72,9 @@ spec:
             - name: ConnectionStrings__SQLite
               value: "Job.SQLite.db"
 
-            - name: Clients__Http_Host__Gateway
+            - name: Clients__Httpz__Gateway
               value: http://srvc-cip-gateway:1100
-            - name: Clients__Http_Host__Auth
+            - name: Clients__Httpz__Auth
               value: http://srvc-cip-auth:1104
 
             - name: Clients__Grpc__Protocols

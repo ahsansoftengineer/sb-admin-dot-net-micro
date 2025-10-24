@@ -68,9 +68,9 @@ spec:
             - name: ConnectionStrings__SqlConnection
               value: "Server=srvc-cip-mssql.sba-dev.svc.cluster.local,1433;Initial Catalog=SBA_Hierarchy;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
             
-            - name: Clients__Http_Host__Gateway
+            - name: Clients__Httpz__Gateway
               value: http://srvc-cip-gateway:1100
-            - name: Clients__Http_Host__Auth
+            - name: Clients__Httpz__Auth
               value: http://srvc-cip-auth:1104
 
             - name: Clients__Grpc__Protocols

@@ -3,7 +3,7 @@
 # docker build -t mansanhhub/srvc-auth -f Projects/SBA.Auth/Dockerfile .
 # docker push mansanhhub/srvc-auth
 # docker pull mansanhhub/srvc-auth
-# docker run -d --name srvc-auth -p 1104:1104 -e DOTNET_ENVIRONMENT=Docker mansanhhub/srvc-auth
+# docker run -d --name srvc-auth --network sba-dev-network -p 1104:1104 -e DOTNET_ENVIRONMENT=Docker mansanhhub/srvc-auth
 # docker rm -f srvc-auth
 # docker exec -it <container_id> /bin/bash
 
@@ -56,8 +56,25 @@ WORKDIR /app/Projects/SBA.Auth
 COPY --from=sdk /app/out .
 
 # Runtime environment variables (can be overridden at runtime via CLI, Docker Compose, etc.)
-ENV DOTNET_ENVIRONMENT=Docker
-ENV ConnectionStrings__SqlConnection="Server=host.docker.internal,1433;Initial Catalog=SBA_Auth;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
+ENV DOTNET_ENVIRONMENT=Development
+ENV ConnectionStrings__SqlConnection="Server=sba-dev-sql,1433;Initial Catalog=SBA_Docker_Auth;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
+ENV ConnectionStrings__Redis="sba-dev-redis:6379,password=P@55w0rd!123"
+
+ENV Clients__RabbitMQz__Uri="amqps://unique-id-here.mq.ap-southeast-2.amazonaws.com"
+ENV Clients__RabbitMQz__HostName="sba-dev-rmq"
+
+# HTTP base addresses (internal communication)
+ENV Clients__Httpz__Gateway="http://srvc-gateway:1100"
+ENV Clients__Httpz__Job="http://srvc-job:1102"
+ENV Clients__Httpz__Auth="http://srvc-auth:1104"
+ENV Clients__Httpz__Hierarchy="http://srvc-hierarchy:1106"
+
+# gRPC (HTTPS)
+ENV Clients__Grpc__Protocols="Http2"
+ENV Clients__Grpc__Gateway="https://srvc-gateway:1101"
+ENV Clients__Grpc__Job="https://srvc-job:1103"
+ENV Clients__Grpc__Auth="https://srvc-auth:1105"
+ENV Clients__Grpc__Hierarchy="https://srvc-hierarchy:1107"
 
 EXPOSE 1104
 
