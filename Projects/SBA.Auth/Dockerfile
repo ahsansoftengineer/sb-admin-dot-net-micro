@@ -24,6 +24,7 @@ COPY Projects/SBA.Auth/*.csproj ./Projects/SBA.Auth/
 COPY Published/nuget.config ./GLOB/GLOB.Domain/
 COPY Published/nuget.config ./Projects/SBA.Auth/
 COPY Published/GLOB.*.nupkg ./Published/
+COPY GlobalUsings.cs ./
 
 # Restore dependencies
 RUN --mount=type=cache,target=/root/.nuget/packages,sharing=locked,id=nuget-cache \

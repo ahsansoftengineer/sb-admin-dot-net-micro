@@ -24,6 +24,7 @@ COPY Projects/SBA.Hierarchy/*.csproj ./Projects/SBA.Hierarchy/
 COPY Published/nuget.config ./GLOB/GLOB.Domain/
 COPY Published/nuget.config ./Projects/SBA.Hierarchy/
 COPY Published/GLOB.*.nupkg ./Published/
+COPY GlobalUsings.cs ./
 # COPY certs/*.pfx ./certs/
 
 # Restore dependencies

@@ -42,6 +42,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Include="..\..\GlobalUsings.cs" Link="GlobalUsings.cs" />
     <Protobuf Include="_Clients\Protos\base.proto" GrpcServices="Server" />
     <Protobuf Include="_Clients\Protos\projectzlookup.proto" GrpcServices="Server" AdditionalImportDirs="_Clients\Protos" />
   </ItemGroup>
