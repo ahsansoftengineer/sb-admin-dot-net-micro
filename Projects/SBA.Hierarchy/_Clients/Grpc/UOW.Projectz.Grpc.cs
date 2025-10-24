@@ -1,4 +1,3 @@
-using GLOB.API.Config.Optionz;
 using Microsoft.Extensions.Options;
 
 namespace SBA.Projectz.Grpc.Service;

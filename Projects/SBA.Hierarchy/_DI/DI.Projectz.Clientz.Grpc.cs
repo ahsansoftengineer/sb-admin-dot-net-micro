@@ -1,7 +1,4 @@
-using GLOB.API.Config.Optionz;
-using GLOB.API.Extz;
 using SBA.Projectz.Grpc.Service;
-// using SBA.Projectz.Grpc.Service;
 
 namespace SBA.Projectz.DI;
 
