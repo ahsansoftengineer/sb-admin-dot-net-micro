@@ -23,6 +23,7 @@ COPY Projects/SBA.Job/*.csproj ./Projects/SBA.Job/
 COPY Published/nuget.config ./GLOB/GLOB.Domain/
 COPY Published/nuget.config ./Projects/SBA.Job/
 COPY Published/GLOB.*.nupkg ./Published/
+COPY GlobalUsings.cs ./
 
 # Restore dependencies
 RUN --mount=type=cache,target=/root/.nuget/packages,sharing=locked,id=nuget-cache \

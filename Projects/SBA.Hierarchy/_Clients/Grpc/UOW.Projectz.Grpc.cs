@@ -4,7 +4,7 @@ namespace SBA.Projectz.Grpc.Service;
 
 public partial class UOW_Projectz_Grpc
 {
-  private readonly Option_Host option_Grpc;
+  private readonly Option_Client option_Grpc;
 
   public readonly AuthGrpcClient? auth;
 

@@ -19,7 +19,7 @@ dotnet dev-certs https --trust
     - name: Kestrel__Endpoints__Https__Protocols
         value: "Http2"
     - name: Kestrel__Endpoints__Https__Certificate__Path
-        value: "certs/dev-cert.pfx"
+        value: "dev-cert.pfx"
     - name: Kestrel__Endpoints__Https__Certificate__Password
         value: "yourpassword"
 ```

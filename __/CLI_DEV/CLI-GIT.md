@@ -14,4 +14,6 @@ git commit -m 'INIT'
 git branch -D main
 git branch -m main
 git push -f origin main
+
+git reset --soft HEAD~1
 ```
