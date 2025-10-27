@@ -3,7 +3,7 @@
 # docker build -t mansanhhub/srvc-auth -f Projects/SBA.Auth/Dockerfile .
 # docker push mansanhhub/srvc-auth
 # docker pull mansanhhub/srvc-auth
-# docker run -d --name srvc-auth --network sba-dev-network -p 1104:1104 -e DOTNET_ENVIRONMENT=Docker mansanhhub/srvc-auth
+# docker run -d --name srvc-auth --network sba-dev-network -v //c/D/net-micro/dev-cert.pfx:/app/dev-cert.pfx:ro mansanhhub/srvc-auth
 # docker rm -f srvc-auth
 # docker exec -it <container_id> /bin/bash
 

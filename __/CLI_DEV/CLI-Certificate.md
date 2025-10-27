@@ -1,8 +1,7 @@
 ### Certificate
 - Creating it
 ```bash
-mkdir certs
-dotnet dev-certs https -ep ./certs/dev-cert.pfx -p yourpassword
+dotnet dev-certs https -ep ./dev-cert.pfx -p yourpassword
 dotnet dev-certs https --trust
 ```
 - Setting ENV

@@ -1,16 +1,21 @@
-version: "3.9"
-
+version: '3.9'
 services:
-  sba-srvc-hierarchy:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    image: mansanhhub/sba-srvc-hierarchy
-    container_name: sba-srvc-hierarchy
+  hierarchy:
+    image: mansanhhub/srvc-hierarchy
+    container_name: srvc-hierarchy
     environment:
-      - DOTNET_ENVIRONMENT=DockerCompose
+      - DOTNET_ENVIRONMENT=Docker
+    networks:
+      - sba-dev-network
     ports:
-      - "1106:1106" # Map host port 1106 to container port 1106
+      - "1106:1106"
+      - "1107:1107"
+    volumes:
+      - //c/D/net-micro/dev-cert.pfx:/app/dev-cert.pfx:ro
+
+networks:
+  sba-dev-network:
+    external: true
 
 # ### Docker Compose CLI
 # docker-compose up -d --build

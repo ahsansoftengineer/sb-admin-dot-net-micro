@@ -2,8 +2,9 @@
 # Build:
 # docker build -t mansanhhub/srvc-hierarchy -f Projects/SBA.Hierarchy/Dockerfile .
 # docker push mansanhhub/srvc-hierarchy
-# docker run -d --name srvc-hierarchy --network sba-dev-network -p 1106:1106 -e DOTNET_ENVIRONMENT=Docker mansanhhub/srvc-hierarchy
 # docker rm -f srvc-hierarchy
+# NOTE: Work on Windows and this PC //c/D/net-micro/dev-cert.pfx
+# docker run -d --name srvc-hierarchy --network sba-dev-network -v //c/D/net-micro/dev-cert.pfx:/app/dev-cert.pfx:ro mansanhhub/srvc-hierarchy
 # docker exec -it <container_id> /bin/bash
 
 # http://localhost:1106/api/hierarchy/v1/swagger/index.html
@@ -25,7 +26,7 @@ COPY Published/nuget.config ./GLOB/GLOB.Domain/
 COPY Published/nuget.config ./Projects/SBA.Hierarchy/
 COPY Published/GLOB.*.nupkg ./Published/
 COPY GlobalUsings.cs ./
-COPY dev-cert.pfx ./
+# COPY dev-cert.pfx ./
 
 # Restore dependencies
 RUN --mount=type=cache,target=/root/.nuget/packages,sharing=locked,id=nuget-cache \
@@ -83,5 +84,6 @@ ENV Clients__Grpc__Hierarchy="https://srvc-hierarchy:1107"
 
 
 EXPOSE 1106
+EXPOSE 1107
 
 ENTRYPOINT [ "dotnet", "SBA.Hierarchy.dll" ]
