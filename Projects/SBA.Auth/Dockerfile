@@ -3,8 +3,8 @@
 # docker build -t mansanhhub/srvc-auth -f Projects/SBA.Auth/Dockerfile .
 # docker push mansanhhub/srvc-auth
 # docker pull mansanhhub/srvc-auth
-# docker run -d --name srvc-auth --network sba-dev-network -v //c/D/net-micro/dev-cert.pfx:/app/dev-cert.pfx:ro mansanhhub/srvc-auth
 # docker rm -f srvc-auth
+# docker run -d --name srvc-auth --network sba-dev-network -p 1104:1104 -p 1105:1105 -v //c/D/net-micro/dev-cert.pfx:/app/dev-cert.pfx:ro mansanhhub/srvc-auth
 # docker exec -it <container_id> /bin/bash
 
 # http://localhost:1104/api/auth/v1/swagger/index.html
@@ -56,8 +56,10 @@ WORKDIR /app/Projects/SBA.Auth
 COPY --from=sdk /app/out .
 
 # Runtime environment variables (can be overridden at runtime via CLI, Docker Compose, etc.)
+ENV Kestrel__Endpoints__Https__Certificate__Path="/app/dev-cert.pfx"
 ENV DOTNET_ENVIRONMENT=Development
-ENV USE_HTTPS=true
+# ENV USE_HTTPS=true
+
 ENV ConnectionStrings__SqlConnection="Server=sba-dev-sql,1433;Initial Catalog=SBA_Docker_Auth;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
 ENV ConnectionStrings__Redis="sba-dev-redis:6379,password=P@55w0rd!123"
 
@@ -78,5 +80,6 @@ ENV Clients__Grpc__Auth="https://srvc-auth:1105"
 ENV Clients__Grpc__Hierarchy="https://srvc-hierarchy:1107"
 
 EXPOSE 1104
+EXPOSE 1105
 
 ENTRYPOINT [ "dotnet", "SBA.Auth.dll" ]
