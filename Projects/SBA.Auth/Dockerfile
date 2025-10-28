@@ -58,8 +58,8 @@ COPY --from=sdk /app/out .
 # Runtime environment variables (can be overridden at runtime via CLI, Docker Compose, etc.)
 ENV DOTNET_ENVIRONMENT=Development
 ENV Kestrel__Endpoints__Https__Certificate__Path="/app/dev-cert.pfx"
-ENV Kestrel__Endpoints__Http__Url="http://+:1106"
-ENV Kestrel__Endpoints__Https__Url="https://+:1107"
+ENV Kestrel__Endpoints__Http__Url="http://+:1104"
+ENV Kestrel__Endpoints__Https__Url="https://+:1105"
 # ENV USE_HTTPS=true
 
 ENV ConnectionStrings__SqlConnection="Server=sba-dev-sql,1433;Initial Catalog=SBA_Docker_Auth;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
