@@ -19,7 +19,7 @@ dotnet dev-certs https --trust
         "Protocols": "Http2",
         "Certificate": {
           "Path": "../../dev-cert.pfx",
-          "Password": "P@ssw0rd!"
+          "Password": "P@ssw0rd!123"
         }
       }
     }
@@ -42,7 +42,7 @@ dotnet dev-certs https --trust
 - This approach work with Docker and Localhost
 - Powershell Command
 ```bash
-# Creating Certificate
+# Creating Certificate (Works)
 New-SelfSignedCertificate `
   -DnsName "localhost","srvc-auth","srvc-job","srvc-hierarchy","srvc-gateway" `
   -FriendlyName "SBA Dev Cert" `
@@ -52,12 +52,18 @@ New-SelfSignedCertificate `
 # Verify
 Get-ChildItem -Path Cert:\CurrentUser\My | Where-Object {$_.FriendlyName -eq "SBA Dev Cert"} | Select-Object FriendlyName, Thumbprint
 
-# Paste Certificate to Location
-$pwd = ConvertTo-SecureString -String "P@ssw0rd!" -Force -AsPlainText
+# Paste Certificate to Location (Works)
+$pwd = ConvertTo-SecureString -String "P@ssw0rd!123" -Force -AsPlainText
 Export-PfxCertificate `
   -Cert "cert:\CurrentUser\My\F242DE3CCF8A9493881630F6BDDF04A11F550699" `
   -FilePath "C:\D\net-micro\dev-cert.pfx" `
   -Password $pwd
+
+# Trust the Certificate for Local Dev (Works)
+Import-PfxCertificate `
+  -FilePath "C:\D\net-micro\dev-cert.pfx" `
+  -Password (ConvertTo-SecureString "P@ssw0rd!123" -AsPlainText -Force) `
+  -CertStoreLocation Cert:\CurrentUser\Root
 
 ```
 - ENV Docker 
