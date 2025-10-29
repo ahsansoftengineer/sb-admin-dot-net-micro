@@ -65,7 +65,8 @@ Import-PfxCertificate `
   -CertStoreLocation Cert:\CurrentUser\Root `
   -Exportable `
   -Confirm:$false
-
+# Creating Certificate From PFX
+dotnet dev-certs https -ep C:\D\net-micro\dev-cert.crt --format PEM
 ```
 - ENV Docker 
 ```Dockerfile
