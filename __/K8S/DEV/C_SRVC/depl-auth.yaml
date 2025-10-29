@@ -59,7 +59,7 @@ spec:
             - name: Kestrel__Endpoints__Https__Certificate__Path
               value: "dev-cert.pfx"
             - name: Kestrel__Endpoints__Https__Certificate__Password
-              value: "yourpassword"
+              value: "P@ssw0rd!"
               
             - name: ConnectionStrings__Redis
               value: "srvc-cip-redis:6379,password=P@55w0rd!123"
