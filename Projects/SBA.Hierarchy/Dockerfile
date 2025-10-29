@@ -55,6 +55,7 @@ WORKDIR /app/Projects/SBA.Hierarchy
 
 # Copy the published app from build stage
 COPY --from=sdk /app/out .
+RUN update-ca-certificates
 
 # Runtime environment variables (can be overridden at runtime via CLI, Docker Compose, etc.)
 ENV DOTNET_ENVIRONMENT=Development

@@ -12,9 +12,6 @@ public static partial class DI_API_Config
       IConfiguration config,
       Action<MvcOptions>? configureMvcOptions = null)
   {
-    // var appConfig = config.Get<Option_App>();
-    // appConfig.Print("ENV");
-
     srvc
       // API Caching 3. Defining Cache Profile
       .AddControllers(opt =>

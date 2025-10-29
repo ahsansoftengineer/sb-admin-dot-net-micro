@@ -17,7 +17,6 @@ public class Startup
   public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
   {
     Option_App appConfig = app.GetSrvc<IOptions<Option_App>>().Value;
-    appConfig.Print("ENV");
     app.Use_API_Default_Middlewares();
     app.Use_API_Config_Controller((route) =>
     {
