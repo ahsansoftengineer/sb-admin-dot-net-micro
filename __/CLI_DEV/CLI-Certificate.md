@@ -2,7 +2,7 @@
 #### Local Host Certificate
 - This approach has a flow the Certificate Only works with localhost
 ```bash
-dotnet dev-certs https -ep ./dev-cert.pfx -p P@ssw0rd!
+dotnet dev-certs https -ep ./dev-cert.pfx -p P@ssw0rd!123
 dotnet dev-certs https --trust
 ```
 - ENV appsettings.json
@@ -51,19 +51,20 @@ New-SelfSignedCertificate `
 
 # Verify
 Get-ChildItem -Path Cert:\CurrentUser\My | Where-Object {$_.FriendlyName -eq "SBA Dev Cert"} | Select-Object FriendlyName, Thumbprint
+# Get-ChildItem -Path Cert:\CurrentUser\My | Where-Object { $_.FriendlyName -eq "SBA Dev Cert" } |Remove-Item
 
 # Paste Certificate to Location (Works)
 $pwd = ConvertTo-SecureString -String "P@ssw0rd!123" -Force -AsPlainText
 Export-PfxCertificate `
-  -Cert "cert:\CurrentUser\My\F242DE3CCF8A9493881630F6BDDF04A11F550699" `
+  -Cert "cert:\CurrentUser\My\BFD9D53E970FB5F07CDA463650B60FB52836C893" `
   -FilePath "C:\D\net-micro\dev-cert.pfx" `
   -Password $pwd
-
-# Trust the Certificate for Local Dev (Works)
 Import-PfxCertificate `
   -FilePath "C:\D\net-micro\dev-cert.pfx" `
-  -Password (ConvertTo-SecureString "P@ssw0rd!123" -AsPlainText -Force) `
-  -CertStoreLocation Cert:\CurrentUser\Root
+  -Password $pwd `
+  -CertStoreLocation Cert:\CurrentUser\Root `
+  -Exportable `
+  -Confirm:$false
 
 ```
 - ENV Docker 
