@@ -4,7 +4,7 @@
 # docker push mansanhhub/srvc-auth
 # docker pull mansanhhub/srvc-auth
 # docker rm -f srvc-auth
-# docker run -d --name srvc-auth --network sba-dev-network -p 1104:1104 -p 1105:1105 -v //c/D/net-micro/dev-cert.pfx:/app/dev-cert.pfx:ro mansanhhub/srvc-auth
+# docker run -d --name srvc-auth --network sba-dev-network -p 1104:1104 -p 1105:1105 -v //c/D/net-micro/dev-cert.pfx:/app/dev-cert.pfx:ro -v //c/D/net-micro/dev-root-cert.crt:/app/dev-root-cert.crt:ro mansanhhub/srvc-auth
 # docker exec -it <container_id> /bin/bash
 
 # http://localhost:1104/api/auth/v1/swagger/index.html
@@ -84,4 +84,9 @@ ENV Clients__Grpc__Hierarchy="https://srvc-hierarchy:1107"
 EXPOSE 1104
 EXPOSE 1105
 
-ENTRYPOINT [ "dotnet", "SBA.Auth.dll" ]
+
+COPY ./Projects/SBA.Auth/startup.sh .
+RUN chmod +x startup.sh
+ENTRYPOINT ["./startup.sh"]
+
+# ENTRYPOINT [ "dotnet", "SBA.Auth.dll" ]

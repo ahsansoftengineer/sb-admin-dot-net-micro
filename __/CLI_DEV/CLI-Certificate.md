@@ -67,6 +67,12 @@ Import-PfxCertificate `
   -Confirm:$false
 # Creating Certificate From PFX
 dotnet dev-certs https -ep C:\D\net-micro\dev-cert.crt --format PEM
+
+
+# Export the public root (no password)
+Export-Certificate `
+  -Cert "cert:\CurrentUser\My\BFD9D53E970FB5F07CDA463650B60FB52836C893" `
+  -FilePath "C:\D\net-micro\dev-root-cert.crt"
 ```
 - ENV Docker 
 ```Dockerfile
