@@ -3,9 +3,17 @@
 - [Youtube](https://www.youtube.com/watch?v=EnY6fSng3Ew&t=3s)
 - [Stack Overflow](https://stackoverflow.com/questions/21297139/how-do-you-sign-a-certificate-signing-request-with-your-certification-authority/21340898#21340898)
 
+### Jackson
+```bash
+dotnet dev-certs https -ep $env:USERPROFILE\.aspnet\https\WeatherAPI.pfx -p P@ssw0rd!123
+dotnet user-secrets set "Kestrel:Certificates:Development:Password" "P@ssw0rd!123"
+docker run -p 8080:80 -p 8081:443 -e ASPNETCORE_URLS="https://+;http://+" -e ASPNETCORE_HTTPS_PORT=8081 -e ASPNETCORE_ENVIRONMENT=Development -v $env:APPDATA\microsoft\UserSecrets\:/root/.microsoft/usersecrets -v $env:USERPROFILE\.aspnet\https:/root/.aspnet/https/ weatherapi
+```
+
 #### Local Host Certificate
 - This approach has a flow the Certificate Only works with localhost
 ```bash
+dotnet dev-certs https --trust #certmgr.msc
 dotnet dev-certs https -ep ./dev-cert.pfx -p P@ssw0rd!123
 dotnet dev-certs https --trust
 ```
