@@ -1,3 +1,20 @@
+### MIGRATIONS CMD
+```bash
+dotnet tool list --global
+dotnet tool install --global dotnet-ef -v 9.0
+
+dotnet ef migrations add Init 
+dotnet ef database update 
+dotnet ef migrations remove 
+```
+
+### Packagemanager
+```bash
+Install-Package Microsoft.EntityFrameworkCore.Tools # Power Shell
+UPDATE-DATABASE -Context DatabaseContext
+Add-Migration NameOfMigration -Context DatabaseContextName
+```
+
 ### COMMON
 ```bash
 dotnet ef database update -p ./GLOB/GLOB.Infra -s SBA.Hierarchy --connection "Server=.;Database=Hierarchy;User Id=sa;Password=P@55w0rd!123;Encrypt=false;TrustServerCertificate=True;"
