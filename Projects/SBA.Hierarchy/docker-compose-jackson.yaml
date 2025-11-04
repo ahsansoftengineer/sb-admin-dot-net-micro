@@ -3,11 +3,11 @@ services:
   weatherapi:
     build: .
     ports: 
-      - "8080:80"
-      - "8081:443"
+      - "1106:1106"
+      - "1107:1107"
     environment:
       ASPNETCORE_URLS: "https://+;http://+"
-      ASPNETCORE_HTTPS_PORT: "8081"
+      ASPNETCORE_HTTPS_PORT: "1107"
       ASPNETCORE_ENVIRONMENT: "Development"
     volumes:
       - ${APPDATA}\microsoft\UserSecrets\:/root/.microsoft/usersecrets
