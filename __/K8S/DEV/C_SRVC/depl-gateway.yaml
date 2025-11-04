@@ -59,7 +59,7 @@ spec:
             - name: Kestrel__Endpoints__Https__Certificate__Path
               value: "dev-cert.pfx"
             - name: Kestrel__Endpoints__Https__Certificate__Password
-              value: "yourpassword"
+              value: "P@ssw0rd!123"
 
             - name: OcelotFileName
               value: ocelot.K8S.json

@@ -1,0 +1,19 @@
+version: '3'
+services:
+  weatherapi:
+    build: .
+    ports: 
+      - "1106:1106"
+      - "1107:1107"
+    environment:
+      ASPNETCORE_URLS: "https://+;http://+"
+      ASPNETCORE_HTTPS_PORT: "1107"
+      ASPNETCORE_ENVIRONMENT: "Development"
+    volumes:
+      - ${APPDATA}\microsoft\UserSecrets\:/root/.microsoft/usersecrets
+      - ${USERPROFILE}\.aspnet\https:/root/.aspnethttps
+
+# docker-compose up --build
+
+
+    
