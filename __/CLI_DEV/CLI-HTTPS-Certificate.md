@@ -1,4 +1,5 @@
 ### Certificate
+- [Microsoft Guide for Certificate (IMP)](https://learn.microsoft.com/en-us/dotnet/core/additional-tools/self-signed-certificates-guide)
 - [Microsoft Docs](https://learn.microsoft.com/en-us/aspnet/core/security/docker-https?view=aspnetcore-9.0)
 - [Youtube](https://www.youtube.com/watch?v=EnY6fSng3Ew&t=3s)
 - [Stack Overflow](https://stackoverflow.com/questions/21297139/how-do-you-sign-a-certificate-signing-request-with-your-certification-authority/21340898#21340898)
